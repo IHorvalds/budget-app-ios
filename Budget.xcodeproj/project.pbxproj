@@ -7,21 +7,50 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2028C4C7211F387F00048ABC /* ConvertorViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2028C4C6211F387F00048ABC /* ConvertorViewController.storyboard */; };
+		2028C4C9211F389E00048ABC /* ConvertorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2028C4C8211F389E00048ABC /* ConvertorViewController.swift */; };
+		206D1B5A2118DF9600660920 /* Saving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206D1B592118DF9600660920 /* Saving.swift */; };
+		207717A0211B7EF00002DD1D /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2077179F211B7EF00002DD1D /* Currency.swift */; };
 		20B8AA472116460F00167865 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B8AA462116460F00167865 /* AppDelegate.swift */; };
-		20B8AA492116460F00167865 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B8AA482116460F00167865 /* ViewController.swift */; };
+		20B8AA492116460F00167865 /* BudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B8AA482116460F00167865 /* BudgetViewController.swift */; };
 		20B8AA4C2116460F00167865 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20B8AA4A2116460F00167865 /* Main.storyboard */; };
 		20B8AA4E2116461100167865 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20B8AA4D2116461100167865 /* Assets.xcassets */; };
 		20B8AA512116461100167865 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20B8AA4F2116461100167865 /* LaunchScreen.storyboard */; };
+		20B8AA5A2116559500167865 /* OverViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B8AA582116559500167865 /* OverViewTableViewCell.swift */; };
+		20B8AA5D21165C4C00167865 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B8AA5C21165C4C00167865 /* Expense.swift */; };
+		20BD74272116D69A00DE0B7A /* BudgetCalculatingFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BD74262116D69A00DE0B7A /* BudgetCalculatingFunctions.swift */; };
+		20BD742C2117137400DE0B7A /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20BD742B2117137400DE0B7A /* Settings.storyboard */; };
+		20BD743121172C0800DE0B7A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BD743021172C0800DE0B7A /* SettingsViewController.swift */; };
+		20DE1981212077BE00707A31 /* ExpensesThisMonthViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20DE1980212077BE00707A31 /* ExpensesThisMonthViewController.storyboard */; };
+		20DE19852120857000707A31 /* ExpensesThisMonthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE19842120856F00707A31 /* ExpensesThisMonthViewController.swift */; };
+		20E08AB72120C0E700A7BE52 /* ExpenseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E08AB62120C0E700A7BE52 /* ExpenseDetailViewController.swift */; };
+		20FB7A5E211C41AB00B0F523 /* BudgetForDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FB7A5D211C41AB00B0F523 /* BudgetForDay.swift */; };
+		20FB7A60211CBA0200B0F523 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FB7A5F211CBA0200B0F523 /* Keys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2028C4C6211F387F00048ABC /* ConvertorViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ConvertorViewController.storyboard; sourceTree = "<group>"; };
+		2028C4C8211F389E00048ABC /* ConvertorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertorViewController.swift; sourceTree = "<group>"; };
+		206D1B592118DF9600660920 /* Saving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Saving.swift; sourceTree = "<group>"; };
+		206D1B5E2118F6B500660920 /* Budget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Budget.entitlements; sourceTree = "<group>"; };
+		2077179F211B7EF00002DD1D /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		20B8AA432116460F00167865 /* Budget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20B8AA462116460F00167865 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		20B8AA482116460F00167865 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		20B8AA482116460F00167865 /* BudgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetViewController.swift; sourceTree = "<group>"; };
 		20B8AA4B2116460F00167865 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		20B8AA4D2116461100167865 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20B8AA502116461100167865 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		20B8AA522116461100167865 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		20B8AA582116559500167865 /* OverViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverViewTableViewCell.swift; sourceTree = "<group>"; };
+		20B8AA5C21165C4C00167865 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
+		20BD74262116D69A00DE0B7A /* BudgetCalculatingFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCalculatingFunctions.swift; sourceTree = "<group>"; };
+		20BD742B2117137400DE0B7A /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		20BD743021172C0800DE0B7A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		20DE1980212077BE00707A31 /* ExpensesThisMonthViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ExpensesThisMonthViewController.storyboard; sourceTree = "<group>"; };
+		20DE19842120856F00707A31 /* ExpensesThisMonthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesThisMonthViewController.swift; sourceTree = "<group>"; };
+		20E08AB62120C0E700A7BE52 /* ExpenseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseDetailViewController.swift; sourceTree = "<group>"; };
+		20FB7A5D211C41AB00B0F523 /* BudgetForDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetForDay.swift; sourceTree = "<group>"; };
+		20FB7A5F211CBA0200B0F523 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +64,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2028C4C5211F379300048ABC /* CurrencyConvertor */ = {
+			isa = PBXGroup;
+			children = (
+				2028C4C6211F387F00048ABC /* ConvertorViewController.storyboard */,
+				2028C4C8211F389E00048ABC /* ConvertorViewController.swift */,
+			);
+			path = CurrencyConvertor;
+			sourceTree = "<group>";
+		};
+		206D1B5B2118F29F00660920 /* Launch Screen */ = {
+			isa = PBXGroup;
+			children = (
+				20B8AA4F2116461100167865 /* LaunchScreen.storyboard */,
+			);
+			path = "Launch Screen";
+			sourceTree = "<group>";
+		};
 		20B8AA3A2116460F00167865 = {
 			isa = PBXGroup;
 			children = (
@@ -54,14 +100,68 @@
 		20B8AA452116460F00167865 /* Budget */ = {
 			isa = PBXGroup;
 			children = (
-				20B8AA462116460F00167865 /* AppDelegate.swift */,
-				20B8AA482116460F00167865 /* ViewController.swift */,
-				20B8AA4A2116460F00167865 /* Main.storyboard */,
-				20B8AA4D2116461100167865 /* Assets.xcassets */,
-				20B8AA4F2116461100167865 /* LaunchScreen.storyboard */,
+				206D1B5E2118F6B500660920 /* Budget.entitlements */,
+				20BD742A211709B400DE0B7A /* Model & Logic */,
+				20BD742E2117141200DE0B7A /* Settings */,
+				20BD742D2117139300DE0B7A /* Home */,
+				20BD742F2117142500DE0B7A /* Resources */,
+				2028C4C5211F379300048ABC /* CurrencyConvertor */,
+				20DE197F2120774800707A31 /* ExpensesThisMonth */,
+				206D1B5B2118F29F00660920 /* Launch Screen */,
 				20B8AA522116461100167865 /* Info.plist */,
+				20B8AA4D2116461100167865 /* Assets.xcassets */,
 			);
 			path = Budget;
+			sourceTree = "<group>";
+		};
+		20BD742A211709B400DE0B7A /* Model & Logic */ = {
+			isa = PBXGroup;
+			children = (
+				20BD74262116D69A00DE0B7A /* BudgetCalculatingFunctions.swift */,
+				20B8AA5C21165C4C00167865 /* Expense.swift */,
+				206D1B592118DF9600660920 /* Saving.swift */,
+				2077179F211B7EF00002DD1D /* Currency.swift */,
+				20FB7A5D211C41AB00B0F523 /* BudgetForDay.swift */,
+			);
+			path = "Model & Logic";
+			sourceTree = "<group>";
+		};
+		20BD742D2117139300DE0B7A /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				20B8AA462116460F00167865 /* AppDelegate.swift */,
+				20B8AA482116460F00167865 /* BudgetViewController.swift */,
+				20B8AA4A2116460F00167865 /* Main.storyboard */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		20BD742E2117141200DE0B7A /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				20BD742B2117137400DE0B7A /* Settings.storyboard */,
+				20BD743021172C0800DE0B7A /* SettingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		20BD742F2117142500DE0B7A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				20B8AA582116559500167865 /* OverViewTableViewCell.swift */,
+				20FB7A5F211CBA0200B0F523 /* Keys.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		20DE197F2120774800707A31 /* ExpensesThisMonth */ = {
+			isa = PBXGroup;
+			children = (
+				20DE1980212077BE00707A31 /* ExpensesThisMonthViewController.storyboard */,
+				20DE19842120856F00707A31 /* ExpensesThisMonthViewController.swift */,
+				20E08AB62120C0E700A7BE52 /* ExpenseDetailViewController.swift */,
+			);
+			path = ExpensesThisMonth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,6 +196,14 @@
 				TargetAttributes = {
 					20B8AA422116460F00167865 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.DataProtection = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -123,8 +231,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				20B8AA512116461100167865 /* LaunchScreen.storyboard in Resources */,
+				20DE1981212077BE00707A31 /* ExpensesThisMonthViewController.storyboard in Resources */,
 				20B8AA4E2116461100167865 /* Assets.xcassets in Resources */,
 				20B8AA4C2116460F00167865 /* Main.storyboard in Resources */,
+				20BD742C2117137400DE0B7A /* Settings.storyboard in Resources */,
+				2028C4C7211F387F00048ABC /* ConvertorViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,8 +246,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20B8AA492116460F00167865 /* ViewController.swift in Sources */,
+				20DE19852120857000707A31 /* ExpensesThisMonthViewController.swift in Sources */,
+				20B8AA5D21165C4C00167865 /* Expense.swift in Sources */,
+				20BD74272116D69A00DE0B7A /* BudgetCalculatingFunctions.swift in Sources */,
+				20B8AA492116460F00167865 /* BudgetViewController.swift in Sources */,
+				20B8AA5A2116559500167865 /* OverViewTableViewCell.swift in Sources */,
+				207717A0211B7EF00002DD1D /* Currency.swift in Sources */,
+				206D1B5A2118DF9600660920 /* Saving.swift in Sources */,
 				20B8AA472116460F00167865 /* AppDelegate.swift in Sources */,
+				2028C4C9211F389E00048ABC /* ConvertorViewController.swift in Sources */,
+				20FB7A5E211C41AB00B0F523 /* BudgetForDay.swift in Sources */,
+				20BD743121172C0800DE0B7A /* SettingsViewController.swift in Sources */,
+				20FB7A60211CBA0200B0F523 /* Keys.swift in Sources */,
+				20E08AB72120C0E700A7BE52 /* ExpenseDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,7 +335,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -267,7 +389,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -283,6 +405,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VWKMMKH888;
 				INFOPLIST_FILE = Budget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -301,6 +424,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VWKMMKH888;
 				INFOPLIST_FILE = Budget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
