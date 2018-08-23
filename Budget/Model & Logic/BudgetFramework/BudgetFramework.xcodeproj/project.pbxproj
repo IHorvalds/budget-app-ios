@@ -8,12 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		20F3A4832127C98100F9B13E /* BudgetFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 20F3A4812127C98100F9B13E /* BudgetFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		20F3A48C2127C9E900F9B13E /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F3A4892127C9E800F9B13E /* Expense.swift */; };
+		20F3A48D2127C9E900F9B13E /* BudgetCalculatingFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F3A48A2127C9E900F9B13E /* BudgetCalculatingFunctions.swift */; };
+		20F3A48E2127C9E900F9B13E /* BudgetForDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F3A48B2127C9E900F9B13E /* BudgetForDay.swift */; };
+		20F3A4902127CA6D00F9B13E /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F3A48F2127CA6D00F9B13E /* Keys.swift */; };
+		20F3A4922127CA8100F9B13E /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F3A4912127CA8100F9B13E /* Currency.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		20F3A47E2127C98100F9B13E /* BudgetFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BudgetFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		20F3A4812127C98100F9B13E /* BudgetFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BudgetFramework.h; sourceTree = "<group>"; };
 		20F3A4822127C98100F9B13E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		20F3A4892127C9E800F9B13E /* Expense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
+		20F3A48A2127C9E900F9B13E /* BudgetCalculatingFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetCalculatingFunctions.swift; sourceTree = "<group>"; };
+		20F3A48B2127C9E900F9B13E /* BudgetForDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetForDay.swift; sourceTree = "<group>"; };
+		20F3A48F2127CA6D00F9B13E /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		20F3A4912127CA8100F9B13E /* Currency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,6 +40,11 @@
 		20F3A4742127C98100F9B13E = {
 			isa = PBXGroup;
 			children = (
+				20F3A4912127CA8100F9B13E /* Currency.swift */,
+				20F3A48F2127CA6D00F9B13E /* Keys.swift */,
+				20F3A48A2127C9E900F9B13E /* BudgetCalculatingFunctions.swift */,
+				20F3A48B2127C9E900F9B13E /* BudgetForDay.swift */,
+				20F3A4892127C9E800F9B13E /* Expense.swift */,
 				20F3A4802127C98100F9B13E /* BudgetFramework */,
 				20F3A47F2127C98100F9B13E /* Products */,
 			);
@@ -95,6 +110,7 @@
 				TargetAttributes = {
 					20F3A47D2127C98100F9B13E = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 0940;
 					};
 				};
 			};
@@ -130,6 +146,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20F3A48E2127C9E900F9B13E /* BudgetForDay.swift in Sources */,
+				20F3A4922127CA8100F9B13E /* Currency.swift in Sources */,
+				20F3A4902127CA6D00F9B13E /* Keys.swift in Sources */,
+				20F3A48D2127C9E900F9B13E /* BudgetCalculatingFunctions.swift in Sources */,
+				20F3A48C2127C9E900F9B13E /* Expense.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +280,7 @@
 		20F3A4872127C98100F9B13E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -276,6 +298,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ihorvalds.BudgetFramework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -284,6 +307,7 @@
 		20F3A4882127C98100F9B13E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;

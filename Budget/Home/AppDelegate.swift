@@ -12,13 +12,48 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let storyboard = UIStoryboard(name: "Launch Screen Thing", bundle: nil)
+        let splashScreenVC = storyboard.instantiateInitialViewController() as! UINavigationController
+        self.window?.rootViewController = splashScreenVC
+        let homeStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let initialVC = homeStoryboard.instantiateInitialViewController() as! UINavigationController
+        _ = Timer.scheduledTimer(withTimeInterval: 3.5, repeats: false) { (_) in
+            self.window?.rootViewController?.present(initialVC,
+                                                     animated: true,
+                                                     completion: {
+                                                        self.window?.rootViewController = initialVC
+            })
+        }
         return true
     }
 
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        var successfullyOpenedDocument = true
+        let homeStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let initialVC = homeStoryboard.instantiateInitialViewController() as! UINavigationController
+        self.window?.rootViewController = initialVC
+        let documentStoryboard = UIStoryboard(name: "BudgetExport", bundle: nil)
+        let documentViewController = documentStoryboard.instantiateInitialViewController() as! BudgetExportViewController
+        documentViewController.document = BudgetExportDocument(fileURL: url)
+        documentViewController.document?.open(completionHandler: { success in
+            if success {
+                
+                self.window?.rootViewController?.show(documentViewController, sender: nil)
+                documentViewController.title = documentViewController.document?.localizedName
+            } else {
+                print("Error opening file from Files App")
+            }
+            
+            successfullyOpenedDocument = success
+        })
+        
+        return successfullyOpenedDocument
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -40,7 +75,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
+    
 }
 

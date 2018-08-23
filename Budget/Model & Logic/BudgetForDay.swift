@@ -8,7 +8,7 @@
 
 import Foundation
 
-class BudgetForDay: NSObject, NSCoding {
+class BudgetForDay: NSObject, NSCoding, Codable {
     
     var totalUsableAmount: Double
     let day: Date

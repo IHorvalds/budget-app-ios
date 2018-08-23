@@ -8,12 +8,17 @@
 
 import UIKit
 import UserNotifications
+import MobileCoreServices
 
-class BudgetViewController: UITableViewController {
+class BudgetViewController: UITableViewController, UIDocumentPickerDelegate {
+    
+    //for opening the correct view controller when loading a document from the Files App
+    var transitionVC: UIDocumentBrowserTransitionController?
     
     @IBOutlet weak var navBar: UINavigationItem!
     var expenses: [Expense] = []
     var quantityThisMonth: Double?
+    let numberFormatter = NumberFormatter()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -21,21 +26,30 @@ class BudgetViewController: UITableViewController {
             let expensesThisMonth = unarchiveExpenses(expensesData: expensesThisMonthData)
             self.expenses = expensesThisMonth
         }
-        
         endOfDayExport()
-        
         self.tableView.reloadData()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if  segue.identifier == "seguetoexpenses",
             let destVC = segue.destination as? ExpensesThisMonthViewController {
             destVC.expenses = self.expenses
+            if  let budgetData = defaults.value(forKey: budgetForThisMonthKey) as? Data,
+                let budgets = NSKeyedUnarchiver.unarchiveObject(with: budgetData) as? [BudgetForDay] {
+                destVC.budgets = budgets
+            }
         }
     }
 }
@@ -62,7 +76,7 @@ extension BudgetViewController {
         } else {
             let today = Date()
             let day = Calendar.current.dateComponents([.year, .month, .day], from: today)
-            let dayOfToday = Calendar.current.date(from: day)! + TimeInterval(86400)
+            let dayOfToday = Calendar.current.date(from: day)!
             let todayExpenses = self.expenses.filter({$0.datePurchased == (dayOfToday)})
             return todayExpenses.count + 1
         }
@@ -79,15 +93,15 @@ extension BudgetViewController {
     
     //MARK: - display the cells of the main screen
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        numberFormatter.numberStyle = .currency
+        
         if indexPath.section == 0 {
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "overviewcell") as! OverViewTableViewCell?
                 cell?.delegate = self
                 if let moneyLeftThisMonthLabel = moneyLeft {
-                    let currencyFormatter = NumberFormatter()
-                    currencyFormatter.numberStyle = .currency
-                    currencyFormatter.currencyCode = (defaults.value(forKey: localCurrencyKey) as! String)
-                    if let formattedMoneyLeft = currencyFormatter.string(from: moneyLeftThisMonthLabel as NSNumber) {
+                    numberFormatter.currencyCode = (defaults.value(forKey: localCurrencyKey) as! String)
+                    if let formattedMoneyLeft = numberFormatter.string(from: moneyLeftThisMonthLabel as NSNumber) {
                         cell?.moneyLeftThisMonth.setTitle("Money left: " + formattedMoneyLeft, for: .normal)
                     } else {
                         cell?.moneyLeftThisMonth.setTitle("Money left: ???", for: .normal)
@@ -97,10 +111,8 @@ extension BudgetViewController {
                 }
                 if let quantity = quantityThisMonth {
                     if let currency = defaults.value(forKey: localCurrencyKey) as? String {
-                        let currencyFormatter = NumberFormatter()
-                        currencyFormatter.numberStyle = .currency
-                        currencyFormatter.currencyCode = currency
-                        if let budgetThisMonth = currencyFormatter.string(from: quantity as NSNumber) {
+                        numberFormatter.currencyCode = currency
+                        if let budgetThisMonth = numberFormatter.string(from: quantity as NSNumber) {
                             cell?.budgetThisMonth.text = "Budget this month: " + budgetThisMonth
                         } else {
                             cell?.budgetThisMonth.text = "Budget this month: ???"
@@ -111,14 +123,6 @@ extension BudgetViewController {
                 } else {
                     cell?.budgetThisMonth.text = "Budget this month: ???"
                 }
-                
-                //TODO: load salaryDay from UserDefaults
-                //            if isWithinBudget(startingFrom: salaryDay) {
-                //                cell?.isInOrOverBudget.text = "In Budget"
-                //            } else {
-                //                cell?.isInOrOverBudget.text = "Over budget"
-                //                cell?.isInOrOverBudget.textColor = #colorLiteral(red: 1, green: 0.3300999652, blue: 0.299975277, alpha: 1)
-                //            }
                 cell?.isInOrOverBudget.text = isWithinBudget()
                 cell?.layoutSubviews()
                 return cell!
@@ -129,12 +133,13 @@ extension BudgetViewController {
                     let today = Date()
                     let day = Calendar.autoupdatingCurrent.dateComponents([.year, .month, .day], from: today)
                     let dayOfToday = Calendar.current.date(from: day)
-                    let budget = budgets.first(where: {$0.day == (dayOfToday! + TimeInterval(86400))})
+                    for budgeteer in budgets { ///for debugging
+                        print("The total for \(budgeteer.day) in \(budgeteer.totalUsableAmount)")
+                    }
+                    let budget = budgets.first(where: {$0.day == (dayOfToday!)})
                     if let dayAmount = budget?.totalUsableAmount {
-                        let currencyFormatter = NumberFormatter()
-                        currencyFormatter.numberStyle = .currency
-                        currencyFormatter.currencyCode = (defaults.value(forKey: localCurrencyKey) as! String)
-                        if let formattedDayAmount = currencyFormatter.string(from: dayAmount as NSNumber) {
+                        numberFormatter.currencyCode = (defaults.value(forKey: localCurrencyKey) as! String)
+                        if let formattedDayAmount = numberFormatter.string(from: dayAmount as NSNumber) {
                             cell?.detailTextLabel?.text = formattedDayAmount
                         } else {
                             cell?.detailTextLabel?.text = "???"
@@ -155,7 +160,7 @@ extension BudgetViewController {
             let cell: UITableViewCell?
             let today = Date()
             let day = Calendar.current.dateComponents([.year, .month, .day], from: today)
-            let dayOfToday = Calendar.current.date(from: day)! + TimeInterval(86400)
+            let dayOfToday = Calendar.current.date(from: day)!
             let todayExpenses = self.expenses.filter({$0.datePurchased == (dayOfToday)})
             
             if indexPath.row == todayExpenses.count {
@@ -165,7 +170,8 @@ extension BudgetViewController {
 
                 cell?.textLabel?.text = todayExpenses[indexPath.row].title
                 if let localCurr = defaults.value(forKey: localCurrencyKey) as? String {
-                    cell?.detailTextLabel?.text = localCurr + String(todayExpenses[indexPath.row].price)
+                    numberFormatter.currencyCode = localCurr
+                    cell?.detailTextLabel?.text = numberFormatter.string(from: todayExpenses[indexPath.row].price as NSNumber)
                 } else {
                     cell?.detailTextLabel?.text = String(todayExpenses[indexPath.row].price)
                 }
@@ -177,11 +183,52 @@ extension BudgetViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 1, indexPath.row == (expenses.count) {
+        let today = Date()
+        let day = Calendar.autoupdatingCurrent.dateComponents([.year, .month, .day], from: today)
+        let dayOfToday = Calendar.current.date(from: day)
+        let todayExpenses = expenses.filter({$0.datePurchased == dayOfToday})
+        if indexPath.section == 1, indexPath.row == (todayExpenses.count) {
             print("pressed")
             print(expenses)
             self.tableView.deselectRow(at: indexPath, animated: true)
             popUpForAddingExpense()
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the specified item to be editable.
+        let today = Date()
+        let day = Calendar.current.dateComponents([.year, .month, .day], from: today)
+        let dayOfToday = Calendar.current.date(from: day)!
+        let todayExpenses = self.expenses.filter({$0.datePurchased == (dayOfToday)})
+        if indexPath.section == 1, indexPath.row != todayExpenses.count {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            let today = Date()
+            let day = Calendar.autoupdatingCurrent.dateComponents([.year, .month, .day], from: today)
+            let dayOfToday = Calendar.current.date(from: day)
+            var todayExpenses = expenses.filter({$0.datePurchased == dayOfToday})
+            let removedExpense = todayExpenses.remove(at: indexPath.row)
+            expenses.remove(at: expenses.index(of: removedExpense)!)
+            saveExpensesToDisk()
+            if let budgetData = defaults.value(forKey: budgetForThisMonthKey) as? Data,
+                var budgets = NSKeyedUnarchiver.unarchiveObject(with: budgetData) as? [BudgetForDay] {
+                let budget = budgets.first(where: {$0.day == (dayOfToday!)})
+                if let budgetForToday = budget {
+                    budgetForToday.totalUsableAmount += removedExpense.price //TODO: get this budget back to budgetviewcontroller
+                    budgets[budgets.index(of: budgetForToday)!] = budgetForToday
+                    defaults.set(archiveBudgetsAsData(budgets: budgets), forKey: budgetForThisMonthKey)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                    tableView.reloadData()
+                }
+            }
         }
     }
 }
@@ -197,7 +244,7 @@ extension BudgetViewController: OverviewTableViewCellDelegate {
             return expenseTotal
         }
         
-        if let curr = defaults.value(forKey: sentCurrencyKey) as? String,
+        if  let curr = defaults.value(forKey: sentCurrencyKey) as? String,
             let curr2 = defaults.value(forKey: localCurrencyKey) as? String,
             let totalAmount = defaults.value(forKey: budgetKey) as? String,
             let rentAmount = defaults.value(forKey: rentAmountKey) as? String {
@@ -213,7 +260,7 @@ extension BudgetViewController: OverviewTableViewCellDelegate {
     }
     
     func didTapMoneyLeft() {
-        print("money left") //TODO: segue to ExpensesThisMonthViewController
+        print("money left")
     }
 }
 
@@ -224,6 +271,8 @@ extension BudgetViewController {
         inputAlert.addTextField(configurationHandler: {(textField: UITextField!) in
             textField.placeholder = "Give it a name..."
             textField.enablesReturnKeyAutomatically = true
+            textField.autocapitalizationType = UITextAutocapitalizationType.sentences
+            textField.spellCheckingType = UITextSpellCheckingType.yes
         })
         inputAlert.addTextField(configurationHandler: {(textField: UITextField!) in
             textField.placeholder = "How much was it?"
@@ -237,34 +286,32 @@ extension BudgetViewController {
         }))
         inputAlert.addAction(.init(title: "Done", style: .default, handler: {(_: UIAlertAction!) in
             if inputAlert.textFields![0].hasText,
-            inputAlert.textFields![1].hasText {
+                inputAlert.textFields![1].hasText {
                 self.expenses.append(Expense.init(title: inputAlert.textFields![0].text!,
-                                             price: Double(inputAlert.textFields![1].text!)!))
-            if let budgetData = defaults.value(forKey: budgetForThisMonthKey) as? Data,
-            var budgets = NSKeyedUnarchiver.unarchiveObject(with: budgetData) as? [BudgetForDay],
-            !self.expenses.isEmpty {
-            let today = Date()
-            let day = Calendar.current.dateComponents([.year, .month, .day], from: today)
-            let dayOfToday = Calendar.current.date(from: day)! + TimeInterval(86400)
-            let budget = budgets.first(where: {$0.day == (dayOfToday)})
-            if let dayAmount = budget?.totalUsableAmount {
-            let todayExpenses = self.expenses.filter({$0.datePurchased == (dayOfToday)})
-            var todayAmountSpent: Double {
-            var intermediaryTotal = 0.0
-            for expense in todayExpenses {
-            intermediaryTotal += expense.price
-            }
-            
-            return intermediaryTotal
-            }
-            for expense in todayExpenses {
-            budget?.updateTotalUsableAmount(expense: expense)
-            }
-            budgets[budgets.index(of: budget!)!] = budget!
-            defaults.set(archiveBudgetsAsData(budgets: budgets), forKey: budgetForThisMonthKey)
-            }}
-                self.tableView.reloadData()
-                print(self.expenses)
+                                                  price: Double(inputAlert.textFields![1].text!)!))
+                if let budgetData = defaults.value(forKey: budgetForThisMonthKey) as? Data,
+                    var budgets = NSKeyedUnarchiver.unarchiveObject(with: budgetData) as? [BudgetForDay],
+                    !self.expenses.isEmpty {
+                    let today = Date()
+                    let day = Calendar.current.dateComponents([.year, .month, .day], from: today)
+                    let dayOfToday = Calendar.current.date(from: day)!
+                    let budget = budgets.first(where: {$0.day == (dayOfToday)})
+                    if (budget?.totalUsableAmount) != nil {
+                        if let expense = self.expenses.last {
+                            budget?.updateTotalUsableAmount(expense: expense)
+                        }
+                        budgets[budgets.index(of: budget!)!] = budget!
+                        defaults.set(archiveBudgetsAsData(budgets: budgets), forKey: budgetForThisMonthKey)
+                    }
+                    
+                }
+                self.tableView.beginUpdates()
+                self.tableView.insertRows(at: [IndexPath.init(row: self.expenses.count - 1, section: 1)], with: .top)
+                self.tableView.reloadRows(at: [IndexPath(row: 0, section: 0),
+                                               IndexPath(row: 1, section: 0)],
+                                          with: .none)
+                self.tableView.endUpdates()
+                //print(self.expenses)
                 self.saveExpensesToDisk()
             } else {
                 let alert = UIAlertController.init(title: "Oops!", message: "Please add all the necessary information about your purchase. Thank you!", preferredStyle: .alert)
@@ -291,3 +338,24 @@ extension BudgetViewController {
         defaults.set(archiveExpenses(expenses: self.expenses), forKey: expensesKey)
     }
 }
+
+//extension BudgetViewController {
+//    
+//    func showDocumentViewController(url: URL) {
+//        let storyboard = UIStoryboard(name: "BudgetExport", bundle: nil)
+//        let documentViewController = storyboard.instantiateInitialViewController() as! BudgetExportViewController
+//        documentViewController.document = BudgetExportDocument(fileURL: url)
+//        print("!!!!!!!!!!!!!!OPENING DOCUMENT!!!!!!!!!!")
+//        documentViewController.document?.open(completionHandler: { success in
+//            if success {
+//                documentViewController.title = documentViewController.document?.localizedName
+//            } else {
+//                print("Error opening file from Files App")
+//            }
+//            
+//        })
+//        print("PRESENTING DOCUMENT")
+//        present(documentViewController, animated: true, completion: nil)
+//    }
+//    
+//}

@@ -19,7 +19,7 @@ class ExpenseDetailViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.title = purchaseTitle
-        let dateFormatter = DateFormatter()
+//        let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         datePurchased.text = dateFormatter.string(from: datePurchasedBuffer)
         let numberFormatter = NumberFormatter()

@@ -9,11 +9,14 @@
 import UIKit
 import UserNotifications
 
+let dateFormatter = DateFormatter()
+
 class SettingsViewController: UITableViewController, UNUserNotificationCenterDelegate {
     
     //MARK: - Miscellaneous variables and constants
     let currencies = ["DKK", "EUR", "RON", "USD"]
     var activeTextField = UITextField()//used in identifying the text field being edited
+    let notificationCenter = UNUserNotificationCenter.current()
 
     //MARK: - variables
 
@@ -29,35 +32,40 @@ class SettingsViewController: UITableViewController, UNUserNotificationCenterDel
         if !sender.isOn {
             //don't send shit
             print("notifications disabled")
+            let notificationCenter = UNUserNotificationCenter.current()
+            notificationCenter.delegate = self
+            notificationCenter.removeAllPendingNotificationRequests()
         } else {
-            if #available(iOS 10.0, *) {
-                let notificationCenter = UNUserNotificationCenter.current()
                 notificationCenter.delegate = self
                 if !checkNotificationAccess() {
                     activateNotifications(notificationCenter: notificationCenter)
                 }
-            } else {
-                // Fallback on earlier versions
-                // ????????
-            }
+                let content = UNMutableNotificationContent()
+                content.title = "Add your spendings for the day"
+                content.body = "It's 22:22 and somebody loves you. Now gather your receipts and see how much you spent today!"
+                content.categoryIdentifier = "alarm"
+                content.userInfo = ["customData": "fizzbuzz"]
+                content.sound = UNNotificationSound.default()
+                
+                var dateComponents = DateComponents()
+                dateComponents.hour = 22
+                dateComponents.minute = 22
+                let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+                
+                let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+                notificationCenter.add(request)
         }
     }
 
     @IBOutlet weak var notificationSwitch: UISwitch!
     //MARK: - pop the settings view controller. Saving notifications explicitly because they are not useful for calculating the budget
-    @IBAction func popSettingsVC(_ sender: Any) {
-        saveToDefaults()
-        self.navigationController?.popViewController(animated: true)
-    }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    @IBAction func doneButton(_ sender: UIBarButtonItem) {
         saveToDefaults()
         defaults.set(notificationSwitch.isOn, forKey: notificationsAccessKey)
         if dateReceived.text != nil && dateReceived.text != "", lastsUntil.text != nil && lastsUntil.text != "", defaults.value(forKey: budgetForThisMonthKey) == nil {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MMM dd, yyyy"
-            dateFormatter.locale = Locale(identifier: "en_US")
+            //            dateFormatter.dateFormat = "yyyy-MM-dd"
+            dateFormatter.dateStyle = .medium
             let calendar = Calendar.current
             let startingDate = dateFormatter.date(from: dateReceived.text!)!
             let startingComponents = calendar.dateComponents([.year, .month, .day], from: startingDate)
@@ -66,14 +74,36 @@ class SettingsViewController: UITableViewController, UNUserNotificationCenterDel
             
             let start = calendar.date(from: startingComponents)
             let end = calendar.date(from: endingComponents)
+            calculateDailyBudget(startingFrom: start!, endingOn: end!)
+        }
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("Settings view will disappear")
+        saveToDefaults()
+        defaults.set(notificationSwitch.isOn, forKey: notificationsAccessKey)
+        if dateReceived.text != nil && dateReceived.text != "", lastsUntil.text != nil && lastsUntil.text != "", defaults.value(forKey: budgetForThisMonthKey) == nil {
+//            dateFormatter.dateFormat = "yyyy-MM-dd"
+            dateFormatter.dateStyle = .medium
+            let calendar = Calendar.current
+            let startingDate = dateFormatter.date(from: dateReceived.text!)!
+            let startingComponents = calendar.dateComponents([.year, .month, .day], from: startingDate)
+            let endingDate = dateFormatter.date(from: lastsUntil.text!)!
+            let endingComponents = calendar.dateComponents([.year, .month, .day], from: endingDate)
             
-            calculateDailyBudget(startingFrom: start! + TimeInterval(86400), endingOn: end! + TimeInterval(86400))
+            let start = calendar.date(from: startingComponents)
+            let end = calendar.date(from: endingComponents)
+            calculateDailyBudget(startingFrom: start!, endingOn: end!)
         }
     }
     
     //MARK: - pickerviews for currency and for dates
     let datePicker = UIDatePicker()
     let currPicker = UIPickerView()
+    let rentPicker = UIPickerView()
     
     //MARK: - toolbar
     let toolbar = UIToolbar()
@@ -95,15 +125,18 @@ class SettingsViewController: UITableViewController, UNUserNotificationCenterDel
         self.addToolbar(textField: rentDueDate)
         self.addToolbar(textField: sentCurrency)
         self.addToolbar(textField: localCurrency)
+        
+        datePicker.locale = Calendar.current.locale
         sentCurrency.inputView = currPicker
         localCurrency.inputView = currPicker
         dateReceived.inputView = datePicker
-        dateReceived.inputView = datePicker
         lastsUntil.inputView = datePicker
-        rentDueDate.inputView = datePicker
+        rentDueDate.inputView = rentPicker
         
         currPicker.delegate = self
         currPicker.dataSource = self
+        rentPicker.delegate = self
+        rentPicker.dataSource = self
         datePicker.datePickerMode = UIDatePickerMode.date
         datePicker.addTarget(self, action: #selector(updateDateText), for: UIControlEvents.valueChanged)
         datePicker.backgroundColor = currPicker.backgroundColor
@@ -114,6 +147,7 @@ class SettingsViewController: UITableViewController, UNUserNotificationCenterDel
         super.viewWillAppear(animated)
         
         if let DateReceived = defaults.value(forKey: dateReceivedKey) as? String {
+            print("They still exist")
             dateReceived.text = DateReceived
         }
         if let LastsUntil = defaults.value(forKey: lastsUntilKey) as? String {
@@ -151,6 +185,15 @@ class SettingsViewController: UITableViewController, UNUserNotificationCenterDel
             case 0:
                 dateReceived.becomeFirstResponder()
             case 1:
+                print(dateReceived.hasText)
+                if dateReceived.hasText {
+//                    dateFormatter.dateFormat = "yyyy-MM-dd"
+                    dateFormatter.dateStyle = .medium
+                    let calendar = Calendar.current
+                    let startingDate = dateFormatter.date(from: dateReceived.text!)!
+                    let startingComponents = calendar.dateComponents([.year, .month, .day], from: startingDate)
+                    datePicker.minimumDate = calendar.date(from: startingComponents)
+                }
                 lastsUntil.becomeFirstResponder()
             case 2:
                 sentCurrency.becomeFirstResponder()
@@ -224,9 +267,27 @@ extension SettingsViewController: UITextFieldDelegate {
     }
     
     @objc func cancelPressed(sender: UIButton){
+        
         activeTextField.text = ""
         self.tableView.reloadData()
         view.endEditing(true)
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField == lastsUntil {
+            if dateReceived.text != "" {
+//                dateFormatter.dateFormat = "yyyy-MM-dd"
+                dateFormatter.dateStyle = .medium
+                let calendar = Calendar.current
+                let startingDate = dateFormatter.date(from: dateReceived.text!)
+                let startingComponents = calendar.dateComponents([.year, .month, .day], from: startingDate!)
+                datePicker.minimumDate = calendar.date(from: startingComponents)
+                return true
+            } else {
+                return false
+            }
+        }
+        return true
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -234,7 +295,6 @@ extension SettingsViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("pressed return")
         textField.resignFirstResponder()
         self.tableView.reloadData()
         return true
@@ -248,26 +308,49 @@ extension SettingsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return currencies.count
+        if pickerView == currPicker {
+            return currencies.count
+        } else {
+            return 28
+        }
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return currencies[row]
+        if pickerView == currPicker {
+            return currencies[row]
+        } else {
+            if (row + 1) % 10 == 1, (row + 1) != 11 {
+                return String(row + 1) + "st"
+            } else if (row + 1) % 10 == 2, (row + 1) != 12 {
+                return String(row + 1) + "nd"
+            } else if (row + 1) % 10 == 3, (row + 1) != 13 {
+                return String(row + 1) + "rd"
+            }
+            
+            return String(row + 1) + "th"
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if activeTextField == localCurrency {
-            rentCurrency.text = currencies[row]
+        if pickerView == currPicker {
+            if activeTextField == localCurrency {
+                rentCurrency.text = currencies[row]
+            }
+            activeTextField.text = currencies[row]
+        } else {
+            activeTextField.text = "Day " + String(row + 1)
         }
-        activeTextField.text = currencies[row]
     }
 }
 
 extension SettingsViewController {
     
     @objc func updateDateText() {
-        let date = datePicker.date.description
-        activeTextField.text = String(date.dropLast(15))
+        dateFormatter.dateStyle = .medium
+        let date = datePicker.date
+        //activeTextField.text = String(date.dropLast(15))
+        activeTextField.text = dateFormatter.string(from: date)
     }
 }
 
@@ -279,34 +362,113 @@ extension SettingsViewController {
             lastsUntil.text != "" &&
             dateReceived.text != "" &&
             amountSent.text != "" &&
-            rentDueDate.text != "" &&
             rentAmountInLocalCurrency.text != "") {
+            print("It's been filled")
             return true
         } else {
+            print("It hasn't been filled")
             return false
         }
     }
     
     func saveToDefaults() {
         if !isItFilled() {       //first check to see that all fields have been filled
+            if let rentDate = rentDueDate.text {
+                defaults.set(rentDate, forKey: rentDueDateKey)
+            }
+            
             let alert = UIAlertController(title: "Incomplete",
                                           message: "Please fill in all the information necessary for the budget.",
                                           preferredStyle: .alert)
             let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in}
             alert.addAction(OKAction)
+            print("WTF")
             self.present(alert, animated: true, completion: nil)
         } else {                //save to defaults for each key
-            defaults.set(dateReceived.text, forKey: dateReceivedKey)
-            defaults.set(lastsUntil.text, forKey: lastsUntilKey)
-            defaults.set(sentCurrency.text, forKey: sentCurrencyKey)
-            defaults.set(localCurrency.text, forKey: localCurrencyKey)
-            defaults.set(amountSent.text, forKey: budgetKey)
-            defaults.set(rentAmountInLocalCurrency.text, forKey: rentAmountKey)
+            
+            //if values do exist for the keys in UserDefaults and are different than what is now on screen, then calculateBudget again
+            if  let a = defaults.value(forKey: dateReceivedKey) as? String,
+                let b = defaults.value(forKey: lastsUntilKey) as? String,
+                let c = defaults.value(forKey: sentCurrencyKey) as? String,
+                let d = defaults.value(forKey: localCurrencyKey) as? String,
+                let e = defaults.value(forKey: budgetKey) as? String,
+                let f = defaults.value(forKey: rentAmountKey) as? String {
+                if a != dateReceived.text
+                || b != lastsUntil.text
+                || c != sentCurrency.text
+                || d != localCurrency.text
+                || e != amountSent.text
+                || f != rentAmountInLocalCurrency.text {
+//                    dateFormatter.dateFormat = "yyyy-MM-dd"
+                    dateFormatter.dateStyle = .medium
+                    let calendar = Calendar.current
+                    let startingDate = dateFormatter.date(from: dateReceived.text!)!
+                    let startingComponents = calendar.dateComponents([.year, .month, .day], from: startingDate)
+                    let endingDate = dateFormatter.date(from: lastsUntil.text!)!
+                    let endingComponents = calendar.dateComponents([.year, .month, .day], from: endingDate)
+                    
+                    let start = calendar.date(from: startingComponents)
+                    let end = calendar.date(from: endingComponents)
+                    print("CacaCacaCaca")
+                    defaults.set(dateReceived.text, forKey: dateReceivedKey)
+                    defaults.set(lastsUntil.text, forKey: lastsUntilKey)
+                    defaults.set(sentCurrency.text, forKey: sentCurrencyKey)
+                    defaults.set(localCurrency.text, forKey: localCurrencyKey)
+                    defaults.set(amountSent.text, forKey: budgetKey)
+                    defaults.set(rentAmountInLocalCurrency.text, forKey: rentAmountKey)
+                    calculateDailyBudget(startingFrom: start!, endingOn: end!)
+                    
+                    //update every day's budget with the expenses of that day
+                    var budgets = NSKeyedUnarchiver.unarchiveObject(with: (defaults.value(forKey: budgetForThisMonthKey) as! Data)) as! [BudgetForDay]
+                    print(budgets)
+                    if  let expenseData = defaults.value(forKey: expensesKey) as? Data,
+                        let expenses = NSKeyedUnarchiver.unarchiveObject(with: expenseData) as? [Expense] {
+                        for budget in budgets {
+                            print("Budget date: \(budget.day)")
+                            let matchingExpenses = expenses.filter({$0.datePurchased == budget.day})
+                            for expense in matchingExpenses {
+                                print("updating expense")
+                                budget.updateTotalUsableAmount(expense: expense)
+                            }
+                            
+                            budgets[(budgets.index(of: budget))!] = budget
+                        }
+                        defaults.set(archiveBudgetsAsData(budgets: budgets), forKey: budgetForThisMonthKey)
+                    }
+                }
+            } else {
+                print("saving shit to UserDefaults after it being empty")
+                defaults.set(dateReceived.text, forKey: dateReceivedKey)
+                defaults.set(lastsUntil.text, forKey: lastsUntilKey)
+                defaults.set(sentCurrency.text, forKey: sentCurrencyKey)
+                defaults.set(localCurrency.text, forKey: localCurrencyKey)
+                defaults.set(amountSent.text, forKey: budgetKey)
+                defaults.set(rentAmountInLocalCurrency.text, forKey: rentAmountKey)
+            }
+            
+            
             defaults.set(rentDueDate.text, forKey: rentDueDateKey)
+            
+            //set notification for rent due date
+            let content = UNMutableNotificationContent()
+            content.title = "Rent due today"
+            content.body = "If you haven't already, pay your rent sometime today!"
+            content.categoryIdentifier = "alarm"
+            content.userInfo = ["customData": "fizzbuzz"]
+            content.sound = UNNotificationSound.default()
+            
+            var dateComponents = DateComponents()
+            dateComponents.day = Int(rentDueDate.text!.dropFirst(4))
+            print(dateComponents.day)
+            dateComponents.hour = 12
+            print(dateComponents)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+            
+            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+            notificationCenter.add(request)
         }
     }
     
-    @available(iOS 10.0, *)
     func activateNotifications(notificationCenter: UNUserNotificationCenter) {
         notificationCenter.requestAuthorization(options: [.alert, .sound, .badge], completionHandler: { granted, error in
             DispatchQueue.main.async {

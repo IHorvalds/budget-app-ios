@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qn0-7N-krq">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fsu-mF-mSR">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Overview-->
         <scene sceneID="eGE-v4-wiZ">
             <objects>
-                <tableViewController id="wqs-JB-6kX" customClass="BudgetViewController" customModule="Budget" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="budgetviewcontroller" id="wqs-JB-6kX" customClass="BudgetViewController" customModule="Budget" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" bouncesZoom="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="5bl-iG-tnj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="overviewcell" rowHeight="250" id="DfU-AD-9L6" customClass="OverViewTableViewCell" customModule="Budget" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="250"/>
+                                <rect key="frame" x="0.0" y="55.5" width="320" height="250"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DfU-AD-9L6" id="F2g-c3-jQ5">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="249.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="249.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9tn-Xt-DJt">
-                                            <rect key="frame" x="16" y="51" width="343" height="35"/>
+                                            <rect key="frame" x="16" y="51" width="288" height="35"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="Budget">
                                                     <attributes>
@@ -40,7 +40,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FTT-S4-ihU">
-                                            <rect key="frame" x="16" y="104" width="343" height="42"/>
+                                            <rect key="frame" x="16" y="104" width="288" height="42"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                             <state key="normal" title="Money left:"/>
                                             <connections>
@@ -49,7 +49,7 @@
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Budget this month:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z3S-Mt-xKH">
-                                            <rect key="frame" x="16" y="155" width="343" height="24"/>
+                                            <rect key="frame" x="16" y="155" width="288" height="24"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -67,6 +67,7 @@
                                         <constraint firstItem="9tn-Xt-DJt" firstAttribute="top" secondItem="F2g-c3-jQ5" secondAttribute="topMargin" constant="40" id="y8k-u7-Oud"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 <connections>
                                     <outlet property="budgetThisMonth" destination="Z3S-Mt-xKH" id="HHo-fW-dC2"/>
                                     <outlet property="isInOrOverBudget" destination="9tn-Xt-DJt" id="jyY-FQ-RSJ"/>
@@ -74,10 +75,10 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="dayreporttotalcell" textLabel="MNC-j8-mPp" detailTextLabel="xNJ-rf-D8c" style="IBUITableViewCellStyleValue1" id="uDb-5N-W7P">
-                                <rect key="frame" x="0.0" y="305.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="305.5" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uDb-5N-W7P" id="f9I-Yr-9W7">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Total available today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MNC-j8-mPp">
@@ -88,7 +89,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xNJ-rf-D8c">
-                                            <rect key="frame" x="315" y="12" width="44" height="20.5"/>
+                                            <rect key="frame" x="260" y="12" width="44" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -96,40 +97,43 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="expensecell" textLabel="qgI-9o-x9m" detailTextLabel="Pqj-fw-sHf" style="IBUITableViewCellStyleValue1" id="FwP-w7-cj8">
-                                <rect key="frame" x="0.0" y="349.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="349.5" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FwP-w7-cj8" id="FaI-ZT-UAN">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qgI-9o-x9m">
                                             <rect key="frame" x="16" y="12" width="33.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pqj-fw-sHf">
-                                            <rect key="frame" x="315" y="12" width="44" height="20.5"/>
+                                            <rect key="frame" x="260" y="12" width="44" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="textColor" red="1" green="0.0" blue="0.01164490638" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.1019607843" green="0.2784313725" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addexpensecell" id="cuM-4O-WXu">
-                                <rect key="frame" x="0.0" y="393.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="393.5" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cuM-4O-WXu" id="Jij-F7-LyP">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KHr-Sb-csH">
+                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KHr-Sb-csH">
                                             <rect key="frame" x="16" y="11" width="22" height="22"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -138,6 +142,7 @@
                                         <constraint firstItem="KHr-Sb-csH" firstAttribute="centerY" secondItem="Jij-F7-LyP" secondAttribute="centerY" id="gee-v2-omL"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.1019607843" green="0.2784313725" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -145,15 +150,22 @@
                             <outlet property="delegate" destination="wqs-JB-6kX" id="98V-YO-4rb"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Overview" largeTitleDisplayMode="always" id="vpn-dp-3ZW">
-                        <barButtonItem key="leftBarButtonItem" title="Convert" id="ugM-3D-hlA">
+                    <navigationItem key="navigationItem" title="Overview" id="vpn-dp-3ZW">
+                        <leftBarButtonItems>
+                            <barButtonItem title="Previous" image="list" style="done" id="BvS-cl-zJX">
+                                <connections>
+                                    <segue destination="JvG-JU-Z8i" kind="show" identifier="seguetoexportedbudget" id="ndx-71-w6J"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Convert" image="paper_money" id="miU-oy-BnA">
+                                <connections>
+                                    <segue destination="WSa-mK-6Gu" kind="show" id="Ptu-sf-Y4o"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" title="Settings" image="settings" id="ugM-3D-hlA">
                             <connections>
-                                <segue destination="WSa-mK-6Gu" kind="show" id="Zf7-1C-mje"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Settings" id="oKV-xz-vwq">
-                            <connections>
-                                <segue destination="4VH-Fc-HUq" kind="show" identifier="opensettings" id="Rjg-vu-RWm"/>
+                                <segue destination="4VH-Fc-HUq" kind="show" id="N4X-wd-Qdh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -163,7 +175,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJU-LF-ZdJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1069.5999999999999" y="790.25487256371821"/>
+            <point key="canvasLocation" x="2936.8000000000002" y="593.25337331334333"/>
         </scene>
         <!--Settings-->
         <scene sceneID="pIR-w2-lp0">
@@ -171,7 +183,7 @@
                 <viewControllerPlaceholder storyboardName="Settings" id="4VH-Fc-HUq" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0nm-TW-1H0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1804" y="641"/>
+            <point key="canvasLocation" x="3809" y="658"/>
         </scene>
         <!--ExpensesThisMonthViewController-->
         <scene sceneID="o7E-fT-MZV">
@@ -179,33 +191,48 @@
                 <viewControllerPlaceholder storyboardName="ExpensesThisMonthViewController" id="1EF-OY-TYm" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gdj-Nl-QPy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1824" y="771"/>
+            <point key="canvasLocation" x="3680.8000000000002" y="503.74812593703155"/>
         </scene>
         <!--ConvertorViewController-->
         <scene sceneID="75B-EU-Mvi">
             <objects>
-                <viewControllerPlaceholder storyboardName="ConvertorViewController" id="WSa-mK-6Gu" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="ConvertorViewController" id="WSa-mK-6Gu" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="OeU-J3-VSA"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6mD-xF-4c6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1884" y="895"/>
+            <point key="canvasLocation" x="3633" y="956"/>
+        </scene>
+        <!--BudgetExport-->
+        <scene sceneID="QNi-dO-H0F">
+            <objects>
+                <viewControllerPlaceholder storyboardName="BudgetExport" id="JvG-JU-Z8i" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="amt-69-5i1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3705" y="771"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="hhv-A9-5B2">
+        <scene sceneID="H4s-Au-wgB">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Qn0-7N-krq" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fsu-mF-mSR" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="toT-EP-3pP">
-                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="alL-wM-lhy">
+                        <rect key="frame" x="0.0" y="20" width="320" height="93"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="wqs-JB-6kX" kind="relationship" relationship="rootViewController" id="xOE-ko-zPg"/>
+                        <segue destination="wqs-JB-6kX" kind="relationship" relationship="rootViewController" id="CkF-Qf-Gxk"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Yde-bq-lDM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="279-JC-kwi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="133.59999999999999" y="791.15442278860576"/>
+            <point key="canvasLocation" x="1997.5999999999999" y="593.25337331334333"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="list" width="30" height="30"/>
+        <image name="paper_money" width="30" height="30"/>
+        <image name="settings" width="30" height="30"/>
+    </resources>
 </document>
