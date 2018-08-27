@@ -10,6 +10,7 @@
 		2015B9E4212E5677003CB2F7 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2015B9E3212E5677003CB2F7 /* Launch Screen.storyboard */; };
 		2028C4C7211F387F00048ABC /* ConvertorViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2028C4C6211F387F00048ABC /* ConvertorViewController.storyboard */; };
 		2028C4C9211F389E00048ABC /* ConvertorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2028C4C8211F389E00048ABC /* ConvertorViewController.swift */; };
+		20329A3D21328FD40036B2AA /* TodayAvailableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20329A3C21328FD40036B2AA /* TodayAvailableCell.swift */; };
 		2059892B212DF7CB00D1994D /* Launch Screen Thing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2059892A212DF7CB00D1994D /* Launch Screen Thing.storyboard */; };
 		2059892D212E30F000D1994D /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2059892C212E30F000D1994D /* LaunchScreen.swift */; };
 		205EB7DC2127D2740019E641 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20B8AA522116461100167865 /* Info.plist */; };
@@ -18,6 +19,12 @@
 		207B12D521281F4800C02331 /* BudgetExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B12D421281F4800C02331 /* BudgetExportViewController.swift */; };
 		207B12D721281FD500C02331 /* BudgetExport.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 207B12D621281FD500C02331 /* BudgetExport.storyboard */; };
 		207B12E3212856BA00C02331 /* combo_chart@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 207B12E2212856BA00C02331 /* combo_chart@3x.png */; };
+		208777242133684000FB708C /* ExchangeCurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208777232133684000FB708C /* ExchangeCurrencyCell.swift */; };
+		20877726213386DB00FB708C /* RoundedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20877725213386DB00FB708C /* RoundedTableViewCell.swift */; };
+		20A43DC721308C1E00EB0D07 /* IndieFlower.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 20A43DC621308C1E00EB0D07 /* IndieFlower.ttf */; };
+		20A43DCB2130C70E00EB0D07 /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A43DCA2130C70E00EB0D07 /* ExpenseCell.swift */; };
+		20AA32422133522E000B0CBF /* CurrencyPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AA32412133522E000B0CBF /* CurrencyPickerCell.swift */; };
+		20AA3244213360B9000B0CBF /* BaseCurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AA3243213360B9000B0CBF /* BaseCurrencyCell.swift */; };
 		20B8AA472116460F00167865 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B8AA462116460F00167865 /* AppDelegate.swift */; };
 		20B8AA492116460F00167865 /* BudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B8AA482116460F00167865 /* BudgetViewController.swift */; };
 		20B8AA4C2116460F00167865 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20B8AA4A2116460F00167865 /* Main.storyboard */; };
@@ -52,6 +59,7 @@
 		2015B9E3212E5677003CB2F7 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		2028C4C6211F387F00048ABC /* ConvertorViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ConvertorViewController.storyboard; sourceTree = "<group>"; };
 		2028C4C8211F389E00048ABC /* ConvertorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertorViewController.swift; sourceTree = "<group>"; };
+		20329A3C21328FD40036B2AA /* TodayAvailableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayAvailableCell.swift; sourceTree = "<group>"; };
 		2059892A212DF7CB00D1994D /* Launch Screen Thing.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen Thing.storyboard"; sourceTree = "<group>"; };
 		2059892C212E30F000D1994D /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 		205EB7E32127E18B0019E641 /* BudgetExportDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetExportDocument.swift; sourceTree = "<group>"; };
@@ -60,6 +68,12 @@
 		207B12D421281F4800C02331 /* BudgetExportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetExportViewController.swift; sourceTree = "<group>"; };
 		207B12D621281FD500C02331 /* BudgetExport.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BudgetExport.storyboard; sourceTree = "<group>"; };
 		207B12E2212856BA00C02331 /* combo_chart@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "combo_chart@3x.png"; sourceTree = "<group>"; };
+		208777232133684000FB708C /* ExchangeCurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeCurrencyCell.swift; sourceTree = "<group>"; };
+		20877725213386DB00FB708C /* RoundedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTableViewCell.swift; sourceTree = "<group>"; };
+		20A43DC621308C1E00EB0D07 /* IndieFlower.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = IndieFlower.ttf; sourceTree = "<group>"; };
+		20A43DCA2130C70E00EB0D07 /* ExpenseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
+		20AA32412133522E000B0CBF /* CurrencyPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPickerCell.swift; sourceTree = "<group>"; };
+		20AA3243213360B9000B0CBF /* BaseCurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCurrencyCell.swift; sourceTree = "<group>"; };
 		20B8AA432116460F00167865 /* Budget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20B8AA462116460F00167865 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20B8AA482116460F00167865 /* BudgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetViewController.swift; sourceTree = "<group>"; };
@@ -119,9 +133,18 @@
 			path = "Launch Screen";
 			sourceTree = "<group>";
 		};
+		20A43DC521308BFE00EB0D07 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				20A43DC621308C1E00EB0D07 /* IndieFlower.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		20B8AA3A2116460F00167865 = {
 			isa = PBXGroup;
 			children = (
+				20A43DC521308BFE00EB0D07 /* Fonts */,
 				207B12E2212856BA00C02331 /* combo_chart@3x.png */,
 				20B8AA452116460F00167865 /* Budget */,
 				20F3A45F212771BE00F9B13E /* Frameworks */,
@@ -190,8 +213,14 @@
 			isa = PBXGroup;
 			children = (
 				20B8AA582116559500167865 /* OverViewTableViewCell.swift */,
-				20FB7A5F211CBA0200B0F523 /* Keys.swift */,
+				20A43DCA2130C70E00EB0D07 /* ExpenseCell.swift */,
+				20329A3C21328FD40036B2AA /* TodayAvailableCell.swift */,
+				20877725213386DB00FB708C /* RoundedTableViewCell.swift */,
+				20AA32412133522E000B0CBF /* CurrencyPickerCell.swift */,
+				20AA3243213360B9000B0CBF /* BaseCurrencyCell.swift */,
+				208777232133684000FB708C /* ExchangeCurrencyCell.swift */,
 				205EB7E32127E18B0019E641 /* BudgetExportDocument.swift */,
+				20FB7A5F211CBA0200B0F523 /* Keys.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -289,6 +318,7 @@
 				207B12E3212856BA00C02331 /* combo_chart@3x.png in Resources */,
 				20B8AA4E2116461100167865 /* Assets.xcassets in Resources */,
 				207B12D721281FD500C02331 /* BudgetExport.storyboard in Resources */,
+				20A43DC721308C1E00EB0D07 /* IndieFlower.ttf in Resources */,
 				20B8AA4C2116460F00167865 /* Main.storyboard in Resources */,
 				20BD742C2117137400DE0B7A /* Settings.storyboard in Resources */,
 				2028C4C7211F387F00048ABC /* ConvertorViewController.storyboard in Resources */,
@@ -305,21 +335,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				205EB7E42127E18B0019E641 /* BudgetExportDocument.swift in Sources */,
+				20A43DCB2130C70E00EB0D07 /* ExpenseCell.swift in Sources */,
+				208777242133684000FB708C /* ExchangeCurrencyCell.swift in Sources */,
 				20DE19852120857000707A31 /* ExpensesThisMonthViewController.swift in Sources */,
+				20AA3244213360B9000B0CBF /* BaseCurrencyCell.swift in Sources */,
 				20F3A459212705B600F9B13E /* BudgetExportData.swift in Sources */,
 				20B8AA5D21165C4C00167865 /* Expense.swift in Sources */,
 				20BD74272116D69A00DE0B7A /* BudgetCalculatingFunctions.swift in Sources */,
 				20B8AA492116460F00167865 /* BudgetViewController.swift in Sources */,
 				20B8AA5A2116559500167865 /* OverViewTableViewCell.swift in Sources */,
 				207717A0211B7EF00002DD1D /* Currency.swift in Sources */,
+				20329A3D21328FD40036B2AA /* TodayAvailableCell.swift in Sources */,
 				2059892D212E30F000D1994D /* LaunchScreen.swift in Sources */,
 				20B8AA472116460F00167865 /* AppDelegate.swift in Sources */,
 				2028C4C9211F389E00048ABC /* ConvertorViewController.swift in Sources */,
 				20FB7A5E211C41AB00B0F523 /* BudgetForDay.swift in Sources */,
+				20AA32422133522E000B0CBF /* CurrencyPickerCell.swift in Sources */,
 				20BD743121172C0800DE0B7A /* SettingsViewController.swift in Sources */,
 				20FB7A60211CBA0200B0F523 /* Keys.swift in Sources */,
 				207B12D521281F4800C02331 /* BudgetExportViewController.swift in Sources */,
 				20E08AB72120C0E700A7BE52 /* ExpenseDetailViewController.swift in Sources */,
+				20877726213386DB00FB708C /* RoundedTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

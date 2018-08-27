@@ -43,26 +43,33 @@ class BudgetExportViewController: UITableViewController, UIDocumentPickerDelegat
     
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         document = BudgetExportDocument(fileURL: urls.first!)
-        document?.open(completionHandler: { (success) in
+        document?.open(completionHandler: { [unowned self] (success) in
+            
+            let errorOpeningDocument = UIAlertController.init(title: "Error",
+                                                              message: "There was an error opening your file. Try again.",
+                                                              preferredStyle: .alert)
+            
             if success {
-                self.title = self.document?.localizedName
-                self.tableView.reloadData()
+                if self.document?.budgetExport != nil {
+                    self.title = self.document?.localizedName
+                    self.tableView.reloadData()
+                    
+                } else {
+                    self.present(errorOpeningDocument,
+                                 animated: true,
+                                 completion: nil)
+                }
             } else {
+                
+                self.present(errorOpeningDocument,
+                        animated: true,
+                        completion: nil)
                 print("Error. Couldn't open document")
             }
             
             })
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "expensedetail" {
             if let destVC = segue.destination as? ExpenseDetailViewController {
@@ -113,8 +120,6 @@ extension BudgetExportViewController {
         } else {
             numberFormatter.currencyCode = ""
         }
-//        let dateFormatter = DateFormatter()
-        //dateFormatter.dateFormat = "yyyy-MM-dd"
         dateFormatter.dateStyle = .medium
         
         //actually setting the cells

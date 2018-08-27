@@ -11,11 +11,29 @@ import UIKit
 class LaunchScreen: UIViewController {
     
 
-    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
+    
+    @IBOutlet weak var launchIcon: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadingIndicator.startAnimating()
+        //loadingIndicator.startAnimating()
+        UIView.animate(withDuration: 1,
+                       delay: 0.0,
+                       options: [.curveEaseInOut],
+                       animations: {
+                        let grow = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                        self.launchIcon.transform = grow
+                        },
+                       completion: nil)
+        UIView.animate(withDuration: 1,
+                       delay: 1,
+                       options: [.curveEaseOut],
+                       animations: {
+                        let scale = CGAffineTransform(scaleX: 0.2, y: 0.2)
+                        self.launchIcon.alpha = 0.0
+                        self.launchIcon.transform = scale
+        }, completion: nil)
+        
         // Do any additional setup after loading the view.
     }
     

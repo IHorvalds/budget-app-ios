@@ -1,22 +1,16 @@
 //
-//  OverViewTableViewCell.swift
+//  TodayAvailableCell.swift
 //  Budget
 //
-//  Created by Tudor Croitoru on 04.08.2018.
+//  Created by Tudor Croitoru on 26/08/2018.
 //  Copyright © 2018 Tudor Croitoru. All rights reserved.
 //
 
 import UIKit
 
-protocol OverviewTableViewCellDelegate {
-    func didTapMoneyLeft()
-    var moneyLeft: Double? {get}
-}
+class TodayAvailableCell: UITableViewCell {
 
-@IBDesignable
-class OverViewTableViewCell: UITableViewCell {
-    
-    let inset: CGFloat = 10.0
+    let inset = 10.0
     let cornerRadius: CGFloat = 15.0
     
     override var frame: CGRect {
@@ -25,23 +19,12 @@ class OverViewTableViewCell: UITableViewCell {
         }
         set (newFrame) {
             var frame = newFrame
-            frame.origin.x += inset
-            frame.size.width -= 2 * inset
+            frame.origin.x += CGFloat(inset)
+            frame.size.width -= CGFloat (2 * inset)
             super.frame = frame
         }
     }
     
-    var delegate: OverviewTableViewCellDelegate?
-    
-    @IBAction func didTapMoneyLeft(_ sender: UIButton) {
-        delegate?.didTapMoneyLeft()
-    }
-    
-    @IBOutlet weak var isInOrOverBudget: UILabel!
-    
-    @IBOutlet weak var budgetThisMonth: UILabel!
-    @IBOutlet weak var moneyLeftThisMonth: UIButton!
-
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -53,6 +36,7 @@ class OverViewTableViewCell: UITableViewCell {
         self.clipsToBounds = false
         self.layer.shadowRadius = 4.0
         self.layer.shadowOpacity = 0.7
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -60,5 +44,5 @@ class OverViewTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
 }

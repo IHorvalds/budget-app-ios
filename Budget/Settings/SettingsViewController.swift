@@ -14,7 +14,8 @@ let dateFormatter = DateFormatter()
 class SettingsViewController: UITableViewController, UNUserNotificationCenterDelegate {
     
     //MARK: - Miscellaneous variables and constants
-    let currencies = ["DKK", "EUR", "RON", "USD"]
+    //let currencies = ["DKK", "EUR", "RON", "USD"]
+    let currencies = Array(exchangeRates.keys)
     var activeTextField = UITextField()//used in identifying the text field being edited
     let notificationCenter = UNUserNotificationCenter.current()
 
@@ -276,7 +277,6 @@ extension SettingsViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if textField == lastsUntil {
             if dateReceived.text != "" {
-//                dateFormatter.dateFormat = "yyyy-MM-dd"
                 dateFormatter.dateStyle = .medium
                 let calendar = Calendar.current
                 let startingDate = dateFormatter.date(from: dateReceived.text!)

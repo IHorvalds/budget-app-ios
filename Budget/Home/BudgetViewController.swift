@@ -12,10 +12,7 @@ import MobileCoreServices
 
 class BudgetViewController: UITableViewController, UIDocumentPickerDelegate {
     
-    //for opening the correct view controller when loading a document from the Files App
-    var transitionVC: UIDocumentBrowserTransitionController?
-    
-    @IBOutlet weak var navBar: UINavigationItem!
+    //@IBOutlet weak var navBar: UINavigationItem!
     var expenses: [Expense] = []
     var quantityThisMonth: Double?
     let numberFormatter = NumberFormatter()
@@ -28,11 +25,6 @@ class BudgetViewController: UITableViewController, UIDocumentPickerDelegate {
         }
         endOfDayExport()
         self.tableView.reloadData()
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
     }
     
@@ -72,7 +64,7 @@ extension BudgetViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if section == 0 {
-            return 2
+            return 3
         } else {
             let today = Date()
             let day = Calendar.current.dateComponents([.year, .month, .day], from: today)
@@ -96,6 +88,7 @@ extension BudgetViewController {
         numberFormatter.numberStyle = .currency
         
         if indexPath.section == 0 {
+            
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "overviewcell") as! OverViewTableViewCell?
                 cell?.delegate = self
@@ -113,18 +106,22 @@ extension BudgetViewController {
                     if let currency = defaults.value(forKey: localCurrencyKey) as? String {
                         numberFormatter.currencyCode = currency
                         if let budgetThisMonth = numberFormatter.string(from: quantity as NSNumber) {
-                            cell?.budgetThisMonth.text = "Budget this month: " + budgetThisMonth
+                            cell?.budgetThisMonth.text = "This month: " + budgetThisMonth
                         } else {
-                            cell?.budgetThisMonth.text = "Budget this month: ???"
+                            cell?.budgetThisMonth.text = "This month: ???"
                         }
                     } else {
-                        cell?.budgetThisMonth.text = "Budget this month: ???"
+                        cell?.budgetThisMonth.text = "This month: ???"
                     }
                 } else {
-                    cell?.budgetThisMonth.text = "Budget this month: ???"
+                    cell?.budgetThisMonth.text = "This month: ???"
                 }
                 cell?.isInOrOverBudget.text = isWithinBudget()
                 cell?.layoutSubviews()
+                return cell!
+            } else if indexPath.row == 1 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "transparentcell")
+                
                 return cell!
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "dayreporttotalcell")
@@ -164,10 +161,9 @@ extension BudgetViewController {
             let todayExpenses = self.expenses.filter({$0.datePurchased == (dayOfToday)})
             
             if indexPath.row == todayExpenses.count {
-                cell = tableView.dequeueReusableCell(withIdentifier: "addexpensecell")
+                cell = tableView.dequeueReusableCell(withIdentifier: "addexpensecell") as! ExpenseCell?
             } else {
-                cell = tableView.dequeueReusableCell(withIdentifier: "expensecell")
-
+                cell = tableView.dequeueReusableCell(withIdentifier: "expensecell") as! ExpenseCell?
                 cell?.textLabel?.text = todayExpenses[indexPath.row].title
                 if let localCurr = defaults.value(forKey: localCurrencyKey) as? String {
                     numberFormatter.currencyCode = localCurr
@@ -222,7 +218,7 @@ extension BudgetViewController {
                 var budgets = NSKeyedUnarchiver.unarchiveObject(with: budgetData) as? [BudgetForDay] {
                 let budget = budgets.first(where: {$0.day == (dayOfToday!)})
                 if let budgetForToday = budget {
-                    budgetForToday.totalUsableAmount += removedExpense.price //TODO: get this budget back to budgetviewcontroller
+                    budgetForToday.totalUsableAmount += removedExpense.price
                     budgets[budgets.index(of: budgetForToday)!] = budgetForToday
                     defaults.set(archiveBudgetsAsData(budgets: budgets), forKey: budgetForThisMonthKey)
                     tableView.deleteRows(at: [indexPath], with: .fade)
@@ -305,13 +301,7 @@ extension BudgetViewController {
                     }
                     
                 }
-                self.tableView.beginUpdates()
-                self.tableView.insertRows(at: [IndexPath.init(row: self.expenses.count - 1, section: 1)], with: .top)
-                self.tableView.reloadRows(at: [IndexPath(row: 0, section: 0),
-                                               IndexPath(row: 1, section: 0)],
-                                          with: .none)
-                self.tableView.endUpdates()
-                //print(self.expenses)
+                self.tableView.reloadData()
                 self.saveExpensesToDisk()
             } else {
                 let alert = UIAlertController.init(title: "Oops!", message: "Please add all the necessary information about your purchase. Thank you!", preferredStyle: .alert)
@@ -338,24 +328,3 @@ extension BudgetViewController {
         defaults.set(archiveExpenses(expenses: self.expenses), forKey: expensesKey)
     }
 }
-
-//extension BudgetViewController {
-//    
-//    func showDocumentViewController(url: URL) {
-//        let storyboard = UIStoryboard(name: "BudgetExport", bundle: nil)
-//        let documentViewController = storyboard.instantiateInitialViewController() as! BudgetExportViewController
-//        documentViewController.document = BudgetExportDocument(fileURL: url)
-//        print("!!!!!!!!!!!!!!OPENING DOCUMENT!!!!!!!!!!")
-//        documentViewController.document?.open(completionHandler: { success in
-//            if success {
-//                documentViewController.title = documentViewController.document?.localizedName
-//            } else {
-//                print("Error opening file from Files App")
-//            }
-//            
-//        })
-//        print("PRESENTING DOCUMENT")
-//        present(documentViewController, animated: true, completion: nil)
-//    }
-//    
-//}

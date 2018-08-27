@@ -10,6 +10,9 @@ import UIKit
 
 class ConvertorViewController: UITableViewController {
     var rowsInSectionOne = 1
+    let currencies = Array(exchangeRates.keys)
+    var baseCurrency = String()
+    var amountToConvert: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,48 +45,113 @@ extension ConvertorViewController {
         return 2
     }
     
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "Select your currency and type in the amount"
+        } else {
+            return "Result"
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return rowsInSectionOne
         } else {
-            return exchangeRates.count - 1
+            return currencies.count - 1
         }
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell: UITableViewCell?
-        
-        if indexPath.section == 0, indexPath.row == 0 {
-            cell = tableView.dequeueReusableCell(withIdentifier: "currencyinputcell")
-        } else if indexPath.section == 0 {
-            cell = tableView.dequeueReusableCell(withIdentifier: "currencypickercell")
-        } else {
-            cell = tableView.dequeueReusableCell(withIdentifier: "currencycell")
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0, indexPath.row == 1 {
+            return 150
         }
         
-        return cell!
+        return 100
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
+        if indexPath.section == 0, indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "currencyinputcell") as! BaseCurrencyCell?
+            
+            cell?.delegate = self
+            
+            return cell!
+        } else if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "currencypickercell") as! CurrencyPickerCell?
+            
+            cell?.delegate = self
+            
+            return cell!
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "currencycell") as! ExchangeCurrencyCell?
+            
+            if baseCurrency != "" {
+                let remainingCurrencies = currencies.filter({$0 != baseCurrency})
+                
+                let initialCurrency = Currency(isoCode: baseCurrency)
+                let secondaryCurrency = Currency(isoCode: remainingCurrencies[indexPath.row])
+                if  let exchangeAmount = amountToConvert,
+                    let amountInCurrency = initialCurrency.convert(toCurrency: secondaryCurrency, amount: Double(exchangeAmount)!) {
+                    let numberFormatter = NumberFormatter()
+                    numberFormatter.numberStyle = .currency
+                    numberFormatter.currencyCode = " " //We already have the currency name on the left side of the cell
+                    cell?.exchangeCurrencyAmount.text = numberFormatter.string(from: amountInCurrency as NSNumber)
+                }
+                
+                cell?.exchangeCurrencyLabel?.text = remainingCurrencies[indexPath.row]
+                
+            }
+            
+            return cell!
+        }
     }
     
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: IndexPath(row: 0, section: 0), animated: true)
         if indexPath.section == 0, indexPath.row == 0 {
+            
             tableView.beginUpdates()
-            rowsInSectionOne = rowsInSectionOne + 1
-            tableView.insertRows(at: [IndexPath.init(row: 1, section: 0)], with: UITableViewRowAnimation.top)
-            tableView.cellForRow(at: IndexPath.init(row: 1, section: 0))?.isHidden = false
+            if rowsInSectionOne != 2 {
+                rowsInSectionOne = 2
+                tableView.insertRows(at: [IndexPath.init(row: 1, section: 0)], with: UITableViewRowAnimation.top)
+                tableView.cellForRow(at: IndexPath.init(row: 1, section: 0))?.isHidden = false
+                self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "OK", style: .done, target: self, action: #selector(removePicker))
+            } else {
+                removePicker()
+            }
             tableView.endUpdates()
         }
     }
+    
+    @objc func removePicker() {
+        rowsInSectionOne = 1
+        tableView.deleteRows(at: [IndexPath(row: 1, section: 0)], with: .top)
+        self.navigationItem.rightBarButtonItem = nil
+        tableView.reloadSections([1], with: .none)
+    }
 }
 
-extension ConvertorViewController {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+extension ConvertorViewController: PickerTablewViewCellDelegate, BaseCurrencyCellDelegate {
+    
+    func didSelectRowFromPickerView(selected: String) {
+        
+        let baseCurrencyCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! BaseCurrencyCell?
+        baseCurrencyCell?.baseCurrencyLabel.text = selected
+        baseCurrency = selected
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return exchangeRates.count
+    func didEnterAmount(amount: String?) {
+        print("realodaing data...")
+        amountToConvert = amount
+        rowsInSectionOne = 1
+        tableView.deleteRows(at: [IndexPath(row: 1, section: 0)], with: .top)
+        self.navigationItem.rightBarButtonItem = nil
+        tableView.reloadData()
     }
 
 }

@@ -19,7 +19,6 @@ class ExpenseDetailViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.title = purchaseTitle
-//        let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         datePurchased.text = dateFormatter.string(from: datePurchasedBuffer)
         let numberFormatter = NumberFormatter()
@@ -40,6 +39,10 @@ class ExpenseDetailViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
     }
 
 }

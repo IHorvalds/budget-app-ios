@@ -14,22 +14,33 @@ class ExpensesThisMonthViewController: UITableViewController {
     var budgets: [BudgetForDay] = []
     var i = 1
     var canEdit = false
+    var initialColors: [Any]?
     
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBAction func editAction(_ sender: UIBarButtonItem) {
         canEdit = !canEdit
+        
         if canEdit {
             for cell in tableView.visibleCells {
-                cell.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+                if let expenseCell = cell as? ExpenseCell {
+                    expenseCell.gradientLayer.colors = [UIColor(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1).cgColor,
+                                                        UIColor.white.cgColor]
+                } else {
+                    cell.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+                }
+                
                 cell.textLabel?.textColor = .black
                 cell.detailTextLabel?.textColor = .black
             }
-            
             sender.title = "Done"
             sender.tintColor = #colorLiteral(red: 0.1729659908, green: 0.5823032236, blue: 1, alpha: 1)
         } else {
             for cell in tableView.visibleCells {
-                cell.backgroundColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
+                if let expenseCell = cell as? ExpenseCell {
+                    expenseCell.gradientLayer.colors = initialColors
+                } else {
+                    cell.backgroundColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
+                }
                 cell.textLabel?.textColor = .white
                 cell.detailTextLabel?.textColor = .white
             }
@@ -113,8 +124,12 @@ class ExpensesThisMonthViewController: UITableViewController {
 //        return nil
 //    }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "checkexpensecell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "checkexpensecell") as! ExpenseCell?
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .currency
         if let localCurrency = defaults.value(forKey: localCurrencyKey) as? String {
