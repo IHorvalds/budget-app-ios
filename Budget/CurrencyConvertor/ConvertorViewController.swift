@@ -17,7 +17,7 @@ class ConvertorViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        self.navigationItem.leftBarButtonItem?.tintColor = #colorLiteral(red: 0.5803921569, green: 0.09019607843, blue: 0.3176470588, alpha: 1)
         
     }
     
@@ -118,7 +118,7 @@ extension ConvertorViewController {
             tableView.beginUpdates()
             if rowsInSectionOne != 2 {
                 rowsInSectionOne = 2
-                tableView.insertRows(at: [IndexPath.init(row: 1, section: 0)], with: UITableViewRowAnimation.top)
+                tableView.insertRows(at: [IndexPath.init(row: 1, section: 0)], with: UITableView.RowAnimation.top)
                 tableView.cellForRow(at: IndexPath.init(row: 1, section: 0))?.isHidden = false
                 self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "OK", style: .done, target: self, action: #selector(removePicker))
             } else {
@@ -146,10 +146,11 @@ extension ConvertorViewController: PickerTablewViewCellDelegate, BaseCurrencyCel
     }
     
     func didEnterAmount(amount: String?) {
-        print("realodaing data...")
         amountToConvert = amount
-        rowsInSectionOne = 1
-        tableView.deleteRows(at: [IndexPath(row: 1, section: 0)], with: .top)
+        if rowsInSectionOne == 2 {
+            rowsInSectionOne = 1
+            tableView.deleteRows(at: [IndexPath(row: 1, section: 0)], with: .top)
+        }
         self.navigationItem.rightBarButtonItem = nil
         tableView.reloadData()
     }

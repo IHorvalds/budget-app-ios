@@ -30,6 +30,11 @@ class RoundedTableViewCell: UITableViewCell {
         // Initialization code
         
         self.layer.cornerRadius = cornerRadius
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.4
+        self.layer.shadowRadius = 2.0
+        self.layer.masksToBounds = false
+        self.clipsToBounds = false
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -37,6 +42,12 @@ class RoundedTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
         self.layer.cornerRadius = cornerRadius
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.4
+        self.layer.shadowRadius = 2.0
+        self.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        self.layer.masksToBounds = false
+        self.clipsToBounds = false
     }
 
 }

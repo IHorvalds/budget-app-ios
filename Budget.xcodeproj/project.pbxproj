@@ -13,7 +13,6 @@
 		20329A3D21328FD40036B2AA /* TodayAvailableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20329A3C21328FD40036B2AA /* TodayAvailableCell.swift */; };
 		2059892B212DF7CB00D1994D /* Launch Screen Thing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2059892A212DF7CB00D1994D /* Launch Screen Thing.storyboard */; };
 		2059892D212E30F000D1994D /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2059892C212E30F000D1994D /* LaunchScreen.swift */; };
-		205EB7DC2127D2740019E641 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20B8AA522116461100167865 /* Info.plist */; };
 		205EB7E42127E18B0019E641 /* BudgetExportDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205EB7E32127E18B0019E641 /* BudgetExportDocument.swift */; };
 		207717A0211B7EF00002DD1D /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2077179F211B7EF00002DD1D /* Currency.swift */; };
 		207B12D521281F4800C02331 /* BudgetExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B12D421281F4800C02331 /* BudgetExportViewController.swift */; };
@@ -271,11 +270,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0940;
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Tudor Croitoru";
 				TargetAttributes = {
 					20B8AA422116460F00167865 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -323,7 +323,6 @@
 				20BD742C2117137400DE0B7A /* Settings.storyboard in Resources */,
 				2028C4C7211F387F00048ABC /* ConvertorViewController.storyboard in Resources */,
 				2015B9E4212E5677003CB2F7 /* Launch Screen.storyboard in Resources */,
-				205EB7DC2127D2740019E641 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,7 +501,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ihorvalds.Budget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -522,7 +521,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ihorvalds.Budget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

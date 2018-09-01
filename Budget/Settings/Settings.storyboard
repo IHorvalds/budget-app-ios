@@ -336,6 +336,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Settings" leftItemsSupplementBackButton="YES" id="Bky-ta-IFQ">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="CaF-RE-mf9" userLabel="Done">
+                            <color key="tintColor" red="0.58039215686274503" green="0.090196078431372548" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="doneButton:" destination="OKj-oN-ki9" id="MsD-CR-azs"/>
                             </connections>

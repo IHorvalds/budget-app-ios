@@ -33,28 +33,9 @@ class SettingsViewController: UITableViewController, UNUserNotificationCenterDel
         if !sender.isOn {
             //don't send shit
             print("notifications disabled")
-            let notificationCenter = UNUserNotificationCenter.current()
-            notificationCenter.delegate = self
             notificationCenter.removeAllPendingNotificationRequests()
         } else {
-                notificationCenter.delegate = self
-                if !checkNotificationAccess() {
-                    activateNotifications(notificationCenter: notificationCenter)
-                }
-                let content = UNMutableNotificationContent()
-                content.title = "Add your spendings for the day"
-                content.body = "It's 22:22 and somebody loves you. Now gather your receipts and see how much you spent today!"
-                content.categoryIdentifier = "alarm"
-                content.userInfo = ["customData": "fizzbuzz"]
-                content.sound = UNNotificationSound.default()
-                
-                var dateComponents = DateComponents()
-                dateComponents.hour = 22
-                dateComponents.minute = 22
-                let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-                
-                let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-                notificationCenter.add(request)
+            checkNotificationAccess()
         }
     }
 
@@ -65,7 +46,6 @@ class SettingsViewController: UITableViewController, UNUserNotificationCenterDel
         saveToDefaults()
         defaults.set(notificationSwitch.isOn, forKey: notificationsAccessKey)
         if dateReceived.text != nil && dateReceived.text != "", lastsUntil.text != nil && lastsUntil.text != "", defaults.value(forKey: budgetForThisMonthKey) == nil {
-            //            dateFormatter.dateFormat = "yyyy-MM-dd"
             dateFormatter.dateStyle = .medium
             let calendar = Calendar.current
             let startingDate = dateFormatter.date(from: dateReceived.text!)!
@@ -87,7 +67,6 @@ class SettingsViewController: UITableViewController, UNUserNotificationCenterDel
         saveToDefaults()
         defaults.set(notificationSwitch.isOn, forKey: notificationsAccessKey)
         if dateReceived.text != nil && dateReceived.text != "", lastsUntil.text != nil && lastsUntil.text != "", defaults.value(forKey: budgetForThisMonthKey) == nil {
-//            dateFormatter.dateFormat = "yyyy-MM-dd"
             dateFormatter.dateStyle = .medium
             let calendar = Calendar.current
             let startingDate = dateFormatter.date(from: dateReceived.text!)!
@@ -111,10 +90,11 @@ class SettingsViewController: UITableViewController, UNUserNotificationCenterDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        notificationCenter.delegate = self
         
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(donePressed))
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelPressed(sender:)))
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: #selector(donePressed))
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItem.Style.plain, target: self, action: #selector(cancelPressed(sender:)))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         toolbar.setItems([cancelButton, spaceButton, doneButton], animated: true)
         toolbar.isUserInteractionEnabled = true
         toolbar.sizeToFit()
@@ -138,9 +118,15 @@ class SettingsViewController: UITableViewController, UNUserNotificationCenterDel
         currPicker.dataSource = self
         rentPicker.delegate = self
         rentPicker.dataSource = self
-        datePicker.datePickerMode = UIDatePickerMode.date
-        datePicker.addTarget(self, action: #selector(updateDateText), for: UIControlEvents.valueChanged)
+        datePicker.datePickerMode = UIDatePicker.Mode.date
+        datePicker.addTarget(self, action: #selector(updateDateText), for: UIControl.Event.valueChanged)
         datePicker.backgroundColor = currPicker.backgroundColor
+        
+        notificationCenter.getPendingNotificationRequests(completionHandler: { requests in
+            for request in requests {
+                print(request)
+            }
+        })
         
     }
 
@@ -171,11 +157,13 @@ class SettingsViewController: UITableViewController, UNUserNotificationCenterDel
             rentAmountInLocalCurrency.text = RentAmount
         }
         if let NotificationAccess = defaults.value(forKey: notificationsAccessKey) as? Bool {
-            if checkNotificationAccess() {
-                notificationSwitch.isOn = NotificationAccess
-                print(NotificationAccess)
-            } else {
-                notificationSwitch.isOn = false
+            notificationCenter.getNotificationSettings { [weak self] (settings) in
+                
+                if settings.authorizationStatus == .authorized {
+                    self?.notificationSwitch.isOn = NotificationAccess
+                } else {
+                    self?.notificationSwitch.isOn = false
+                }
             }
         }
     }
@@ -188,7 +176,6 @@ class SettingsViewController: UITableViewController, UNUserNotificationCenterDel
             case 1:
                 print(dateReceived.hasText)
                 if dateReceived.hasText {
-//                    dateFormatter.dateFormat = "yyyy-MM-dd"
                     dateFormatter.dateStyle = .medium
                     let calendar = Calendar.current
                     let startingDate = dateFormatter.date(from: dateReceived.text!)!
@@ -242,17 +229,6 @@ class SettingsViewController: UITableViewController, UNUserNotificationCenterDel
             }
         }
     }
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -349,7 +325,6 @@ extension SettingsViewController {
     @objc func updateDateText() {
         dateFormatter.dateStyle = .medium
         let date = datePicker.date
-        //activeTextField.text = String(date.dropLast(15))
         activeTextField.text = dateFormatter.string(from: date)
     }
 }
@@ -382,7 +357,6 @@ extension SettingsViewController {
                                           preferredStyle: .alert)
             let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in}
             alert.addAction(OKAction)
-            print("WTF")
             self.present(alert, animated: true, completion: nil)
         } else {                //save to defaults for each key
             
@@ -409,7 +383,6 @@ extension SettingsViewController {
                     
                     let start = calendar.date(from: startingComponents)
                     let end = calendar.date(from: endingComponents)
-                    print("CacaCacaCaca")
                     defaults.set(dateReceived.text, forKey: dateReceivedKey)
                     defaults.set(lastsUntil.text, forKey: lastsUntilKey)
                     defaults.set(sentCurrency.text, forKey: sentCurrencyKey)
@@ -448,58 +421,102 @@ extension SettingsViewController {
             
             
             defaults.set(rentDueDate.text, forKey: rentDueDateKey)
-            
-            //set notification for rent due date
-            let content = UNMutableNotificationContent()
-            content.title = "Rent due today"
-            content.body = "If you haven't already, pay your rent sometime today!"
-            content.categoryIdentifier = "alarm"
-            content.userInfo = ["customData": "fizzbuzz"]
-            content.sound = UNNotificationSound.default()
-            
-            var dateComponents = DateComponents()
-            dateComponents.day = Int(rentDueDate.text!.dropFirst(4))
-            print(dateComponents.day)
-            dateComponents.hour = 12
-            print(dateComponents)
-            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-            
-            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-            notificationCenter.add(request)
         }
     }
     
-    func activateNotifications(notificationCenter: UNUserNotificationCenter) {
-        notificationCenter.requestAuthorization(options: [.alert, .sound, .badge], completionHandler: { granted, error in
-            DispatchQueue.main.async {
-                
-                if let err = error {
-                    print("there has been an error: \(err)")
-                } else {
-                    if !granted {
-                        let alert = UIAlertController(title: "Please enable notifications",
-                                                      message: "Notifications will make sure the app is running when the budget will be calculated and will remind you to pay the rent. Go to Settings to activate notifications",
-                                                      preferredStyle: .alert)
-                        alert.addAction(.init(title: "OK", style: .default, handler: { (action: UIAlertAction!) in}
-                            ))
-                        self.present(alert, animated: true, completion: nil)
-                    } else {
-                        UIApplication.shared.registerForRemoteNotifications()
-                    }
-                }
-                self.notificationSwitch.isOn = granted
-            }
-        })
+    func setDailyBudgetNotification() {
+        //set notification reminder for daily budget updates
+        let content = UNMutableNotificationContent()
+        content.title = "Add your spendings for the day"
+        content.body = "It's 22:22 and somebody loves you. Now gather your receipts and see how much you spent today!"
+        content.categoryIdentifier = "alarm"
+        content.userInfo = ["customData": "fizzbuzz"]
+        content.sound = UNNotificationSound.default
+        
+        var dateComponents = DateComponents()
+        dateComponents.hour = 22
+        dateComponents.minute = 22
+        let date = Calendar.autoupdatingCurrent.date(from: dateComponents)
+        let dateComponents2 = Calendar.autoupdatingCurrent.dateComponents([.hour, .minute], from: date!)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents2, repeats: true)
+        
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        notificationCenter.add(request)
     }
     
-    func checkNotificationAccess() -> Bool {
-        let notificationTypes = UIApplication.shared.currentUserNotificationSettings?.types
-        if notificationTypes == [] {
-            print("notifications not enabled")
-            return false
-        } else {
-            print("notifications enabled. But the user says they are: \(notificationSwitch.isOn)")
-            return true
+    func setMonthlyRentNotification(day rentDay: String) {
+        //set notification for rent due date
+        let content = UNMutableNotificationContent()
+        content.title = "Rent due today"
+        content.body = "If you haven't already, pay your rent sometime today!"
+        content.categoryIdentifier = "alarm"
+        content.userInfo = ["customData": "fizzbuzz"]
+        content.sound = UNNotificationSound.default
+        
+        var dateComponents = DateComponents()
+        dateComponents.day = Int(rentDay.dropFirst(4))
+        dateComponents.hour = 12
+        let date = Calendar.autoupdatingCurrent.date(from: dateComponents)
+        let dateComponents2 = Calendar.autoupdatingCurrent.dateComponents([.day, .hour], from: date!)
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents2, repeats: true)
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        notificationCenter.add(request)
+    }
+    
+    func checkNotificationAccess() {
+        notificationCenter.getNotificationSettings { [weak self] (settings) in
+            switch settings.authorizationStatus {
+            case .authorized:
+                print("Notifications allowed and desired by the user")
+                self?.setDailyBudgetNotification()
+                if let rentDay = defaults.value(forKey: rentDueDateKey) as? String {
+                    self?.setMonthlyRentNotification(day: rentDay)
+                }
+                self?.notificationCenter.getPendingNotificationRequests(completionHandler: { requests in
+                    for request in requests {
+                        print(request)
+                    }
+                })
+            case .denied:
+                print("Notifications disallowed and desired by the user")
+                let alert = UIAlertController.init(title: "Please enable notifications",
+                                                   message: "Notifications will make sure the app is running when the budget will be calculated and will remind you to pay the rent. Go to Settings to activate notifications.",
+                                                   preferredStyle: .alert)
+                alert.addAction(.init(title: "OK", style: .default, handler: { (_: UIAlertAction!) in
+                    self?.notificationSwitch.isOn = false
+                }
+                    ))
+                
+                self?.present(alert, animated: true, completion: nil)
+            case .notDetermined:
+                print("User wished notifications. Asking for permission")
+                self?.notificationCenter.requestAuthorization(options: [.badge, .sound, .alert],
+                                                              completionHandler: { (allowed, error) in
+                                                                DispatchQueue.main.async {
+                                                                    
+                                                                    if let err = error {
+                                                                        print("there has been an error: \(err)")
+                                                                    } else {
+                                                                        if !allowed {
+                                                                            let alert = UIAlertController(title: "Please enable notifications",
+                                                                                                          message: "Notifications will make sure the app is running when the budget will be calculated and will remind you to pay the rent. Go to Settings to activate notifications",
+                                                                                                          preferredStyle: .alert)
+                                                                            alert.addAction(.init(title: "OK", style: .default, handler: { (_: UIAlertAction!) in}
+                                                                                ))
+                                                                            self?.present(alert, animated: true, completion: nil)
+                                                                        } else {
+                                                                            UIApplication.shared.registerForRemoteNotifications()
+                                                                            
+                                                                        }
+                                                                    }
+                                                                    self?.notificationSwitch.isOn = allowed
+                                                                }
+                                                                
+                })
+            case .provisional:
+                print("What is this???")
+            }
         }
     }
 }

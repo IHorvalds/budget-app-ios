@@ -116,7 +116,8 @@ func endOfDayExport() {
                                                                 appropriateFor: nil,
                                                                 create: true).appendingPathComponent(initMonth + "-" + finMonth + ".bdg")
                         if savePath != nil {
-                            print("----------------------------------------------")
+                            //for debugging purposes
+                            //print("----------------------------------------------")
                             exportDataDocument = BudgetExportDocument(fileURL: savePath!)
                             exportDataDocument?.budgetExport = BudgetExportData.init(expenses: expenses,
                                                                                      dateReceived: dateReceived,
@@ -146,9 +147,10 @@ func endOfDayExport() {
                         defaults.set(nil, forKey: budgetKey)
                         defaults.set(nil, forKey: rentAmountKey)
                         defaults.set(nil, forKey: expensesKey)
-                        print("date Received !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-                        print(defaults.value(forKey: dateReceivedKey))
-                        print("Just reset everything")
+                        //for debugging purposes
+//                        print("date Received !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+//                        print(defaults.value(forKey: dateReceivedKey))
+//                        print("Just reset everything")
                     }
                 } else {
                     if let x = budgets.index(where: {$0.day == dayOfToday!}) {
@@ -167,13 +169,13 @@ func endOfDayExport() {
                 
             }
             
-            
-                            for budget in budgets {
-                                print("New Budget")
-                                print("Total for this budget: \(budget.totalUsableAmount)")
-                                print("Budget for day: \(budget.day)")
-                                print("Budget was checked: \(budget.checked)")
-                            }
+            //for debugging purposes
+//            for budget in budgets {
+//                print("New Budget")
+//                print("Total for this budget: \(budget.totalUsableAmount)")
+//                print("Budget for day: \(budget.day)")
+//                print("Budget was checked: \(budget.checked)")
+//            }
         }
     }
 }

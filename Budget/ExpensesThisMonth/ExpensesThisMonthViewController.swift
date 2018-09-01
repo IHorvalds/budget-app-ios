@@ -14,45 +14,26 @@ class ExpensesThisMonthViewController: UITableViewController {
     var budgets: [BudgetForDay] = []
     var i = 1
     var canEdit = false
-    var initialColors: [Any]?
+    //var initialColors: [Any]?
     
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBAction func editAction(_ sender: UIBarButtonItem) {
         canEdit = !canEdit
         
         if canEdit {
-            for cell in tableView.visibleCells {
-                if let expenseCell = cell as? ExpenseCell {
-                    expenseCell.gradientLayer.colors = [UIColor(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1).cgColor,
-                                                        UIColor.white.cgColor]
-                } else {
-                    cell.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
-                }
-                
-                cell.textLabel?.textColor = .black
-                cell.detailTextLabel?.textColor = .black
-            }
             sender.title = "Done"
             sender.tintColor = #colorLiteral(red: 0.1729659908, green: 0.5823032236, blue: 1, alpha: 1)
         } else {
-            for cell in tableView.visibleCells {
-                if let expenseCell = cell as? ExpenseCell {
-                    expenseCell.gradientLayer.colors = initialColors
-                } else {
-                    cell.backgroundColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
-                }
-                cell.textLabel?.textColor = .white
-                cell.detailTextLabel?.textColor = .white
-            }
-            
             sender.title = "Edit"
             if expenses.isEmpty {
                 sender.isEnabled = false
             } else {
                 sender.isEnabled = true
-                sender.tintColor = #colorLiteral(red: 0.9764705882, green: 0.3294117647, blue: 0.3333333333, alpha: 1)
+                sender.tintColor = #colorLiteral(red: 0.5803921569, green: 0.09019607843, blue: 0.3176470588, alpha: 1)
             }
         }
+        
+        tableView.reloadData()
 
     }
 
@@ -132,10 +113,21 @@ class ExpensesThisMonthViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "checkexpensecell") as! ExpenseCell?
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .currency
+        if !canEdit {
+            cell?.firstColor = UIColor(red:0.17, green:0.38, blue:0.64, alpha:1.0)
+            cell?.secondColor = UIColor(red:0.65, green:0.92, blue:1.00, alpha:1.0)
+            cell?.textLabel?.textColor = .white
+            //cell?.detailTextLabel?.textColor = .white
+        } else {
+            cell?.firstColor = UIColor(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+            cell?.secondColor = UIColor.white
+            cell?.textLabel?.textColor = .black
+            //cell?.detailTextLabel?.textColor = .black
+        }
         if let localCurrency = defaults.value(forKey: localCurrencyKey) as? String {
             numberFormatter.currencyCode = localCurrency
         } else {
-            numberFormatter.currencyCode = ""
+            numberFormatter.currencyCode = " "
         }
         
         
@@ -160,7 +152,7 @@ class ExpensesThisMonthViewController: UITableViewController {
     // MARK: - Look here for deleting expenses
 
     // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
             let removedExpense = self.expenses.remove(at: indexPath.row)

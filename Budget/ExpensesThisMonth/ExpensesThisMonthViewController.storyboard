@@ -7,6 +7,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="IndieFlower.ttf">
+            <string>IndieFlower</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Expenses-->
         <scene sceneID="Mw4-q2-DTt">
@@ -17,25 +22,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="checkexpensecell" textLabel="AcS-U9-lqD" detailTextLabel="1Js-IO-Bdd" rowHeight="50" style="IBUITableViewCellStyleValue1" id="FRh-he-aWj" customClass="ExpenseCell" customModule="Budget" customModuleProvider="target">
-                                <rect key="frame" x="10" y="55.5" width="365" height="50"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="checkexpensecell" textLabel="AcS-U9-lqD" detailTextLabel="1Js-IO-Bdd" rowHeight="50" style="IBUITableViewCellStyleValue1" id="FRh-he-aWj" customClass="ExpenseCell" customModule="Budget" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FRh-he-aWj" id="qj0-sp-8My">
-                                    <rect key="frame" x="0.0" y="0.0" width="331" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AcS-U9-lqD">
-                                            <rect key="frame" x="16" y="15" width="33.5" height="20.5"/>
+                                            <rect key="frame" x="16" y="11" width="34.5" height="29.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="IndieFlower" family="Indie Flower" pointSize="20"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1Js-IO-Bdd">
-                                            <rect key="frame" x="286" y="15" width="44" height="20.5"/>
+                                            <rect key="frame" x="292" y="11" width="48" height="29.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="fontDescription" name="IndieFlower" family="Indie Flower" pointSize="20"/>
+                                            <color key="textColor" red="1" green="0.0" blue="0.01164490638" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -61,7 +66,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Expenses" id="8Zw-U6-iOL">
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title="Edit" style="done" id="Z7X-DS-GAn">
-                            <color key="tintColor" red="0.97647058823529409" green="0.32941176470588235" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" red="0.58039215690000001" green="0.090196078430000007" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="editAction:" destination="XnB-8Z-GJh" id="2YS-ms-Rra"/>
                             </connections>

@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let storyboard = UIStoryboard(name: "Launch Screen Thing", bundle: nil)
         let splashScreenVC = storyboard.instantiateInitialViewController() as! UINavigationController
@@ -25,10 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                      animated: false,
                                                      completion: nil)
         }
+        UINavigationBar.appearance().tintColor = #colorLiteral(red: 0.5803921569, green: 0.09019607843, blue: 0.3176470588, alpha: 1)
         return true
     }
 
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         
         var successfullyOpenedDocument = true
         let homeStoryboard = UIStoryboard(name: "Main", bundle: nil)

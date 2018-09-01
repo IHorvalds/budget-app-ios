@@ -8,12 +8,12 @@
 
 import UIKit
 
-@IBDesignable
+
 class ExpenseCell: UITableViewCell {
 
-    //var secondColor = UIColor(red:0.65, green:0.92, blue:1.00, alpha:1.0)
-    //var firstColor = UIColor(red:0.17, green:0.38, blue:0.64, alpha:1.0)
-    
+    public var secondColor = UIColor(red:0.65, green:0.92, blue:1.00, alpha:1.0)
+    public var firstColor = UIColor(red:0.17, green:0.38, blue:0.64, alpha:1.0)
+
     let inset: CGFloat = 10.0
     let cornerRadius: CGFloat = 15.0
     let gradientLayer = CAGradientLayer()
@@ -30,18 +30,8 @@ class ExpenseCell: UITableViewCell {
         }
     }
     
-    @IBInspectable
-    public var firstColor: UIColor? {
-        didSet {
-            layoutSubviews()
-        }
-    }
-    @IBInspectable
-    public var secondColor: UIColor? {
-        didSet {
-            layoutSubviews()
-        }
-    }
+//    var firstColor: UIColor?
+//    var secondColor: UIColor?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -51,7 +41,7 @@ class ExpenseCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        gradientLayer.colors = [firstColor?.cgColor, secondColor?.cgColor]
+        gradientLayer.colors = [firstColor.cgColor, secondColor.cgColor]
         gradientLayer.frame = self.bounds
         gradientLayer.startPoint = CGPoint(x: 0, y: 0.5)
         gradientLayer.endPoint = CGPoint(x: 1, y: 0.5)

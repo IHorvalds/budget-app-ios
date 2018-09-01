@@ -204,7 +204,7 @@ extension BudgetViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
             let today = Date()
@@ -262,7 +262,7 @@ extension BudgetViewController: OverviewTableViewCellDelegate {
 
 extension BudgetViewController {
     func popUpForAddingExpense() {
-        let inputAlert = UIAlertController.init(title: "Add an expense", message: "What did you buy and how much did it cost?", preferredStyle: UIAlertControllerStyle.alert)
+        let inputAlert = UIAlertController.init(title: "Add an expense", message: "What did you buy and how much did it cost?", preferredStyle: UIAlertController.Style.alert)
         
         inputAlert.addTextField(configurationHandler: {(textField: UITextField!) in
             textField.placeholder = "Give it a name..."

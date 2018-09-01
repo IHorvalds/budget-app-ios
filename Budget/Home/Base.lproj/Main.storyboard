@@ -9,6 +9,11 @@
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="IndieFlower.ttf">
+            <string>IndieFlower</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Overview-->
         <scene sceneID="eGE-v4-wiZ">
@@ -29,12 +34,12 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9tn-Xt-DJt">
-                                            <rect key="frame" x="10" y="51" width="356" height="35"/>
+                                            <rect key="frame" x="10" y="51" width="356" height="46.666666666666657"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="Budget">
                                                     <attributes>
-                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <font key="NSFont" size="30" name=".SFNSDisplay"/>
+                                                        <color key="NSColor" red="0.1019607843" green="0.2784313725" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" size="40" name="SFMono-Regular"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="clipping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -42,16 +47,19 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FTT-S4-ihU">
-                                            <rect key="frame" x="10" y="104" width="356" height="42"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                            <state key="normal" title="Money left:"/>
+                                            <rect key="frame" x="10" y="115.66666666666669" width="356" height="36"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <state key="normal" title="Money left:">
+                                                <color key="titleColor" red="0.58081901069999997" green="0.088427625600000004" blue="0.31863921880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
                                             <connections>
                                                 <action selector="didTapMoneyLeft:" destination="DfU-AD-9L6" eventType="touchUpInside" id="i3n-mJ-ycY"/>
                                                 <segue destination="1EF-OY-TYm" kind="show" identifier="seguetoexpenses" id="fHr-7I-H28"/>
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This month:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z3S-Mt-xKH">
-                                            <rect key="frame" x="10" y="155" width="356" height="24"/>
+                                            <rect key="frame" x="10" y="160.66666666666666" width="356" height="24"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -103,7 +111,7 @@
                                             <rect key="frame" x="350" y="11.999999999999998" width="44" height="20.333333333333332"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" red="0.1019607843" green="0.2784313725" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="home" id="SzT-6J-81r">
@@ -114,24 +122,24 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="expensecell" textLabel="qgI-9o-x9m" detailTextLabel="Pqj-fw-sHf" rowHeight="50" style="IBUITableViewCellStyleValue1" id="FwP-w7-cj8" customClass="ExpenseCell" customModule="Budget" customModuleProvider="target">
-                                <rect key="frame" x="10" y="399.33333333333331" width="404" height="50"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="expensecell" textLabel="qgI-9o-x9m" detailTextLabel="Pqj-fw-sHf" rowHeight="50" style="IBUITableViewCellStyleValue1" id="FwP-w7-cj8" customClass="ExpenseCell" customModule="Budget" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="399.33333333333331" width="414" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FwP-w7-cj8" id="FaI-ZT-UAN">
-                                    <rect key="frame" x="0.0" y="0.0" width="404" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qgI-9o-x9m">
-                                            <rect key="frame" x="15" y="14.999999999999998" width="33.333333333333336" height="20.333333333333332"/>
+                                            <rect key="frame" x="14.999999999999998" y="13" width="29.333333333333332" height="25"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="IndieFlower" family="Indie Flower" pointSize="17"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pqj-fw-sHf">
-                                            <rect key="frame" x="340" y="14.999999999999998" width="44" height="20.333333333333332"/>
+                                            <rect key="frame" x="353.33333333333331" y="13" width="40.666666666666664" height="25"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="IndieFlower" family="Indie Flower" pointSize="17"/>
                                             <color key="textColor" red="1" green="0.0" blue="0.01164490638" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -147,15 +155,15 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addexpensecell" rowHeight="50" id="cuM-4O-WXu" customClass="ExpenseCell" customModule="Budget" customModuleProvider="target">
-                                <rect key="frame" x="10" y="449.33333333333331" width="404" height="50"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addexpensecell" rowHeight="50" id="cuM-4O-WXu" customClass="ExpenseCell" customModule="Budget" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="449.33333333333331" width="414" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cuM-4O-WXu" id="Jij-F7-LyP">
-                                    <rect key="frame" x="0.0" y="0.0" width="404" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KHr-Sb-csH">
-                                            <rect key="frame" x="10" y="11.000000000000002" width="22" height="27.666666666666671"/>
+                                            <rect key="frame" x="20" y="11.000000000000002" width="22" height="27.666666666666671"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </button>
                                     </subviews>
@@ -187,17 +195,20 @@
                     <navigationItem key="navigationItem" title="Overview" id="vpn-dp-3ZW">
                         <leftBarButtonItems>
                             <barButtonItem title="Previous" image="list" style="done" id="BvS-cl-zJX">
+                                <color key="tintColor" red="0.58081901069999997" green="0.088427625600000004" blue="0.31863921880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <segue destination="JvG-JU-Z8i" kind="show" identifier="seguetoexportedbudget" id="ndx-71-w6J"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Convert" image="paper_money" id="miU-oy-BnA">
+                                <color key="tintColor" red="0.58081901069999997" green="0.088427625600000004" blue="0.31863921880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <segue destination="WSa-mK-6Gu" kind="show" id="Ptu-sf-Y4o"/>
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" title="Settings" image="settings" id="ugM-3D-hlA">
+                            <color key="tintColor" red="0.58081901069999997" green="0.088427625600000004" blue="0.31863921880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="4VH-Fc-HUq" kind="show" id="N4X-wd-Qdh"/>
                             </connections>
@@ -252,9 +263,11 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.1019607843" green="0.2784313725" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
                             <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                            <color key="textColor" red="0.1019607843" green="0.2784313725" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
