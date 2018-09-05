@@ -100,7 +100,6 @@ func endOfDayExport() {
                         let amountRemaining = totalInLocalCurrency! - Double(rentAmount)! - totalSpent
                         
                         //Gotta get the month from texts
-                        //dateFormatter.dateFormat = "yyyy-MM-dd"
                         dateFormatter.dateStyle = .medium
                         let calendar = Calendar.current
                         let initialMonth = dateFormatter.date(from: dateReceived)! + TimeInterval(86400)

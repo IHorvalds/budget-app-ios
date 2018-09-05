@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = splashScreenVC
         let homeStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let initialVC = homeStoryboard.instantiateInitialViewController() as! UINavigationController
-        _ = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (_) in
+        _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { (_) in
             self.window?.rootViewController?.present(initialVC, //THIS WORKS
                                                      animated: false,
                                                      completion: nil)
