@@ -153,10 +153,12 @@ func endOfDayExport() {
                     }
                 } else {
                     if let x = budgets.index(where: {$0.day == dayOfToday!}) {
-                        for a in 0...(x - 1) {
-                            if budgets[a].checked != true {
-                                budgets[x].totalUsableAmount += budgets[a].totalUsableAmount
-                                budgets[a].checked = true
+                        if x != 0 {
+                            for a in 0...(x - 1) {
+                                if budgets[a].checked != true {
+                                    budgets[x].totalUsableAmount += budgets[a].totalUsableAmount
+                                    budgets[a].checked = true
+                                }
                             }
                         }
                         defaults.set(archiveBudgetsAsData(budgets: budgets), forKey: budgetForThisMonthKey)
