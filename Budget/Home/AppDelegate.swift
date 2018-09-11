@@ -15,16 +15,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let storyboard = UIStoryboard(name: "Launch Screen Thing", bundle: nil)
-        let splashScreenVC = storyboard.instantiateInitialViewController() as! UINavigationController
-        self.window?.rootViewController = splashScreenVC
-        let homeStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let initialVC = homeStoryboard.instantiateInitialViewController() as! UINavigationController
-        _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { (_) in
-            self.window?.rootViewController?.present(initialVC, //THIS WORKS
-                                                     animated: false,
-                                                     completion: nil)
-        }
+//        let storyboard = UIStoryboard(name: "Launch Screen Thing", bundle: nil)
+//        let splashScreenVC = storyboard.instantiateInitialViewController() as! UINavigationController
+//        self.window?.rootViewController = splashScreenVC
+//        let homeStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let initialVC = homeStoryboard.instantiateInitialViewController() as! UINavigationController
+//        _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { (_) in
+//            self.window?.rootViewController?.present(initialVC, //THIS WORKS
+//                                                     animated: false,
+//                                                     completion: nil)
+//        }
         UINavigationBar.appearance().tintColor = #colorLiteral(red: 0.5803921569, green: 0.09019607843, blue: 0.3176470588, alpha: 1)
         return true
     }

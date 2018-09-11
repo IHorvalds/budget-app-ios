@@ -15,10 +15,13 @@ class ExpenseDetailViewController: UITableViewController {
     var priceBuffer = 0.0
     @IBOutlet weak var datePurchased: UILabel!
     @IBOutlet weak var price: UILabel!
+    @IBOutlet weak var expenseTitle: UITextView!
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.title = purchaseTitle
+        expenseTitle.text = purchaseTitle
         dateFormatter.dateStyle = .medium
         datePurchased.text = dateFormatter.string(from: datePurchasedBuffer)
         let numberFormatter = NumberFormatter()
@@ -34,6 +37,8 @@ class ExpenseDetailViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.estimatedRowHeight = 50.0
+        tableView.rowHeight = UITableView.automaticDimension
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,8 +46,8 @@ class ExpenseDetailViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
-    }
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 50
+//    }
 
 }
