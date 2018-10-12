@@ -214,7 +214,7 @@ extension BudgetViewController {
             let removedExpense = todayExpenses.remove(at: indexPath.row)
             expenses.remove(at: expenses.index(of: removedExpense)!)
             saveExpensesToDisk()
-            if let budgetData = defaults.value(forKey: budgetForThisMonthKey) as? Data,
+            if  let budgetData = defaults.value(forKey: budgetForThisMonthKey) as? Data,
                 var budgets = NSKeyedUnarchiver.unarchiveObject(with: budgetData) as? [BudgetForDay] {
                 let budget = budgets.first(where: {$0.day == (dayOfToday!)})
                 if let budgetForToday = budget {
@@ -271,7 +271,7 @@ extension BudgetViewController {
             textField.spellCheckingType = UITextSpellCheckingType.yes
         })
         inputAlert.addTextField(configurationHandler: {(textField: UITextField!) in
-            textField.placeholder = "How much was it?"
+            textField.placeholder = "How much was it? (Without comission)"
             textField.enablesReturnKeyAutomatically = true
             textField.keyboardType = UIKeyboardType.decimalPad
         })
@@ -284,7 +284,7 @@ extension BudgetViewController {
             if inputAlert.textFields![0].hasText,
                 inputAlert.textFields![1].hasText {
                 self.expenses.append(Expense.init(title: inputAlert.textFields![0].text!,
-                                                  price: Double(inputAlert.textFields![1].text!)!))
+                                                  price: Double(inputAlert.textFields![1].text!)!*(1.0 + bankComission)))
                 if let budgetData = defaults.value(forKey: budgetForThisMonthKey) as? Data,
                     var budgets = NSKeyedUnarchiver.unarchiveObject(with: budgetData) as? [BudgetForDay],
                     !self.expenses.isEmpty {

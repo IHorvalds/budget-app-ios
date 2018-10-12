@@ -93,33 +93,8 @@
                         <sections>
                             <tableViewSection id="yUz-37-1XB">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="expensedetailcell" id="IQY-g3-HbK">
-                                        <rect key="frame" x="0.0" y="35" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IQY-g3-HbK" id="IJp-Hc-GGi">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cU7-ls-QcV">
-                                                    <rect key="frame" x="16" y="0.0" width="359" height="44"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="cU7-ls-QcV" secondAttribute="bottom" id="0Tn-hC-qJB"/>
-                                                <constraint firstAttribute="trailing" secondItem="cU7-ls-QcV" secondAttribute="trailing" id="GQz-Tp-pY4"/>
-                                                <constraint firstAttribute="bottom" secondItem="cU7-ls-QcV" secondAttribute="bottom" id="Gr8-vg-VzN"/>
-                                                <constraint firstItem="cU7-ls-QcV" firstAttribute="leading" secondItem="IJp-Hc-GGi" secondAttribute="leading" constant="16" id="SDo-sW-9Yg"/>
-                                                <constraint firstItem="cU7-ls-QcV" firstAttribute="top" secondItem="IJp-Hc-GGi" secondAttribute="top" id="Xhw-sl-sMc"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.1470403669" green="0.28395668499999999" blue="0.40268083760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="expensedetailcell" textLabel="NOA-4b-wo9" detailTextLabel="74F-IW-pQ8" style="IBUITableViewCellStyleValue1" id="09S-VV-6E8">
-                                        <rect key="frame" x="0.0" y="79" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="35" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="09S-VV-6E8" id="BZ7-f9-Jfd">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -144,7 +119,7 @@
                                         <color key="backgroundColor" red="0.1019607843" green="0.2784313725" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="expensedetailcell" textLabel="xgX-0k-wlb" detailTextLabel="g4k-MO-fwW" style="IBUITableViewCellStyleValue1" id="3bh-It-5in">
-                                        <rect key="frame" x="0.0" y="123" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="79" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3bh-It-5in" id="LiV-pj-ZqP">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -167,6 +142,31 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.1019607843" green="0.2784313725" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="expensedetailcell" id="IQY-g3-HbK">
+                                        <rect key="frame" x="0.0" y="123" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IQY-g3-HbK" id="IJp-Hc-GGi">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cU7-ls-QcV">
+                                                    <rect key="frame" x="16" y="0.0" width="359" height="43.5"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="cU7-ls-QcV" secondAttribute="bottom" id="0Tn-hC-qJB"/>
+                                                <constraint firstAttribute="trailing" secondItem="cU7-ls-QcV" secondAttribute="trailing" id="GQz-Tp-pY4"/>
+                                                <constraint firstAttribute="bottom" secondItem="cU7-ls-QcV" secondAttribute="bottom" id="Gr8-vg-VzN"/>
+                                                <constraint firstItem="cU7-ls-QcV" firstAttribute="leading" secondItem="IJp-Hc-GGi" secondAttribute="leading" constant="16" id="SDo-sW-9Yg"/>
+                                                <constraint firstItem="cU7-ls-QcV" firstAttribute="top" secondItem="IJp-Hc-GGi" secondAttribute="top" id="Xhw-sl-sMc"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.1470403669" green="0.28395668499999999" blue="0.40268083760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>

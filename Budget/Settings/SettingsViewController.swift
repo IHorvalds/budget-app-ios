@@ -10,11 +10,11 @@ import UIKit
 import UserNotifications
 
 let dateFormatter = DateFormatter()
+let nrFrmtr = NumberFormatter()
 
 class SettingsViewController: UITableViewController, UNUserNotificationCenterDelegate {
     
     //MARK: - Miscellaneous variables and constants
-    //let currencies = ["DKK", "EUR", "RON", "USD"]
     let currencies = Array(exchangeRates.keys)
     var activeTextField = UITextField()//used in identifying the text field being edited
     let notificationCenter = UNUserNotificationCenter.current()
@@ -122,11 +122,11 @@ class SettingsViewController: UITableViewController, UNUserNotificationCenterDel
         datePicker.addTarget(self, action: #selector(updateDateText), for: UIControl.Event.valueChanged)
         datePicker.backgroundColor = currPicker.backgroundColor
         
-        notificationCenter.getPendingNotificationRequests(completionHandler: { requests in
-            for request in requests {
-                print(request)
-            }
-        })
+//        notificationCenter.getPendingNotificationRequests(completionHandler: { requests in
+//            for request in requests {
+//                print(request)
+//            }
+//        })
         
     }
 
@@ -210,7 +210,9 @@ class SettingsViewController: UITableViewController, UNUserNotificationCenterDel
                 initialCurr = Currency.init(isoCode: curr)
                 localCurr = Currency.init(isoCode: curr2)
                 if let totAmount = Double(totalAmount), let quantity = initialCurr.convert(toCurrency: localCurr, amount: totAmount) {
-                    return "Amount in local currency: " + String(quantity)
+                    nrFrmtr.numberStyle = .currency
+                    nrFrmtr.currencyCode = localCurr.isoCode
+                    return "Amount in local currency: " + (nrFrmtr.string(from: quantity as NSNumber) ?? String(quantity))
                 }
             }
             return "Amount in local currency: ???"
@@ -220,7 +222,9 @@ class SettingsViewController: UITableViewController, UNUserNotificationCenterDel
                 let localCurr = Currency.init(isoCode: curr2)
                 if let rentAm = Double(rentAmount), let totAmount = Double(totalAmount), let quantity = initialCurr.convert(toCurrency: localCurr, amount: totAmount) {
                     let quantityAfterRent = quantity - rentAm
-                    return "Amount after rent: " + String(quantityAfterRent) + curr2
+                    nrFrmtr.numberStyle = .currency
+                    nrFrmtr.currencyCode = localCurr.isoCode
+                    return "Amount after rent: " + (nrFrmtr.string(from: quantityAfterRent as NSNumber) ?? String(quantityAfterRent))
                 } else {
                     return "Amount after rent: ???"
                 }
@@ -432,6 +436,7 @@ extension SettingsViewController {
         content.categoryIdentifier = "alarm"
         content.userInfo = ["customData": "fizzbuzz"]
         content.sound = UNNotificationSound.default
+        content.badge = 1
         
         var dateComponents = DateComponents()
         dateComponents.hour = 22

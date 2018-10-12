@@ -12,6 +12,7 @@ import MobileCoreServices
 class BudgetExportViewController: UITableViewController, UIDocumentPickerDelegate {
     
     var document: BudgetExportDocument?
+    var expenses: [Expense]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +53,7 @@ class BudgetExportViewController: UITableViewController, UIDocumentPickerDelegat
             if success {
                 if self.document?.budgetExport != nil {
                     self.title = self.document?.localizedName
+                    self.expenses = self.document?.budgetExport?.expenses
                     self.tableView.reloadData()
                     
                 } else {
@@ -77,10 +79,14 @@ class BudgetExportViewController: UITableViewController, UIDocumentPickerDelegat
                 if let expenses = document?.budgetExport?.expenses {
                     destVC.purchaseTitle = expenses[(indexPath?.row)!].title
                     destVC.datePurchasedBuffer = expenses[(indexPath?.row)!].datePurchased
+                    print(expenses[(indexPath?.row)!].price)
                     destVC.priceBuffer = expenses[(indexPath?.row)!].price
-                    
+                } else {
+                    print("What document?")
                 }
             }
+        } else {
+            print("wtfchatalkinbout")
         }
     }
 
@@ -125,10 +131,10 @@ extension BudgetExportViewController {
         //actually setting the cells
         if indexPath.section == 0 {
             cell = tableView.dequeueReusableCell(withIdentifier: "checkexpensecell")
-            if document?.documentState == .normal,
-                let expenses = document?.budgetExport?.expenses {
-                    cell?.textLabel?.text = expenses[indexPath.row].title
-                    cell?.detailTextLabel?.text = numberFormatter.string(from: expenses[indexPath.row].price as NSNumber)
+            if  document?.documentState == .normal,
+                let expenses = self.expenses {
+                cell?.textLabel?.text = expenses[indexPath.row].title
+                cell?.detailTextLabel?.text = numberFormatter.string(from: expenses[indexPath.row].price as NSNumber)
             }
         } else if indexPath.section == 1 {
             cell = tableView.dequeueReusableCell(withIdentifier: "budgetdatecell")

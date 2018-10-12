@@ -20,10 +20,18 @@ class ExpenseDetailViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationItem.title = purchaseTitle
-        expenseTitle.text = purchaseTitle
+        let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0))
+        cell?.indentationLevel = 0
         dateFormatter.dateStyle = .medium
         datePurchased.text = dateFormatter.string(from: datePurchasedBuffer)
+        if purchaseTitle.count > 30 {
+            self.navigationItem.title = dateFormatter.string(from: datePurchasedBuffer)
+            expenseTitle.text = purchaseTitle
+        } else {
+            self.navigationItem.largeTitleDisplayMode = .never
+            self.navigationItem.title = purchaseTitle
+            tableView.cellForRow(at: IndexPath(row: 2, section: 0))?.isHidden = true
+        }
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .currency
         if let localCurrency = defaults.value(forKey: localCurrencyKey) as? String {
@@ -31,6 +39,7 @@ class ExpenseDetailViewController: UITableViewController {
         } else {
             numberFormatter.currencyCode = ""
         }
+        print(priceBuffer)
         price.text = numberFormatter.string(from: priceBuffer as NSNumber)
     }
     
