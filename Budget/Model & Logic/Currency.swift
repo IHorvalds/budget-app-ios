@@ -12,7 +12,8 @@ import Foundation
 let exchangeRates = ["RON": 1.00,
                     "DKK": 1.61,
                     "USD": 0.25,
-                    "EUR": 0.22]
+                    "EUR": 0.22,
+                    "GBP": 0.19]
 
 class Currency {
     let isoCode: String

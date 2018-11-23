@@ -10,7 +10,7 @@ import Foundation
 
 func isWithinBudget() -> String {
     
-    let calendar = Calendar.current
+    let calendar = Calendar.autoupdatingCurrent
     let today = Date()
     let dateComponents = calendar.dateComponents([.year, .month, .day], from: today)
     let dayOfToday = calendar.date(from: dateComponents)!
@@ -35,7 +35,7 @@ func calculateDailyBudget(startingFrom: Date, endingOn: Date) {
     
     
     //calculate the number of days
-    let calendar = Calendar.current
+    let calendar = Calendar.autoupdatingCurrent
     let numberOfDays = calendar.dateComponents([Calendar.Component.day], from: startingFrom, to: endingOn)
     
     if let curr = defaults.value(forKey: sentCurrencyKey) as? String,
@@ -65,8 +65,8 @@ func endOfDayExport() {
     //If there is a day in the recording period after today, then add to the total of tomorrow what's left from today. It can be a negative amount
     
     let today = Date()
-    let day = Calendar.current.dateComponents([.year, .month, .day], from: today)
-    let dayOfToday = Calendar.current.date(from: day)
+    let day = Calendar.autoupdatingCurrent.dateComponents([.year, .month, .day], from: today)
+    let dayOfToday = Calendar.autoupdatingCurrent.date(from: day)
     var savePath: URL?
     
     if let budgetData = defaults.value(forKey: budgetForThisMonthKey) as? Data {
@@ -101,7 +101,7 @@ func endOfDayExport() {
                         
                         //Gotta get the month from texts
                         dateFormatter.dateStyle = .medium
-                        let calendar = Calendar.current
+                        let calendar = Calendar.autoupdatingCurrent
                         let initialMonth = dateFormatter.date(from: dateReceived)! + TimeInterval(86400)
                         let finalMonth = dateFormatter.date(from: lastDay)! + TimeInterval(86400)
                         

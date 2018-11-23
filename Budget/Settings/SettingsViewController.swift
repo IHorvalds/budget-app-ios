@@ -47,7 +47,7 @@ class SettingsViewController: UITableViewController, UNUserNotificationCenterDel
         defaults.set(notificationSwitch.isOn, forKey: notificationsAccessKey)
         if dateReceived.text != nil && dateReceived.text != "", lastsUntil.text != nil && lastsUntil.text != "", defaults.value(forKey: budgetForThisMonthKey) == nil {
             dateFormatter.dateStyle = .medium
-            let calendar = Calendar.current
+            let calendar = Calendar.autoupdatingCurrent
             let startingDate = dateFormatter.date(from: dateReceived.text!)!
             let startingComponents = calendar.dateComponents([.year, .month, .day], from: startingDate)
             let endingDate = dateFormatter.date(from: lastsUntil.text!)!
@@ -68,7 +68,7 @@ class SettingsViewController: UITableViewController, UNUserNotificationCenterDel
         defaults.set(notificationSwitch.isOn, forKey: notificationsAccessKey)
         if dateReceived.text != nil && dateReceived.text != "", lastsUntil.text != nil && lastsUntil.text != "", defaults.value(forKey: budgetForThisMonthKey) == nil {
             dateFormatter.dateStyle = .medium
-            let calendar = Calendar.current
+            let calendar = Calendar.autoupdatingCurrent
             let startingDate = dateFormatter.date(from: dateReceived.text!)!
             let startingComponents = calendar.dateComponents([.year, .month, .day], from: startingDate)
             let endingDate = dateFormatter.date(from: lastsUntil.text!)!
@@ -107,7 +107,7 @@ class SettingsViewController: UITableViewController, UNUserNotificationCenterDel
         self.addToolbar(textField: sentCurrency)
         self.addToolbar(textField: localCurrency)
         
-        datePicker.locale = Calendar.current.locale
+        datePicker.locale = Calendar.autoupdatingCurrent.locale
         sentCurrency.inputView = currPicker
         localCurrency.inputView = currPicker
         dateReceived.inputView = datePicker
@@ -177,7 +177,7 @@ class SettingsViewController: UITableViewController, UNUserNotificationCenterDel
                 print(dateReceived.hasText)
                 if dateReceived.hasText {
                     dateFormatter.dateStyle = .medium
-                    let calendar = Calendar.current
+                    let calendar = Calendar.autoupdatingCurrent
                     let startingDate = dateFormatter.date(from: dateReceived.text!)!
                     let startingComponents = calendar.dateComponents([.year, .month, .day], from: startingDate)
                     datePicker.minimumDate = calendar.date(from: startingComponents)
@@ -258,7 +258,7 @@ extension SettingsViewController: UITextFieldDelegate {
         if textField == lastsUntil {
             if dateReceived.text != "" {
                 dateFormatter.dateStyle = .medium
-                let calendar = Calendar.current
+                let calendar = Calendar.autoupdatingCurrent
                 let startingDate = dateFormatter.date(from: dateReceived.text!)
                 let startingComponents = calendar.dateComponents([.year, .month, .day], from: startingDate!)
                 datePicker.minimumDate = calendar.date(from: startingComponents)
@@ -379,7 +379,7 @@ extension SettingsViewController {
                 || f != rentAmountInLocalCurrency.text {
 //                    dateFormatter.dateFormat = "yyyy-MM-dd"
                     dateFormatter.dateStyle = .medium
-                    let calendar = Calendar.current
+                    let calendar = Calendar.autoupdatingCurrent
                     let startingDate = dateFormatter.date(from: dateReceived.text!)!
                     let startingComponents = calendar.dateComponents([.year, .month, .day], from: startingDate)
                     let endingDate = dateFormatter.date(from: lastsUntil.text!)!

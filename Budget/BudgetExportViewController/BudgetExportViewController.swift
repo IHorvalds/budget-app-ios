@@ -16,6 +16,9 @@ class BudgetExportViewController: UITableViewController, UIDocumentPickerDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.rowHeight = 50
+        
         if document == nil {
             showDocumentPicker()
         }
@@ -81,13 +84,10 @@ class BudgetExportViewController: UITableViewController, UIDocumentPickerDelegat
                     destVC.datePurchasedBuffer = expenses[(indexPath?.row)!].datePurchased
                     print(expenses[(indexPath?.row)!].price)
                     destVC.priceBuffer = expenses[(indexPath?.row)!].price
-                } else {
-                    print("What document?")
                 }
             }
-        } else {
-            print("wtfchatalkinbout")
         }
+        
     }
 
 }
@@ -144,15 +144,15 @@ extension BudgetExportViewController {
                 if indexPath.row == 0 {
                     
                     let dateReceived = dateFormatter.date(from: (document?.budgetExport?.dateReceived)!)
-                    let dateReceivedComponents = Calendar.current.dateComponents([.year, .month, .day], from: dateReceived!)
+                    let dateReceivedComponents = Calendar.autoupdatingCurrent.dateComponents([.year, .month, .day], from: dateReceived!)
                     dateFormatter.dateStyle = .medium
-                    cell?.detailTextLabel?.text = dateFormatter.string(from: Calendar.current.date(from: dateReceivedComponents)!)
+                    cell?.detailTextLabel?.text = dateFormatter.string(from: Calendar.autoupdatingCurrent.date(from: dateReceivedComponents)!)
                 } else {
                     
                     let lastDay = dateFormatter.date(from: (document?.budgetExport?.lastDay)!)
-                    let lastDayComponents = Calendar.current.dateComponents([.year, .month, .day], from: lastDay!)
+                    let lastDayComponents = Calendar.autoupdatingCurrent.dateComponents([.year, .month, .day], from: lastDay!)
                     dateFormatter.dateStyle = .medium
-                    cell?.detailTextLabel?.text = dateFormatter.string(from: Calendar.current.date(from: lastDayComponents)!)
+                    cell?.detailTextLabel?.text = dateFormatter.string(from: Calendar.autoupdatingCurrent.date(from: lastDayComponents)!)
                 }
             }
             
