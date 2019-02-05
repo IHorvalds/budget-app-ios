@@ -1,0 +1,858 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0F4BFF2A2226651B5F4FEA9FEFBF56A1 /* FAPanels-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 814CBC8500E37CE9A329FE7BCEAF5B69 /* FAPanels-dummy.m */; };
+		10A90E6B1EBC48AD6C42F9252228FFEB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */; };
+		12FBDC46838AD1981BDE16D6FCFB0533 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */; };
+		1C46E49E54E7409356CB1592FC0FB4A1 /* FAPanels-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1114BF97A9752E3BA26A8C74F751D7F5 /* FAPanels-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2476FBC8FCF92DF2C6D92F3E53849EB7 /* FAPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7FE850023E2C987E7C1E51A4541D9D /* FAPanel.swift */; };
+		27A741B2679E882FD719A1F204DC4F44 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB748919ED2DD30B542ACA1A01A454B /* CalendarView.swift */; };
+		2A3AD44887DE991EA6B7838198E2ECCE /* Pods-Budget-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 63FDEA0D69E51129A6D9F46352E0E577 /* Pods-Budget-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2AAEB6436ABABE2A20AA69A3B11F9102 /* CalendarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B1CB599678EED797DCF613CF6B8592 /* CalendarHeaderView.swift */; };
+		3376D671DD0C6806E1EBE01B6C5F03F4 /* FAPanel+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD466B17EB42A670720154F710ADCFE /* FAPanel+Gestures.swift */; };
+		3C89BE9A1E1A21AE14BD608B8AEDF1BD /* CalendarDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30F6F4BC94CCB9DCCA384A714785149 /* CalendarDayCell.swift */; };
+		41B432A6005A4C2B441A3A8E89F1157C /* Collection+FAPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64095C9AD7B0DFB1804B454C4D418C3F /* Collection+FAPanel.swift */; };
+		4653F2C72F150EFA338E77618E922525 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */; };
+		4C7FD4240D6F9A5131A501B6CFA42E57 /* UIViewController+FAPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAE9C9F1FFD4D6FE5652FBEED29237 /* UIViewController+FAPanel.swift */; };
+		512EA4BBB43084999E8AF0C446634F6F /* KDCalendar-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BC7B277967B61ADEC190022873122077 /* KDCalendar-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74DDE204BC34B09D5ADB6627BA788519 /* FAPanel+KVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48653F462E4F6AFAAC300270320C797 /* FAPanel+KVO.swift */; };
+		88410188FD2C2E6A670DA0786C242695 /* CalendarView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A23B98E68437FA67DD40948CFB565C2 /* CalendarView+Extensions.swift */; };
+		94DFB321D94F3100EA391D3F44171FF2 /* Pods-Budget-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DB68E1C4CC0AD646F5563338B40CBA2 /* Pods-Budget-dummy.m */; };
+		9559356A1189EDECD3934CD816517071 /* UIImage+FAPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFF48AC918E61AE0293137E2A3A28DA /* UIImage+FAPanel.swift */; };
+		AE0E868E01127F73C0D5EFAF521F502C /* EventsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A902F85A8758087932C5C088061A2F58 /* EventsManager.swift */; };
+		C0B52DB2702DAFC16BDF05E74B8D17F7 /* FAPanel+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433657D4348BDB3A7213A81E75FA817C /* FAPanel+Animations.swift */; };
+		C1145DE90B3C35EB0F053BE9BFF31736 /* UIView+FAPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE52A890473ABA2751CE0ACA8CD66214 /* UIView+FAPanel.swift */; };
+		C48D17FBDE8854D71E066D5EAB33C218 /* FAPanel+InterfaceRotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C893E71F72F1BF4C364914D97611DE16 /* FAPanel+InterfaceRotation.swift */; };
+		C7C57A6A5B6473F7910480D4AD09309E /* KDCalendar-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F198563E19081D07715741A3F834389E /* KDCalendar-dummy.m */; };
+		CF3CD8B1699BACEE46763BF3054ADFA9 /* CalendarView+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC96119F5B24E2BF670A90D775C132A /* CalendarView+Delegate.swift */; };
+		ED1371DE9BABD4C5A73E93C203FCDD34 /* CalendarView+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E6781A39EB6E9706CACEA81ECE64CC /* CalendarView+DataSource.swift */; };
+		F6D7EC261412F8CBC02A8B697BCE611E /* CalendarView+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B7409E4C72438B3BDD5A541A775F0 /* CalendarView+Style.swift */; };
+		FA883E07DEA96A467125566C1E3EDEEA /* CalendarFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE2D534FE29A2D9E6A0735B70398C7D /* CalendarFlowLayout.swift */; };
+		FB2AB11F54238C4DA906128C01B70ED0 /* FAPanelConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE213BD0F334838BFFFBA8E7527E9461 /* FAPanelConfigurations.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5F944FEA41A1953F2B9FDB573B6B9AF4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4DFB348717979F164AF4DEB0D3CCB956;
+			remoteInfo = FAPanels;
+		};
+		C7D151D011AE84CC333560E69B3E5935 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8BF1F9992D2100FC7571726745F0422E;
+			remoteInfo = KDCalendar;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1114BF97A9752E3BA26A8C74F751D7F5 /* FAPanels-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FAPanels-umbrella.h"; sourceTree = "<group>"; };
+		12D2E315777DF1D5C3D622500084441A /* FAPanels.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FAPanels.xcconfig; sourceTree = "<group>"; };
+		1A23B98E68437FA67DD40948CFB565C2 /* CalendarView+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CalendarView+Extensions.swift"; path = "KDCalendar/CalendarView/CalendarView+Extensions.swift"; sourceTree = "<group>"; };
+		24390EFD555DD124430DFF9724065945 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		32E623B0F039ADDC2216DFD3657E836A /* Pods-Budget-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Budget-acknowledgements.markdown"; sourceTree = "<group>"; };
+		33FCE9FD6948AC158778BF488E8FB2BD /* Pods_Budget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Budget.framework; path = "Pods-Budget.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		390B9709FABB2E83870B90EF000F8EC2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3BD466B17EB42A670720154F710ADCFE /* FAPanel+Gestures.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "FAPanel+Gestures.swift"; path = "FAPanels/Classes/FAPanel+Gestures.swift"; sourceTree = "<group>"; };
+		433657D4348BDB3A7213A81E75FA817C /* FAPanel+Animations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "FAPanel+Animations.swift"; path = "FAPanels/Classes/FAPanel+Animations.swift"; sourceTree = "<group>"; };
+		4653965CF86A6F0E807E52AD7403D010 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4AD951B51FC168E0D39EBAEC0B48552E /* Pods-Budget.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Budget.modulemap"; sourceTree = "<group>"; };
+		63FDEA0D69E51129A6D9F46352E0E577 /* Pods-Budget-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Budget-umbrella.h"; sourceTree = "<group>"; };
+		64095C9AD7B0DFB1804B454C4D418C3F /* Collection+FAPanel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Collection+FAPanel.swift"; path = "FAPanels/Classes/Collection+FAPanel.swift"; sourceTree = "<group>"; };
+		6DFF48AC918E61AE0293137E2A3A28DA /* UIImage+FAPanel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImage+FAPanel.swift"; path = "FAPanels/Classes/UIImage+FAPanel.swift"; sourceTree = "<group>"; };
+		7DC8899A66E9204FDE2922128F9D7774 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8032CA814BDB422241BB663A065DBE42 /* Pods-Budget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Budget.debug.xcconfig"; sourceTree = "<group>"; };
+		814CBC8500E37CE9A329FE7BCEAF5B69 /* FAPanels-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FAPanels-dummy.m"; sourceTree = "<group>"; };
+		847B7409E4C72438B3BDD5A541A775F0 /* CalendarView+Style.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CalendarView+Style.swift"; path = "KDCalendar/CalendarView/CalendarView+Style.swift"; sourceTree = "<group>"; };
+		84E6781A39EB6E9706CACEA81ECE64CC /* CalendarView+DataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CalendarView+DataSource.swift"; path = "KDCalendar/CalendarView/CalendarView+DataSource.swift"; sourceTree = "<group>"; };
+		857434CF1B921CF77B583D385B5E18F1 /* FAPanels.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FAPanels.modulemap; sourceTree = "<group>"; };
+		87B1CB599678EED797DCF613CF6B8592 /* CalendarHeaderView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CalendarHeaderView.swift; path = KDCalendar/CalendarView/CalendarHeaderView.swift; sourceTree = "<group>"; };
+		8939787817A857FEB0D4A4FCDA5EE3E5 /* FAPanels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FAPanels.framework; path = FAPanels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BB748919ED2DD30B542ACA1A01A454B /* CalendarView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CalendarView.swift; path = KDCalendar/CalendarView/CalendarView.swift; sourceTree = "<group>"; };
+		932017A298A1376AD4F22569E9E21C26 /* Pods-Budget-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Budget-acknowledgements.plist"; sourceTree = "<group>"; };
+		96AAE9C9F1FFD4D6FE5652FBEED29237 /* UIViewController+FAPanel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+FAPanel.swift"; path = "FAPanels/Classes/UIViewController+FAPanel.swift"; sourceTree = "<group>"; };
+		9DB68E1C4CC0AD646F5563338B40CBA2 /* Pods-Budget-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Budget-dummy.m"; sourceTree = "<group>"; };
+		A902F85A8758087932C5C088061A2F58 /* EventsManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EventsManager.swift; path = KDCalendar/CalendarView/EventsManager.swift; sourceTree = "<group>"; };
+		A9F7698E4F5046BAF626CE28163D6726 /* KDCalendar-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KDCalendar-prefix.pch"; sourceTree = "<group>"; };
+		B2F110C4240F2F62A4E84CFED54BF7C4 /* KDCalendar.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = KDCalendar.xcconfig; sourceTree = "<group>"; };
+		BC7B277967B61ADEC190022873122077 /* KDCalendar-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KDCalendar-umbrella.h"; sourceTree = "<group>"; };
+		C008EEF32687A10AA866423310233B1D /* Pods-Budget-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Budget-frameworks.sh"; sourceTree = "<group>"; };
+		C069C32FF92D370544D562CA09FC5520 /* KDCalendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = KDCalendar.framework; path = KDCalendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C30F6F4BC94CCB9DCCA384A714785149 /* CalendarDayCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CalendarDayCell.swift; path = KDCalendar/CalendarView/CalendarDayCell.swift; sourceTree = "<group>"; };
+		C48653F462E4F6AFAAC300270320C797 /* FAPanel+KVO.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "FAPanel+KVO.swift"; path = "FAPanels/Classes/FAPanel+KVO.swift"; sourceTree = "<group>"; };
+		C893E71F72F1BF4C364914D97611DE16 /* FAPanel+InterfaceRotation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "FAPanel+InterfaceRotation.swift"; path = "FAPanels/Classes/FAPanel+InterfaceRotation.swift"; sourceTree = "<group>"; };
+		CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		CDA70DCA370F3D7F5FCAF0E0984972CE /* Pods-Budget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Budget.release.xcconfig"; sourceTree = "<group>"; };
+		CFC96119F5B24E2BF670A90D775C132A /* CalendarView+Delegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CalendarView+Delegate.swift"; path = "KDCalendar/CalendarView/CalendarView+Delegate.swift"; sourceTree = "<group>"; };
+		DCE2D534FE29A2D9E6A0735B70398C7D /* CalendarFlowLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CalendarFlowLayout.swift; path = KDCalendar/CalendarView/CalendarFlowLayout.swift; sourceTree = "<group>"; };
+		E8518AB5E22315E4CEB72C82CB04085F /* KDCalendar.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = KDCalendar.modulemap; sourceTree = "<group>"; };
+		EE213BD0F334838BFFFBA8E7527E9461 /* FAPanelConfigurations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FAPanelConfigurations.swift; path = FAPanels/Classes/FAPanelConfigurations.swift; sourceTree = "<group>"; };
+		EE52A890473ABA2751CE0ACA8CD66214 /* UIView+FAPanel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+FAPanel.swift"; path = "FAPanels/Classes/UIView+FAPanel.swift"; sourceTree = "<group>"; };
+		F198563E19081D07715741A3F834389E /* KDCalendar-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "KDCalendar-dummy.m"; sourceTree = "<group>"; };
+		F475CBFC2C879B41DC4A54C7B8098408 /* Pods-Budget-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Budget-resources.sh"; sourceTree = "<group>"; };
+		FA7FE850023E2C987E7C1E51A4541D9D /* FAPanel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FAPanel.swift; path = FAPanels/Classes/FAPanel.swift; sourceTree = "<group>"; };
+		FB9A41A9955E7BD496354B64CDAE5FAB /* FAPanels-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FAPanels-prefix.pch"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BA32E1C29E7EE18FB90890BB8C85FA7A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4653F2C72F150EFA338E77618E922525 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1C2D4FC1264EA69FDCDD19462B7F015 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10A90E6B1EBC48AD6C42F9252228FFEB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F35B044130E342422E62D5DBD22A0147 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12FBDC46838AD1981BDE16D6FCFB0533 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		424F9368AC3B5FB52D17A166AF635998 /* FAPanels */ = {
+			isa = PBXGroup;
+			children = (
+				64095C9AD7B0DFB1804B454C4D418C3F /* Collection+FAPanel.swift */,
+				FA7FE850023E2C987E7C1E51A4541D9D /* FAPanel.swift */,
+				433657D4348BDB3A7213A81E75FA817C /* FAPanel+Animations.swift */,
+				3BD466B17EB42A670720154F710ADCFE /* FAPanel+Gestures.swift */,
+				C893E71F72F1BF4C364914D97611DE16 /* FAPanel+InterfaceRotation.swift */,
+				C48653F462E4F6AFAAC300270320C797 /* FAPanel+KVO.swift */,
+				EE213BD0F334838BFFFBA8E7527E9461 /* FAPanelConfigurations.swift */,
+				6DFF48AC918E61AE0293137E2A3A28DA /* UIImage+FAPanel.swift */,
+				EE52A890473ABA2751CE0ACA8CD66214 /* UIView+FAPanel.swift */,
+				96AAE9C9F1FFD4D6FE5652FBEED29237 /* UIViewController+FAPanel.swift */,
+				8C8C74151E6409F5DE0D32E3537A5439 /* Support Files */,
+			);
+			name = FAPanels;
+			path = FAPanels;
+			sourceTree = "<group>";
+		};
+		4AC506E489547A63B962120978FB0E94 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				FD7583867C9D1D48FA24350CBBF24F75 /* Pods-Budget */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		50BF696AB70205AD463B58CE7A6D0606 /* KDCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				C30F6F4BC94CCB9DCCA384A714785149 /* CalendarDayCell.swift */,
+				DCE2D534FE29A2D9E6A0735B70398C7D /* CalendarFlowLayout.swift */,
+				87B1CB599678EED797DCF613CF6B8592 /* CalendarHeaderView.swift */,
+				8BB748919ED2DD30B542ACA1A01A454B /* CalendarView.swift */,
+				84E6781A39EB6E9706CACEA81ECE64CC /* CalendarView+DataSource.swift */,
+				CFC96119F5B24E2BF670A90D775C132A /* CalendarView+Delegate.swift */,
+				1A23B98E68437FA67DD40948CFB565C2 /* CalendarView+Extensions.swift */,
+				847B7409E4C72438B3BDD5A541A775F0 /* CalendarView+Style.swift */,
+				A902F85A8758087932C5C088061A2F58 /* EventsManager.swift */,
+				733F6365529EF7181EAFA4B9B3805357 /* Support Files */,
+			);
+			name = KDCalendar;
+			path = KDCalendar;
+			sourceTree = "<group>";
+		};
+		733F6365529EF7181EAFA4B9B3805357 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				7DC8899A66E9204FDE2922128F9D7774 /* Info.plist */,
+				E8518AB5E22315E4CEB72C82CB04085F /* KDCalendar.modulemap */,
+				B2F110C4240F2F62A4E84CFED54BF7C4 /* KDCalendar.xcconfig */,
+				F198563E19081D07715741A3F834389E /* KDCalendar-dummy.m */,
+				A9F7698E4F5046BAF626CE28163D6726 /* KDCalendar-prefix.pch */,
+				BC7B277967B61ADEC190022873122077 /* KDCalendar-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/KDCalendar";
+			sourceTree = "<group>";
+		};
+		8C8C74151E6409F5DE0D32E3537A5439 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				857434CF1B921CF77B583D385B5E18F1 /* FAPanels.modulemap */,
+				12D2E315777DF1D5C3D622500084441A /* FAPanels.xcconfig */,
+				814CBC8500E37CE9A329FE7BCEAF5B69 /* FAPanels-dummy.m */,
+				FB9A41A9955E7BD496354B64CDAE5FAB /* FAPanels-prefix.pch */,
+				1114BF97A9752E3BA26A8C74F751D7F5 /* FAPanels-umbrella.h */,
+				390B9709FABB2E83870B90EF000F8EC2 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/FAPanels";
+			sourceTree = "<group>";
+		};
+		9B055D0CFEA43187E72B03DED11F5662 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		B177DAB8A6492A4E90707BF16EAA99E9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8939787817A857FEB0D4A4FCDA5EE3E5 /* FAPanels.framework */,
+				C069C32FF92D370544D562CA09FC5520 /* KDCalendar.framework */,
+				33FCE9FD6948AC158778BF488E8FB2BD /* Pods_Budget.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BE6479748DA2D481537E1D86A5DDE7F8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				424F9368AC3B5FB52D17A166AF635998 /* FAPanels */,
+				50BF696AB70205AD463B58CE7A6D0606 /* KDCalendar */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				24390EFD555DD124430DFF9724065945 /* Podfile */,
+				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				BE6479748DA2D481537E1D86A5DDE7F8 /* Pods */,
+				B177DAB8A6492A4E90707BF16EAA99E9 /* Products */,
+				4AC506E489547A63B962120978FB0E94 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9B055D0CFEA43187E72B03DED11F5662 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FD7583867C9D1D48FA24350CBBF24F75 /* Pods-Budget */ = {
+			isa = PBXGroup;
+			children = (
+				4653965CF86A6F0E807E52AD7403D010 /* Info.plist */,
+				4AD951B51FC168E0D39EBAEC0B48552E /* Pods-Budget.modulemap */,
+				32E623B0F039ADDC2216DFD3657E836A /* Pods-Budget-acknowledgements.markdown */,
+				932017A298A1376AD4F22569E9E21C26 /* Pods-Budget-acknowledgements.plist */,
+				9DB68E1C4CC0AD646F5563338B40CBA2 /* Pods-Budget-dummy.m */,
+				C008EEF32687A10AA866423310233B1D /* Pods-Budget-frameworks.sh */,
+				F475CBFC2C879B41DC4A54C7B8098408 /* Pods-Budget-resources.sh */,
+				63FDEA0D69E51129A6D9F46352E0E577 /* Pods-Budget-umbrella.h */,
+				8032CA814BDB422241BB663A065DBE42 /* Pods-Budget.debug.xcconfig */,
+				CDA70DCA370F3D7F5FCAF0E0984972CE /* Pods-Budget.release.xcconfig */,
+			);
+			name = "Pods-Budget";
+			path = "Target Support Files/Pods-Budget";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		A61C719234EAEBA9AFFB1037E25AF4D3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C46E49E54E7409356CB1592FC0FB4A1 /* FAPanels-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AC31655CCB5BAA3594F2AACFF127C680 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A3AD44887DE991EA6B7838198E2ECCE /* Pods-Budget-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB66595D40078E80079FB672D92841AB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				512EA4BBB43084999E8AF0C446634F6F /* KDCalendar-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		4DFB348717979F164AF4DEB0D3CCB956 /* FAPanels */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EE75C602F973B12B79C5567FCD076618 /* Build configuration list for PBXNativeTarget "FAPanels" */;
+			buildPhases = (
+				A61C719234EAEBA9AFFB1037E25AF4D3 /* Headers */,
+				EBA71FB65DE17AF24CB248849E758B8F /* Sources */,
+				F35B044130E342422E62D5DBD22A0147 /* Frameworks */,
+				34A0883482EEDD08EB41D3AAC69517D7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FAPanels;
+			productName = FAPanels;
+			productReference = 8939787817A857FEB0D4A4FCDA5EE3E5 /* FAPanels.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		8BF1F9992D2100FC7571726745F0422E /* KDCalendar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D85CE09D81A6A424F060C8E44221AD2A /* Build configuration list for PBXNativeTarget "KDCalendar" */;
+			buildPhases = (
+				FB66595D40078E80079FB672D92841AB /* Headers */,
+				F9E46E68FE421E4ED7BB3586C23243EE /* Sources */,
+				BA32E1C29E7EE18FB90890BB8C85FA7A /* Frameworks */,
+				98DE89D23D73B582C2E629D75E057D06 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KDCalendar;
+			productName = KDCalendar;
+			productReference = C069C32FF92D370544D562CA09FC5520 /* KDCalendar.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E597318CC014E646200550DDFA76CC6B /* Pods-Budget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E406DBF969C5EEB9DBB3E58395BF8B16 /* Build configuration list for PBXNativeTarget "Pods-Budget" */;
+			buildPhases = (
+				AC31655CCB5BAA3594F2AACFF127C680 /* Headers */,
+				6DE9C847A83D0D258F6E98F0F4E70331 /* Sources */,
+				C1C2D4FC1264EA69FDCDD19462B7F015 /* Frameworks */,
+				D31A8B7EA79265452EF8EF0CF24FD409 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F81C787A51F86B706E1179BC9C2A9FA8 /* PBXTargetDependency */,
+				3305794D23D00A926F9AB161DF08CF0B /* PBXTargetDependency */,
+			);
+			name = "Pods-Budget";
+			productName = "Pods-Budget";
+			productReference = 33FCE9FD6948AC158778BF488E8FB2BD /* Pods_Budget.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = B177DAB8A6492A4E90707BF16EAA99E9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4DFB348717979F164AF4DEB0D3CCB956 /* FAPanels */,
+				8BF1F9992D2100FC7571726745F0422E /* KDCalendar */,
+				E597318CC014E646200550DDFA76CC6B /* Pods-Budget */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		34A0883482EEDD08EB41D3AAC69517D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		98DE89D23D73B582C2E629D75E057D06 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D31A8B7EA79265452EF8EF0CF24FD409 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6DE9C847A83D0D258F6E98F0F4E70331 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94DFB321D94F3100EA391D3F44171FF2 /* Pods-Budget-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBA71FB65DE17AF24CB248849E758B8F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41B432A6005A4C2B441A3A8E89F1157C /* Collection+FAPanel.swift in Sources */,
+				C0B52DB2702DAFC16BDF05E74B8D17F7 /* FAPanel+Animations.swift in Sources */,
+				3376D671DD0C6806E1EBE01B6C5F03F4 /* FAPanel+Gestures.swift in Sources */,
+				C48D17FBDE8854D71E066D5EAB33C218 /* FAPanel+InterfaceRotation.swift in Sources */,
+				74DDE204BC34B09D5ADB6627BA788519 /* FAPanel+KVO.swift in Sources */,
+				2476FBC8FCF92DF2C6D92F3E53849EB7 /* FAPanel.swift in Sources */,
+				FB2AB11F54238C4DA906128C01B70ED0 /* FAPanelConfigurations.swift in Sources */,
+				0F4BFF2A2226651B5F4FEA9FEFBF56A1 /* FAPanels-dummy.m in Sources */,
+				9559356A1189EDECD3934CD816517071 /* UIImage+FAPanel.swift in Sources */,
+				C1145DE90B3C35EB0F053BE9BFF31736 /* UIView+FAPanel.swift in Sources */,
+				4C7FD4240D6F9A5131A501B6CFA42E57 /* UIViewController+FAPanel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9E46E68FE421E4ED7BB3586C23243EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C89BE9A1E1A21AE14BD608B8AEDF1BD /* CalendarDayCell.swift in Sources */,
+				FA883E07DEA96A467125566C1E3EDEEA /* CalendarFlowLayout.swift in Sources */,
+				2AAEB6436ABABE2A20AA69A3B11F9102 /* CalendarHeaderView.swift in Sources */,
+				ED1371DE9BABD4C5A73E93C203FCDD34 /* CalendarView+DataSource.swift in Sources */,
+				CF3CD8B1699BACEE46763BF3054ADFA9 /* CalendarView+Delegate.swift in Sources */,
+				88410188FD2C2E6A670DA0786C242695 /* CalendarView+Extensions.swift in Sources */,
+				F6D7EC261412F8CBC02A8B697BCE611E /* CalendarView+Style.swift in Sources */,
+				27A741B2679E882FD719A1F204DC4F44 /* CalendarView.swift in Sources */,
+				AE0E868E01127F73C0D5EFAF521F502C /* EventsManager.swift in Sources */,
+				C7C57A6A5B6473F7910480D4AD09309E /* KDCalendar-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3305794D23D00A926F9AB161DF08CF0B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = KDCalendar;
+			target = 8BF1F9992D2100FC7571726745F0422E /* KDCalendar */;
+			targetProxy = C7D151D011AE84CC333560E69B3E5935 /* PBXContainerItemProxy */;
+		};
+		F81C787A51F86B706E1179BC9C2A9FA8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FAPanels;
+			target = 4DFB348717979F164AF4DEB0D3CCB956 /* FAPanels */;
+			targetProxy = 5F944FEA41A1953F2B9FDB573B6B9AF4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		19E5B577A166567926133D558D6440FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8032CA814BDB422241BB663A065DBE42 /* Pods-Budget.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Budget/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Budget/Pods-Budget.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3073E9329E3D859060CB4B679A6C557C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.2;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		6CB10E4E2BB634162E36943B4F4FD2FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B2F110C4240F2F62A4E84CFED54BF7C4 /* KDCalendar.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/KDCalendar/KDCalendar-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/KDCalendar/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/KDCalendar/KDCalendar.modulemap";
+				PRODUCT_MODULE_NAME = KDCalendar;
+				PRODUCT_NAME = KDCalendar;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		92CE0C2EBAEE6CFE8B08D7B27CE2E494 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B2F110C4240F2F62A4E84CFED54BF7C4 /* KDCalendar.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/KDCalendar/KDCalendar-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/KDCalendar/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/KDCalendar/KDCalendar.modulemap";
+				PRODUCT_MODULE_NAME = KDCalendar;
+				PRODUCT_NAME = KDCalendar;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		DC80BB1BAF038D5FA0A0A6F680695DA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 12D2E315777DF1D5C3D622500084441A /* FAPanels.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/FAPanels/FAPanels-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FAPanels/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/FAPanels/FAPanels.modulemap";
+				PRODUCT_MODULE_NAME = FAPanels;
+				PRODUCT_NAME = FAPanels;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		DE2799B3B9508D1FA1EE13947E73E946 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 12D2E315777DF1D5C3D622500084441A /* FAPanels.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/FAPanels/FAPanels-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FAPanels/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/FAPanels/FAPanels.modulemap";
+				PRODUCT_MODULE_NAME = FAPanels;
+				PRODUCT_NAME = FAPanels;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E728C0BD3857BC99A5D2AD6ACDFBA09A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		E9B6307E66E400443195158DE7A039A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CDA70DCA370F3D7F5FCAF0E0984972CE /* Pods-Budget.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Budget/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Budget/Pods-Budget.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E728C0BD3857BC99A5D2AD6ACDFBA09A /* Debug */,
+				3073E9329E3D859060CB4B679A6C557C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D85CE09D81A6A424F060C8E44221AD2A /* Build configuration list for PBXNativeTarget "KDCalendar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6CB10E4E2BB634162E36943B4F4FD2FE /* Debug */,
+				92CE0C2EBAEE6CFE8B08D7B27CE2E494 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E406DBF969C5EEB9DBB3E58395BF8B16 /* Build configuration list for PBXNativeTarget "Pods-Budget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				19E5B577A166567926133D558D6440FC /* Debug */,
+				E9B6307E66E400443195158DE7A039A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EE75C602F973B12B79C5567FCD076618 /* Build configuration list for PBXNativeTarget "FAPanels" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC80BB1BAF038D5FA0A0A6F680695DA5 /* Debug */,
+				DE2799B3B9508D1FA1EE13947E73E946 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

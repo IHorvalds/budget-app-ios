@@ -158,9 +158,7 @@ class ExpensesThisMonthViewController: UITableViewController {
             let removedExpense = self.expenses.remove(at: indexPath.row)
             saveExpensesToDisk()
             let today = Date()
-            let day = Calendar.autoupdatingCurrent.dateComponents([.year, .month, .day], from: today)
-            let dayOfToday = Calendar.current.date(from: day)
-            let budget = budgets.first(where: {$0.day == (dayOfToday!)})
+            let budget = budgets.first(where: {Date.areSameDay(date1: $0.day, date2: today)})
             if let budgetForToday = budget {
                 budgetForToday.totalUsableAmount += removedExpense.price //TODO: get this budget back to budgetviewcontroller
                 budgets[budgets.index(of: budgetForToday)!] = budgetForToday

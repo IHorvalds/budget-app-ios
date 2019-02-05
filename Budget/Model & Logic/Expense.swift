@@ -17,9 +17,8 @@ class Expense: NSObject, NSCoding, Codable {
     init(title: String, price: Double){
         self.title = title
         self.price = price
-        let date = Date()
-        let day = Calendar.autoupdatingCurrent.dateComponents([.year, .month, .day], from: date)
-        self.datePurchased = Calendar.autoupdatingCurrent.date(from: day)!// + TimeInterval(86400) //the time interval is added because for some reason, Date() initializez 1 day early in Denmark. See Also BudgedViewController and for the same delta added to the date
+        self.datePurchased = Date()
+        
     }
     
     func encode(with aCoder: NSCoder) {
@@ -33,4 +32,6 @@ class Expense: NSObject, NSCoding, Codable {
         price = aDecoder.decodeDouble(forKey: "expensePriceForeverKey")
         datePurchased = aDecoder.decodeObject(forKey: "expenseDateKey") as! Date
     }
+    
+    
 }

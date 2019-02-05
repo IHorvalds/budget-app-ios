@@ -47,15 +47,10 @@ class SettingsViewController: UITableViewController, UNUserNotificationCenterDel
         defaults.set(notificationSwitch.isOn, forKey: notificationsAccessKey)
         if dateReceived.text != nil && dateReceived.text != "", lastsUntil.text != nil && lastsUntil.text != "", defaults.value(forKey: budgetForThisMonthKey) == nil {
             dateFormatter.dateStyle = .medium
-            let calendar = Calendar.autoupdatingCurrent
             let startingDate = dateFormatter.date(from: dateReceived.text!)!
-            let startingComponents = calendar.dateComponents([.year, .month, .day], from: startingDate)
             let endingDate = dateFormatter.date(from: lastsUntil.text!)!
-            let endingComponents = calendar.dateComponents([.year, .month, .day], from: endingDate)
-            
-            let start = calendar.date(from: startingComponents)
-            let end = calendar.date(from: endingComponents)
-            calculateDailyBudget(startingFrom: start!, endingOn: end!)
+
+            calculateDailyBudget(startingFrom: startingDate, endingOn: endingDate)
         }
         self.navigationController?.popViewController(animated: true)
     }
@@ -159,10 +154,12 @@ class SettingsViewController: UITableViewController, UNUserNotificationCenterDel
         if let NotificationAccess = defaults.value(forKey: notificationsAccessKey) as? Bool {
             notificationCenter.getNotificationSettings { [weak self] (settings) in
                 
-                if settings.authorizationStatus == .authorized {
-                    self?.notificationSwitch.isOn = NotificationAccess
-                } else {
-                    self?.notificationSwitch.isOn = false
+                DispatchQueue.main.async {
+                    if settings.authorizationStatus == .authorized {
+                        self?.notificationSwitch.isOn = NotificationAccess
+                    } else {
+                        self?.notificationSwitch.isOn = false
+                    }
                 }
             }
         }

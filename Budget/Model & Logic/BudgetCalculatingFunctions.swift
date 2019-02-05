@@ -8,16 +8,25 @@
 
 import Foundation
 
+extension Date {
+    static func areSameDay(date1: Date, date2: Date) -> Bool {
+        let comparison = Calendar.autoupdatingCurrent.compare(date1, to: date2, toGranularity: .day)
+        
+        if comparison == .orderedSame {
+            return true
+        }
+        
+        return false
+    }
+}
+
 func isWithinBudget() -> String {
     
-    let calendar = Calendar.autoupdatingCurrent
     let today = Date()
-    let dateComponents = calendar.dateComponents([.year, .month, .day], from: today)
-    let dayOfToday = calendar.date(from: dateComponents)!
     
     if  let budgetData = defaults.value(forKey: budgetForThisMonthKey) as? Data,
         let budgets = NSKeyedUnarchiver.unarchiveObject(with: budgetData) as? [BudgetForDay],
-        let budget = budgets.first(where: {$0.day == dayOfToday}) {
+        let budget = budgets.first(where: {Date.areSameDay(date1: $0.day, date2: today)}) {
         print("set shit up")
         if budget.totalUsableAmount > 0 {
             return "In Budget"
@@ -25,7 +34,7 @@ func isWithinBudget() -> String {
             return "Over Budget"
         }
     }
-    return "Budget ???"
+    return "Budget"
 }
 
 //MARK: - What doesn't get spent in a day will be added to the next day's budget. The rest of the days until the end of the period will have the same budget. Savings at the end of the last day of the period will be added as monthly savings and exported as such
@@ -65,15 +74,13 @@ func endOfDayExport() {
     //If there is a day in the recording period after today, then add to the total of tomorrow what's left from today. It can be a negative amount
     
     let today = Date()
-    let day = Calendar.autoupdatingCurrent.dateComponents([.year, .month, .day], from: today)
-    let dayOfToday = Calendar.autoupdatingCurrent.date(from: day)
     var savePath: URL?
     
     if let budgetData = defaults.value(forKey: budgetForThisMonthKey) as? Data {
         if var budgets = NSKeyedUnarchiver.unarchiveObject(with: budgetData) as? [BudgetForDay] {
             
             if let lastBudgetDay = budgets.last?.day {
-                if dayOfToday! > lastBudgetDay {
+                if lastBudgetDay.compare(today) == .orderedAscending && !Date.areSameDay(date1: lastBudgetDay, date2: today) {
                     //MARK: - export everything as JSON
                     var exportDataDocument: BudgetExportDocument?
                     
@@ -102,8 +109,8 @@ func endOfDayExport() {
                         //Gotta get the month from texts
                         dateFormatter.dateStyle = .medium
                         let calendar = Calendar.autoupdatingCurrent
-                        let initialMonth = dateFormatter.date(from: dateReceived)! + TimeInterval(86400)
-                        let finalMonth = dateFormatter.date(from: lastDay)! + TimeInterval(86400)
+                        let initialMonth = dateFormatter.date(from: dateReceived)!
+                        let finalMonth = dateFormatter.date(from: lastDay)!
                         
                         let initialMonthNumber = calendar.component(.month, from: initialMonth)
                         let finalMonthNumber = calendar.component(.month, from: finalMonth)
@@ -152,7 +159,7 @@ func endOfDayExport() {
 //                        print("Just reset everything")
                     }
                 } else {
-                    if let x = budgets.index(where: {$0.day == dayOfToday!}) {
+                    if let x = budgets.index(where: {Date.areSameDay(date1: $0.day, date2: today)}) {
                         if x != 0 {
                             for a in 0...(x - 1) {
                                 if budgets[a].checked != true {

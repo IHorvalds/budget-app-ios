@@ -1,0 +1,20 @@
+PODS:
+  - FAPanels (1.0.2)
+  - KDCalendar (1.6.5)
+
+DEPENDENCIES:
+  - FAPanels
+  - KDCalendar (~> 1.6.5)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - FAPanels
+    - KDCalendar
+
+SPEC CHECKSUMS:
+  FAPanels: 520037c53f4ded152e8e6103d97f79b644473363
+  KDCalendar: 15e74f37bd3d206bf7549c594fd08e0347c276f4
+
+PODFILE CHECKSUM: cc0e6d9a5a6a7e1545754b5633d7efe5a48392c5
+
+COCOAPODS: 1.5.3

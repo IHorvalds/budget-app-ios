@@ -67,9 +67,7 @@ extension BudgetViewController {
             return 3
         } else {
             let today = Date()
-            let day = Calendar.autoupdatingCurrent.dateComponents([.year, .month, .day], from: today)
-            let dayOfToday = Calendar.autoupdatingCurrent.date(from: day)!
-            let todayExpenses = self.expenses.filter({$0.datePurchased == (dayOfToday)})
+            let todayExpenses = self.expenses.filter({Date.areSameDay(date1: $0.datePurchased, date2: today)})
             return todayExpenses.count + 1
         }
     }
@@ -128,12 +126,10 @@ extension BudgetViewController {
                 if let budgetData = defaults.value(forKey: budgetForThisMonthKey) as? Data,
                     let budgets = NSKeyedUnarchiver.unarchiveObject(with: budgetData) as? [BudgetForDay] {
                     let today = Date()
-                    let day = Calendar.autoupdatingCurrent.dateComponents([.year, .month, .day], from: today)
-                    let dayOfToday = Calendar.autoupdatingCurrent.date(from: day)
                     for budgeteer in budgets { ///for debugging
                         print("The total for \(budgeteer.day) in \(budgeteer.totalUsableAmount)")
                     }
-                    let budget = budgets.first(where: {$0.day == dayOfToday!})
+                    let budget = budgets.first(where: {Date.areSameDay(date1: $0.day, date2: today)})
                     if let dayAmount = budget?.totalUsableAmount {
                         numberFormatter.currencyCode = (defaults.value(forKey: localCurrencyKey) as! String)
                         if let formattedDayAmount = numberFormatter.string(from: dayAmount as NSNumber) {
@@ -156,9 +152,7 @@ extension BudgetViewController {
             
             let cell: UITableViewCell?
             let today = Date()
-            let day = Calendar.autoupdatingCurrent.dateComponents([.year, .month, .day], from: today)
-            let dayOfToday = Calendar.autoupdatingCurrent.date(from: day)!
-            let todayExpenses = self.expenses.filter({$0.datePurchased == (dayOfToday)})
+            let todayExpenses = self.expenses.filter({Date.areSameDay(date1: $0.datePurchased, date2: today)})
             
             if indexPath.row == todayExpenses.count {
                 cell = tableView.dequeueReusableCell(withIdentifier: "addexpensecell") as! ExpenseCell?
@@ -180,9 +174,7 @@ extension BudgetViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let today = Date()
-        let day = Calendar.autoupdatingCurrent.dateComponents([.year, .month, .day], from: today)
-        let dayOfToday = Calendar.autoupdatingCurrent.date(from: day)
-        let todayExpenses = expenses.filter({$0.datePurchased == dayOfToday})
+        let todayExpenses = expenses.filter({Date.areSameDay(date1: $0.datePurchased, date2: today)})
         if indexPath.section == 1, indexPath.row == (todayExpenses.count) {
             print("pressed")
             print(expenses)
@@ -194,9 +186,7 @@ extension BudgetViewController {
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         let today = Date()
-        let day = Calendar.autoupdatingCurrent.dateComponents([.year, .month, .day], from: today)
-        let dayOfToday = Calendar.autoupdatingCurrent.date(from: day)!
-        let todayExpenses = self.expenses.filter({$0.datePurchased == (dayOfToday)})
+        let todayExpenses = self.expenses.filter({Date.areSameDay(date1: $0.datePurchased, date2: today)})
         if indexPath.section == 1, indexPath.row != todayExpenses.count {
             return true
         } else {
@@ -208,15 +198,13 @@ extension BudgetViewController {
         if editingStyle == .delete {
             // Delete the row from the data source
             let today = Date()
-            let day = Calendar.autoupdatingCurrent.dateComponents([.year, .month, .day], from: today)
-            let dayOfToday = Calendar.autoupdatingCurrent.date(from: day)
-            var todayExpenses = expenses.filter({$0.datePurchased == dayOfToday})
+            var todayExpenses = expenses.filter({Date.areSameDay(date1: $0.datePurchased, date2: today)})
             let removedExpense = todayExpenses.remove(at: indexPath.row)
             expenses.remove(at: expenses.index(of: removedExpense)!)
             saveExpensesToDisk()
             if  let budgetData = defaults.value(forKey: budgetForThisMonthKey) as? Data,
                 var budgets = NSKeyedUnarchiver.unarchiveObject(with: budgetData) as? [BudgetForDay] {
-                let budget = budgets.first(where: {$0.day == dayOfToday!})
+                let budget = budgets.first(where: {Date.areSameDay(date1: $0.day, date2: today)})
                 if let budgetForToday = budget {
                     budgetForToday.totalUsableAmount += removedExpense.price
                     budgets[budgets.index(of: budgetForToday)!] = budgetForToday
@@ -289,9 +277,7 @@ extension BudgetViewController {
                     var budgets = NSKeyedUnarchiver.unarchiveObject(with: budgetData) as? [BudgetForDay],
                     !self.expenses.isEmpty {
                     let today = Date()
-                    let day = Calendar.autoupdatingCurrent.dateComponents([.year, .month, .day], from: today)
-                    let dayOfToday = Calendar.autoupdatingCurrent.date(from: day)!
-                    let budget = budgets.first(where: {$0.day == dayOfToday})
+                    let budget = budgets.first(where: {Date.areSameDay(date1: $0.day, date2: today)})
                     if (budget?.totalUsableAmount) != nil {
                         if let expense = self.expenses.last {
                             budget?.updateTotalUsableAmount(expense: expense)
