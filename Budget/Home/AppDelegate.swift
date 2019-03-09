@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                                                     animated: false,
 //                                                     completion: nil)
 //        }
-        UINavigationBar.appearance().tintColor = #colorLiteral(red: 0.5803921569, green: 0.09019607843, blue: 0.3176470588, alpha: 1)
+        UINavigationBar.appearance().tintColor = #colorLiteral(red: 0.1041769013, green: 0.2801864147, blue: 0.4007718563, alpha: 1)
         return true
     }
 

@@ -14,6 +14,10 @@ class BudgetExportViewController: UITableViewController, UIDocumentPickerDelegat
     var document: BudgetExportDocument?
     var expenses: [Expense]?
     
+    @IBAction func openLeftMenu(_ sender: UIBarButtonItem) {
+        panel?.openLeft(animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

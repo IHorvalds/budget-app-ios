@@ -8,19 +8,16 @@
 
 import Foundation
 
-//NOTE: We assume RON as base. x RON = x * rate <Currency>
+//TODO: get data from https://exchangeratesapi.io/
+//TODO: Don't forget to cache it.
 let exchangeRates = ["RON": 1.00,
                     "DKK": 1.61,
                     "USD": 0.25,
                     "EUR": 0.22,
                     "GBP": 0.19]
 
-class Currency {
+struct Currency: Codable {
     let isoCode: String
-    
-    init(isoCode: String) {
-        self.isoCode = isoCode
-    }
     
     func convert(toCurrency desiredCurrency: Currency, amount: Double) -> Double? {
         if let rate = exchangeRates[self.isoCode] {
@@ -34,8 +31,5 @@ class Currency {
         } else {
             return nil
         }
-        
-        
-        
     }
 }

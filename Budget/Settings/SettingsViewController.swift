@@ -50,7 +50,7 @@ class SettingsViewController: UITableViewController, UNUserNotificationCenterDel
             let startingDate = dateFormatter.date(from: dateReceived.text!)!
             let endingDate = dateFormatter.date(from: lastsUntil.text!)!
 
-            calculateDailyBudget(startingFrom: startingDate, endingOn: endingDate)
+//            calculateDailyBudget(startingFrom: startingDate, endingOn: endingDate)
         }
         self.navigationController?.popViewController(animated: true)
     }
@@ -71,7 +71,7 @@ class SettingsViewController: UITableViewController, UNUserNotificationCenterDel
             
             let start = calendar.date(from: startingComponents)
             let end = calendar.date(from: endingComponents)
-            calculateDailyBudget(startingFrom: start!, endingOn: end!)
+//            calculateDailyBudget(startingFrom: start!, endingOn: end!)
         }
     }
     
@@ -390,7 +390,7 @@ extension SettingsViewController {
                     defaults.set(localCurrency.text, forKey: localCurrencyKey)
                     defaults.set(amountSent.text, forKey: budgetKey)
                     defaults.set(rentAmountInLocalCurrency.text, forKey: rentAmountKey)
-                    calculateDailyBudget(startingFrom: start!, endingOn: end!)
+//                    calculateDailyBudget(startingFrom: start!, endingOn: end!)
                     
                     //update every day's budget with the expenses of that day
                     var budgets = NSKeyedUnarchiver.unarchiveObject(with: (defaults.value(forKey: budgetForThisMonthKey) as! Data)) as! [BudgetForDay]
@@ -402,10 +402,10 @@ extension SettingsViewController {
                             let matchingExpenses = expenses.filter({$0.datePurchased == budget.day})
                             for expense in matchingExpenses {
                                 print("updating expense")
-                                budget.updateTotalUsableAmount(expense: expense)
+//                                budget.updateTotalUsableAmount(expense: expense)
                             }
                             
-                            budgets[(budgets.index(of: budget))!] = budget
+                            budgets[(budgets.firstIndex(of: budget))!] = budget
                         }
                         defaults.set(archiveBudgetsAsData(budgets: budgets), forKey: budgetForThisMonthKey)
                     }
@@ -433,7 +433,6 @@ extension SettingsViewController {
         content.categoryIdentifier = "alarm"
         content.userInfo = ["customData": "fizzbuzz"]
         content.sound = UNNotificationSound.default
-        content.badge = 1
         
         var dateComponents = DateComponents()
         dateComponents.hour = 22
@@ -518,6 +517,9 @@ extension SettingsViewController {
                 })
             case .provisional:
                 print("What is this???")
+            @unknown default:
+                print("????")
+                return
             }
         }
     }

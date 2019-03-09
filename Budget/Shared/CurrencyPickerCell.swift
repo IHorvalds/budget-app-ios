@@ -32,12 +32,6 @@ class CurrencyPickerCell: RoundedTableViewCell, UIPickerViewDelegate, UIPickerVi
         
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1

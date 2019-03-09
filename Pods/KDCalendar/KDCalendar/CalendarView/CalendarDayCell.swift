@@ -83,7 +83,7 @@ open class CalendarDayCell: UICollectionViewCell {
     
     let textLabel   = UILabel()
     let dotsView    = UIView()
-    let bgView      = UIView()
+    public let bgView      = UIView()
     
     override init(frame: CGRect) {
         

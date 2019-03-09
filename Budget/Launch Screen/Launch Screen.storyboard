@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.59" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.45"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,10 +25,26 @@
                                     <constraint firstAttribute="width" constant="150" id="uTh-4l-Axh"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daily Budget" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yt-cy-ieV">
+                                <rect key="frame" x="105" y="438.5" width="165" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="© 2019 Tudor Croitoru" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jcn-is-sSz">
+                                <rect key="frame" x="89.5" y="623" width="196" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="3yt-cy-ieV" firstAttribute="centerX" secondItem="Bcu-3y-fUS" secondAttribute="centerX" id="GNA-qh-gtl"/>
                             <constraint firstItem="vvm-FD-Hsq" firstAttribute="centerX" secondItem="Bcu-3y-fUS" secondAttribute="centerX" id="Jcc-ED-8Wg"/>
+                            <constraint firstItem="3yt-cy-ieV" firstAttribute="top" secondItem="vvm-FD-Hsq" secondAttribute="bottom" constant="20" id="KIi-e2-uwY"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="jcn-is-sSz" secondAttribute="bottom" constant="20" id="QqV-rB-8W6"/>
+                            <constraint firstItem="jcn-is-sSz" firstAttribute="centerX" secondItem="Bcu-3y-fUS" secondAttribute="centerX" id="eaV-3u-tmU"/>
                             <constraint firstItem="vvm-FD-Hsq" firstAttribute="centerY" secondItem="Bcu-3y-fUS" secondAttribute="centerY" id="vk6-nc-Kkw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>

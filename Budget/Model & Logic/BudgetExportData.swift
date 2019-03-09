@@ -21,15 +21,15 @@ struct BudgetExportData: Codable { //this will be exported with the name "<month
     let amountRemaining: Double
     
     init(expenses: [Expense]? = nil, dateReceived: String, lastDay: String, totalSent: Double, rentAmount: Double, amountSpent: Double, amountRemaining: Double, sentCurrency: String, localCurrency: String) {
-        self.expenses = expenses
-        self.dateReceived = dateReceived
-        self.lastDay = lastDay
-        self.sentCurrency = sentCurrency
-        self.localCurrency = localCurrency
-        self.totalSent = totalSent
-        self.rentAmount = rentAmount
-        self.amountSpent = amountSpent
-        self.amountRemaining = amountRemaining
+        self.expenses           = expenses
+        self.dateReceived       = dateReceived
+        self.lastDay            = lastDay
+        self.sentCurrency       = sentCurrency
+        self.localCurrency      = localCurrency
+        self.totalSent          = totalSent
+        self.rentAmount         = rentAmount
+        self.amountSpent        = amountSpent
+        self.amountRemaining    = amountRemaining
     }
     
     var json: Data? {

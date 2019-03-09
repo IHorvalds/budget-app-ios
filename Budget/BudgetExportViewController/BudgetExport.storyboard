@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="r0y-Ad-2bH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.59" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="86g-3w-vlf">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.45"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Budget month-->
         <scene sceneID="8Is-CC-FSm">
             <objects>
-                <tableViewController id="r0y-Ad-2bH" customClass="BudgetExportViewController" customModule="Budget" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="exportviewcontroller" id="r0y-Ad-2bH" customClass="BudgetExportViewController" customModule="Budget" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="IFK-tP-G5e">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -101,11 +101,17 @@
                             <outlet property="delegate" destination="r0y-Ad-2bH" id="bmP-Lv-1BL"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Budget month" id="Grd-GM-LZX"/>
+                    <navigationItem key="navigationItem" title="Budget month" id="Grd-GM-LZX">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="Hamburger menu" id="FjW-N6-P6V">
+                            <connections>
+                                <action selector="openLeftMenu:" destination="r0y-Ad-2bH" id="yo0-mk-n3N"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dXe-07-Vyo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3670" y="124"/>
+            <point key="canvasLocation" x="4608.8000000000002" y="123.68815592203899"/>
         </scene>
         <!--Expense Detail View Controller-->
         <scene sceneID="rlH-bh-aYd">
@@ -177,7 +183,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uru-6w-ndU">
-                                                    <rect key="frame" x="16" y="0.0" width="359" height="43.5"/>
+                                                    <rect key="frame" x="16" y="0.0" width="359" height="44"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -211,7 +217,28 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hPD-kB-IxC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4540" y="124"/>
+            <point key="canvasLocation" x="5479.1999999999998" y="123.68815592203899"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="mJa-S7-dlc">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="86g-3w-vlf" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EkZ-rO-vlh">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="r0y-Ad-2bH" kind="relationship" relationship="rootViewController" id="cSE-tG-AoM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9wg-jB-5pd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3669.5999999999999" y="123.68815592203899"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Hamburger menu" width="28" height="14"/>
+    </resources>
 </document>
