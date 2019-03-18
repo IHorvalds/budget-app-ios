@@ -25,6 +25,8 @@ class ExpenseDetailViewController: UITableViewController {
         let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0))
         cell?.indentationLevel = 0
         
+        let dateFormatter = DateFormatter()
+        
         dateFormatter.dateStyle = .long
         datePurchased.text = dateFormatter.string(from: datePurchasedBuffer)
         

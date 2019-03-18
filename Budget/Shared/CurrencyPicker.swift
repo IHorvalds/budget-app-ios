@@ -18,7 +18,7 @@ class CurrencyPickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDele
     
     let currenciesCount = 32
     var currDelegate: CurrencyPickerViewDelegate?
-    let currencies = Array(exchangeRates.keys)
+    let currencies = exchangeRates.getKeys() as! [String]
     let font = UIFont.systemFont(ofSize: 5.0, weight: .light)
     
     override init(frame: CGRect) {
@@ -26,7 +26,6 @@ class CurrencyPickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDele
         delegate = self
         dataSource = self
         showsSelectionIndicator = true
-        currDelegate?.didSelectCurrency(self, selected: currencies[0])
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -34,15 +33,6 @@ class CurrencyPickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDele
         dataSource = self
         delegate = self
         showsSelectionIndicator = true
-        currDelegate?.didSelectCurrency(self, selected: currencies[0])
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-//        currDelegate?.didSelectCurrency(self, selected: currencies[0])
-//        for i in [1, 2] {
-//            self.subviews[i].isHidden = true
-//        }
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -76,14 +66,16 @@ class CurrencyPickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDele
         
         let label = UILabel(frame: view.frame)
         view.addSubview(label)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        label.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        label.textColor = #colorLiteral(red: 0.1041769013, green: 0.2801864147, blue: 0.4007718563, alpha: 1)
-        label.font = font
-        label.text = currencies[row] + "🇹🇩"
+        label.translatesAutoresizingMaskIntoConstraints                     = false
+        label.topAnchor.constraint(equalTo: view.topAnchor).isActive        = true
+        label.leftAnchor.constraint(equalTo: view.leftAnchor).isActive      = true
+        label.rightAnchor.constraint(equalTo: view.rightAnchor).isActive    = true
+        label.textColor = (self.isUserInteractionEnabled) ? #colorLiteral(red: 0.1041769013, green: 0.2801864147, blue: 0.4007718563, alpha: 1) : #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+        label.font      = font
+        
+        label.text          = currencies[row]
         label.textAlignment = .center
-        view.transform = CGAffineTransform(rotationAngle: CGFloat(currDelegate?.turned ?? 1) * CGFloat.pi/2)
+        view.transform      = CGAffineTransform(rotationAngle: CGFloat(currDelegate?.turned ?? 1) * CGFloat.pi/2)
         
         return view
     }

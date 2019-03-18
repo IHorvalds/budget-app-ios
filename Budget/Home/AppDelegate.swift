@@ -26,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                                                     completion: nil)
 //        }
         UINavigationBar.appearance().tintColor = #colorLiteral(red: 0.1041769013, green: 0.2801864147, blue: 0.4007718563, alpha: 1)
+        let rates = RatesFromAPI()
+        rates.getRatesFromAPI()
         return true
     }
 

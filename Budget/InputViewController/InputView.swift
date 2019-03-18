@@ -13,6 +13,7 @@ class InputView: UIView {
 
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var header: UIView!
+    @IBOutlet weak var usingCurrency: UILabel!
     
     override func layoutSublayers(of layer: CALayer) {
         super.layoutSublayers(of: layer)

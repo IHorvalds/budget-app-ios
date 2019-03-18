@@ -13,6 +13,7 @@ protocol CollectionDelegate {
 }
 
 class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, OverviewCollectionViewCellDelegate {
+    
     func didTapBudgetDate(dateString: String) {
         //Show expenses view controller for the day that the cell represents
         dateFormatter.timeZone = TimeZone(identifier: "UTC")
@@ -29,13 +30,31 @@ class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
     let today           = Date()
     let numberFormatter = NumberFormatter()
     let dateFormatter   = DateFormatter()
-    var settings: Settings?
+    var settings: Settings? = try? Settings.getSettingsFromDefaults()
     
     let fontSize: CGFloat   = 18.0
     let cellTextFont        = UIFont.systemFont(ofSize: 18.0, weight: .light)
     
     
-    var budgets: [BudgetForDay] = [BudgetForDay]()
+    var budgets: [BudgetForDay] {
+        var budgets = [BudgetForDay]()
+        let _budgets = try? BudgetForDay.getBudgetsFromDefaults()
+        
+        for i in stride(from: 0, to: -7, by: -1) {
+            calendar.timeZone   = TimeZone(abbreviation: "UTC")!
+            var dateComponents  = DateComponents()
+            
+            dateComponents.day = i
+            if let b = _budgets?.first(where: {Date.areSameDay(date1: $0.day, date2: calendar.date(byAdding: dateComponents, to: today)!)}) {
+                b.expenses.forEach { (e) in
+                    print(e.title)
+                }
+                budgets.append(b)
+            }
+        }
+        budgets = budgets.reversed()
+        return budgets
+    }
     @IBOutlet weak var collectionView: UICollectionView!
     
     
@@ -43,24 +62,11 @@ class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
         super.awakeFromNib()
         // Initialization code
         
-        calendar.timeZone   = TimeZone(abbreviation: "UTC")!
-        var dateComponents  = DateComponents()
-        
         numberFormatter.numberStyle = .currency
         dateFormatter.dateStyle     = .long
         
         collectionView.delegate     = self
         collectionView.dataSource   = self
-        
-        let _budgets = try? BudgetForDay.getBudgetsFromDefaults()
-        
-        for i in stride(from: 0, to: -7, by: -1) {
-            dateComponents.day = i
-            if let b = _budgets?.first(where: {Date.areSameDay(date1: $0.day, date2: calendar.date(byAdding: dateComponents, to: today)!)}) {
-                budgets.append(b)
-            }
-        }
-        budgets = budgets.reversed()
     }
     
     
@@ -96,19 +102,23 @@ class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
         var expensesTotal: Double {
             var expenseTotal = 0.00
             for i in budget.expenses {
-                expenseTotal += i.price
+                if let setCurr = settings?.incomeCurrency{
+                    expenseTotal += i.currency.convert(toCurrency: Currency(isoCode: setCurr), amount: i.price) ?? i.price
+                } else {
+                    expenseTotal += i.price
+                }
             }
             return expenseTotal
         }
         
         overviewcell.isInOrOverBudget.text  = isWithinBudget(date: budget.day)
         overviewcell.remainingToday.text    = "Remaining today: " + (numberFormatter.string(from: budget.totalUsableAmount as NSNumber) ?? "No data")
+        
         overviewcell.spentToday.text        = "Spent today: " + (numberFormatter.string(from: expensesTotal as NSNumber) ?? "No data")
         overviewcell.checkBox.image         = (budget.totalUsableAmount >= 0) ? #imageLiteral(resourceName: "Rounded Checkbox") : #imageLiteral(resourceName: "Warning")
         
         overviewcell.remainingToday.font    = cellTextFont
         overviewcell.spentToday.font        = cellTextFont
-        print(budget.day)
         overviewcell.dateButton.setTitle(dateFormatter.string(from: budget.day), for: .normal)
         
         return overviewcell

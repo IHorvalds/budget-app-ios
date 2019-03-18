@@ -2,12 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Allow access in order to save your photo to your library. Deny to keep it just in the app.</string>
-	<key>NSCameraUsageDescription</key>
-	<string>Allow access to your camera to set your profile picture.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Allow permission to your photo library in order to set your profile picture.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -43,12 +37,16 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Allow access to your camera to set your profile picture.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Allow access in order to save your photo to your library. Deny to keep it just in the app.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Allow permission to your photo library in order to set your profile picture.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>IndieFlower.ttf</string>
 	</array>
-	<key>UIBackgroundModes</key>
-	<array/>
 	<key>UILaunchStoryboardName</key>
 	<string>Launch Screen</string>
 	<key>UIMainStoryboardFile</key>
@@ -81,7 +79,7 @@
 			<string>Budget</string>
 			<key>UTTypeIconFiles</key>
 			<array>
-				<string>combo_chart@3x.png</string>
+				<string>BudgetFileIcon@3x.png</string>
 			</array>
 			<key>UTTypeIdentifier</key>
 			<string>horvalds.Budget.bdg</string>

@@ -10,29 +10,39 @@ import Foundation
 
 struct BudgetExportData: Codable { //this will be exported with the name "<month of dateReceived>-<month of lastDay>.json"
     //TODO: Make app conform to UIDocument
-    let expenses: [Expense]?
-    let dateReceived: String
-    let lastDay: String
-    let sentCurrency: String
-    let localCurrency: String
-    let totalSent: Double
-    let rentAmount: Double
-    let amountSpent: Double
-    let amountRemaining: Double
-    
-    init(expenses: [Expense]? = nil, dateReceived: String, lastDay: String, totalSent: Double, rentAmount: Double, amountSpent: Double, amountRemaining: Double, sentCurrency: String, localCurrency: String) {
-        self.expenses           = expenses
-        self.dateReceived       = dateReceived
-        self.lastDay            = lastDay
-        self.sentCurrency       = sentCurrency
-        self.localCurrency      = localCurrency
-        self.totalSent          = totalSent
-        self.rentAmount         = rentAmount
-        self.amountSpent        = amountSpent
-        self.amountRemaining    = amountRemaining
-    }
+
+    let budgets: [BudgetForDay]
+    let settings: Settings
     
     var json: Data? {
         return try? JSONEncoder().encode(self)
+    }
+    
+    func exportCurrentPeriod() throws {
+        if  let initialDate = self.settings.paymentDate,
+            let finalDate   = self.settings.mustLastUntil {
+            
+            let calendar            = Calendar.autoupdatingCurrent
+            let initialMonthIndex   = calendar.component(.month, from: initialDate)
+            let finalMonthIndex     = calendar.component(.month, from: finalDate)
+            let initialMonthString  = calendar.standaloneMonthSymbols[initialMonthIndex]
+            let finalMonthString    = calendar.standaloneMonthSymbols[finalMonthIndex]
+            
+            do {
+                let savePath = try FileManager.default.url(for: .documentDirectory,
+                                                            in: .userDomainMask,
+                                                            appropriateFor: nil,
+                                                            create: true).appendingPathComponent(initialMonthString + "-" + finalMonthString + ".bdg")
+                
+                let budgetDocument = BudgetExportDocument(fileURL: savePath)
+                budgetDocument.budgetExport = self
+                if !FileManager.default.fileExists(atPath: savePath.path) {
+                    budgetDocument.save(to: savePath, for: .forCreating, completionHandler: nil)
+                }
+            } catch let error {
+                throw error
+            }
+            
+        }
     }
 }

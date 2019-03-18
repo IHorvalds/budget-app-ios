@@ -19,12 +19,16 @@ class BudgetExportDocument: UIDocument {
     
     override func load(fromContents contents: Any, ofType typeName: String?) throws {
         // Load your document from contents
-        if  let budgetExportData = contents as? Data,
-            let jsonDecodedBudget = try? JSONDecoder().decode(BudgetExportData.self, from: budgetExportData){
+        
+        let error = NSError(domain: NSFileProviderErrorDomain, code: NSURLErrorCannotDecodeContentData, userInfo: nil)
+        
+        if  let budgetExportData    = contents as? Data,
+            let jsonDecodedBudget   = try? JSONDecoder().decode(BudgetExportData.self, from: budgetExportData){
                 print("loaded document data")
                 budgetExport = jsonDecodedBudget
         } else {
             print("error loading document")
+            throw error
         }
     }
 }

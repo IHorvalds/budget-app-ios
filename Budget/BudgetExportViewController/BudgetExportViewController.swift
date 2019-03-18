@@ -60,7 +60,7 @@ class BudgetExportViewController: UITableViewController, UIDocumentPickerDelegat
             if success {
                 if self.document?.budgetExport != nil {
                     self.title = self.document?.localizedName
-                    self.expenses = self.document?.budgetExport?.expenses
+//                    self.expenses = self.document?.budgetExport?.expenses
                     self.tableView.reloadData()
                     
                 } else {
@@ -83,12 +83,12 @@ class BudgetExportViewController: UITableViewController, UIDocumentPickerDelegat
         if segue.identifier == "expensedetail" {
             if let destVC = segue.destination as? ExpenseDetailViewController {
                 let indexPath = self.tableView.indexPath(for: (sender as! UITableViewCell))
-                if let expenses = document?.budgetExport?.expenses {
-                    destVC.purchaseTitle = expenses[(indexPath?.row)!].title
-                    destVC.datePurchasedBuffer = expenses[(indexPath?.row)!].datePurchased
-                    print(expenses[(indexPath?.row)!].price)
-                    destVC.priceBuffer = expenses[(indexPath?.row)!].price
-                }
+//                if let expenses = document?.budgetExport?.expenses {
+//                    destVC.purchaseTitle = expenses[(indexPath?.row)!].title
+//                    destVC.datePurchasedBuffer = expenses[(indexPath?.row)!].datePurchased
+//                    print(expenses[(indexPath?.row)!].price)
+//                    destVC.priceBuffer = expenses[(indexPath?.row)!].price
+//                }
             }
         }
         
@@ -105,7 +105,8 @@ extension BudgetExportViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             if document?.documentState == .normal {
-                return document?.budgetExport?.expenses?.count ?? 1
+//                return document?.budgetExport?.expenses?.count ?? 1
+                return 1
             }
             return 1 //once document is set, reload this to document.budgetExpenseData.expenses.count
         } else if section == 1 {
@@ -117,71 +118,71 @@ extension BudgetExportViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell: UITableViewCell?
-        let dateCellTexts = ["Money received on", "Final day"]
-        let moneyCellTexts = ["Total received", "Rent", "Total spent", "Total remaining"]
-        
-        //Formatting nicely
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .currency
-        if let localCurrency = document?.budgetExport?.localCurrency {
-            numberFormatter.currencyCode = localCurrency
-        } else {
-            numberFormatter.currencyCode = ""
-        }
-        dateFormatter.dateStyle = .medium
-        
-        //actually setting the cells
-        if indexPath.section == 0 {
-            cell = tableView.dequeueReusableCell(withIdentifier: "checkexpensecell")
-            if  document?.documentState == .normal,
-                let expenses = self.expenses {
-                cell?.textLabel?.text = expenses[indexPath.row].title
-                cell?.detailTextLabel?.text = numberFormatter.string(from: expenses[indexPath.row].price as NSNumber)
-            }
-        } else if indexPath.section == 1 {
-            cell = tableView.dequeueReusableCell(withIdentifier: "budgetdatecell")
-            
-            cell?.textLabel?.text = dateCellTexts[indexPath.row]
-            if document?.documentState == .normal {
-                if indexPath.row == 0 {
-                    
-                    let dateReceived = dateFormatter.date(from: (document?.budgetExport?.dateReceived)!)
-                    let dateReceivedComponents = Calendar.autoupdatingCurrent.dateComponents([.year, .month, .day], from: dateReceived!)
-                    dateFormatter.dateStyle = .medium
-                    cell?.detailTextLabel?.text = dateFormatter.string(from: Calendar.autoupdatingCurrent.date(from: dateReceivedComponents)!)
-                } else {
-                    
-                    let lastDay = dateFormatter.date(from: (document?.budgetExport?.lastDay)!)
-                    let lastDayComponents = Calendar.autoupdatingCurrent.dateComponents([.year, .month, .day], from: lastDay!)
-                    dateFormatter.dateStyle = .medium
-                    cell?.detailTextLabel?.text = dateFormatter.string(from: Calendar.autoupdatingCurrent.date(from: lastDayComponents)!)
-                }
-            }
-            
-        } else if indexPath.section == 2 {
-            cell = tableView.dequeueReusableCell(withIdentifier: "budgetmoneycell")
-            cell?.textLabel?.text = moneyCellTexts[indexPath.row]
-            if document?.documentState == .normal {
-                if indexPath.row == 0 {
-                    cell?.detailTextLabel?.text = numberFormatter.string(from: (document?.budgetExport?.totalSent)! as NSNumber)
-                } else if indexPath.row == 1 {
-                    cell?.detailTextLabel?.text = numberFormatter.string(from: (document?.budgetExport?.rentAmount)! as NSNumber)
-                } else {
-                    cell?.detailTextLabel?.text = numberFormatter.string(from: (document?.budgetExport?.amountSpent)! as NSNumber)
-                }
-            }
-        } else {
-            cell = tableView.dequeueReusableCell(withIdentifier: "budgetmoneycell")
-            cell?.textLabel?.text = moneyCellTexts[3]
-            if document?.documentState == .normal {
-                cell?.detailTextLabel?.text = numberFormatter.string(from: (document?.budgetExport?.amountRemaining)! as NSNumber)
-            }
-        }
-        
-        return cell!
-    }
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        var cell: UITableViewCell?
+//        let dateCellTexts = ["Money received on", "Final day"]
+//        let moneyCellTexts = ["Total received", "Rent", "Total spent", "Total remaining"]
+//
+//        //Formatting nicely
+//        let numberFormatter = NumberFormatter()
+//        numberFormatter.numberStyle = .currency
+//        if let localCurrency = document?.budgetExport?.localCurrency {
+//            numberFormatter.currencyCode = localCurrency
+//        } else {
+//            numberFormatter.currencyCode = ""
+//        }
+//        dateFormatter.dateStyle = .medium
+//
+//        //actually setting the cells
+//        if indexPath.section == 0 {
+//            cell = tableView.dequeueReusableCell(withIdentifier: "checkexpensecell")
+//            if  document?.documentState == .normal,
+//                let expenses = self.expenses {
+//                cell?.textLabel?.text = expenses[indexPath.row].title
+//                cell?.detailTextLabel?.text = numberFormatter.string(from: expenses[indexPath.row].price as NSNumber)
+//            }
+//        } else if indexPath.section == 1 {
+//            cell = tableView.dequeueReusableCell(withIdentifier: "budgetdatecell")
+//
+//            cell?.textLabel?.text = dateCellTexts[indexPath.row]
+//            if document?.documentState == .normal {
+//                if indexPath.row == 0 {
+//
+//                    let dateReceived = dateFormatter.date(from: (document?.budgetExport?.dateReceived)!)
+//                    let dateReceivedComponents = Calendar.autoupdatingCurrent.dateComponents([.year, .month, .day], from: dateReceived!)
+//                    dateFormatter.dateStyle = .medium
+//                    cell?.detailTextLabel?.text = dateFormatter.string(from: Calendar.autoupdatingCurrent.date(from: dateReceivedComponents)!)
+//                } else {
+//
+//                    let lastDay = dateFormatter.date(from: (document?.budgetExport?.lastDay)!)
+//                    let lastDayComponents = Calendar.autoupdatingCurrent.dateComponents([.year, .month, .day], from: lastDay!)
+//                    dateFormatter.dateStyle = .medium
+//                    cell?.detailTextLabel?.text = dateFormatter.string(from: Calendar.autoupdatingCurrent.date(from: lastDayComponents)!)
+//                }
+//            }
+//
+//        } else if indexPath.section == 2 {
+//            cell = tableView.dequeueReusableCell(withIdentifier: "budgetmoneycell")
+//            cell?.textLabel?.text = moneyCellTexts[indexPath.row]
+//            if document?.documentState == .normal {
+//                if indexPath.row == 0 {
+//                    cell?.detailTextLabel?.text = numberFormatter.string(from: (document?.budgetExport?.totalSent)! as NSNumber)
+//                } else if indexPath.row == 1 {
+//                    cell?.detailTextLabel?.text = numberFormatter.string(from: (document?.budgetExport?.rentAmount)! as NSNumber)
+//                } else {
+//                    cell?.detailTextLabel?.text = numberFormatter.string(from: (document?.budgetExport?.amountSpent)! as NSNumber)
+//                }
+//            }
+//        } else {
+//            cell = tableView.dequeueReusableCell(withIdentifier: "budgetmoneycell")
+//            cell?.textLabel?.text = moneyCellTexts[3]
+//            if document?.documentState == .normal {
+//                cell?.detailTextLabel?.text = numberFormatter.string(from: (document?.budgetExport?.amountRemaining)! as NSNumber)
+//            }
+//        }
+//
+//        return cell!
+//    }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {

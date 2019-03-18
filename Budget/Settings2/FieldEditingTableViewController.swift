@@ -14,7 +14,7 @@ class FieldEditingTableViewController: UITableViewController {
     @IBOutlet weak var secondTF: UITextField!
     var activeTF = UITextField()
     var turned: Int = 0
-    var fontSize: CGFloat = 30.0
+    var fontSize: CGFloat = 20.0
     var settings: Settings?
     var attributeToEdit: [Settings.Attribute]?
     let datePicker = UIDatePicker()
@@ -37,6 +37,7 @@ class FieldEditingTableViewController: UITableViewController {
                                                              attributes: [NSAttributedString.Key.foregroundColor: UIColor(white: 1.0, alpha: 0.6)])
         
         currPicker.currDelegate = self
+        currPicker.backgroundColor = .white
         
         textField.delegate  = self
         secondTF.delegate   = self
@@ -158,16 +159,6 @@ class FieldEditingTableViewController: UITableViewController {
         activeTF.text = dateFormatter.string(from: date)
     }
 
-}
-
-extension NSLocale {
-    
-    static func currencySymbolFromCode(code: String) -> String? {
-        let localeIdentifier = NSLocale.localeIdentifier(fromComponents: [NSLocale.Key.currencyCode.rawValue : code])
-        let locale = NSLocale(localeIdentifier: localeIdentifier)
-        return locale.object(forKey: NSLocale.Key.currencySymbol) as? String
-    }
-    
 }
 
 extension FieldEditingTableViewController: UITextFieldDelegate, CurrencyPickerViewDelegate {

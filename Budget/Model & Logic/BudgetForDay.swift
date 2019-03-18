@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UserNotifications
 
 class BudgetForDay: NSObject, NSCoding, Codable {
     
@@ -58,26 +59,36 @@ class BudgetForDay: NSObject, NSCoding, Codable {
     static func updateTotalUsableAmount(expense: Expense, budgets: [BudgetForDay]?) {
         if  let budgets = budgets {
             
-            let _budgets    = budgets.filter({$0.day >= expense.datePurchased})
+            let _budgets    = budgets.filter({($0.day >= expense.datePurchased) || (Date.areSameDay(date1: $0.day, date2: expense.datePurchased))})
             let budget      = budgets.first(where: {Date.areSameDay(date1: $0.day, date2: expense.datePurchased)})
-            budget?.expenses.append(expense)
             
             let expensePriceInCurrency = expense.currency.convert(toCurrency: Currency(isoCode: budget?.currency ?? NSLocale.current.currencyCode!),
                                                                   amount: expense.price)
+            let e = Expense(title: expense.title,
+                            price: expensePriceInCurrency ?? 0.0,
+                            currency: budgets.first?.currency ?? NSLocale.current.currencyCode!,
+                            datePurchased: expense.datePurchased)
+            
+            budget?.expenses.append(e)
+            
+            
             for b in _budgets {
-                b.totalUsableAmount -= expensePriceInCurrency ?? expense.price
+                b.totalUsableAmount -= expensePriceInCurrency ?? e.price
             }
             
+            saveBudgetsToDefaults(budgets: budgets)
         }
     }
     
     static func removeExpense(expense: Expense, budgets: [BudgetForDay]?) {
         if  let budgets = budgets {
+            let _budgets    = budgets.filter({($0.day >= expense.datePurchased) || (Date.areSameDay(date1: $0.day, date2: expense.datePurchased))})
             
-            let _budgets    = budgets.filter({$0.day >= expense.datePurchased})
-            let budget      = budgets.first(where: {Date.areSameDay(date1: $0.day, date2: expense.datePurchased)})
-            if let index    = budget?.expenses.firstIndex(of: expense) {
-                budget?.expenses.remove(at: index)
+//            let budget      = budgets.first(where: {$0.expenses.contains(expense)}) //THIS FAILS
+            let budget      = budgets.first(where: {$0.expenses.contains(expense)})
+            if  let budget  = budget,
+                let index   = budget.expenses.firstIndex(where: {$0 == expense}) {
+                budget.expenses.remove(at: index)
             }
             
             let expensePriceInCurrency = expense.currency.convert(toCurrency: Currency(isoCode: budget?.currency ?? NSLocale.current.currencyCode!),
@@ -85,6 +96,8 @@ class BudgetForDay: NSObject, NSCoding, Codable {
             for b in _budgets {
                 b.totalUsableAmount += expensePriceInCurrency ?? expense.price
             }
+            
+            saveBudgetsToDefaults(budgets: budgets)
             
         }
     }
@@ -119,13 +132,19 @@ class BudgetForDay: NSObject, NSCoding, Codable {
     }
     
     static func removeExpensesFromMatchingBudget(expenseList: [Expense], budgets: [BudgetForDay]?) {
+        let notificationCenter = UNUserNotificationCenter.current()
+        
         if let budgets = budgets {
             for b in budgets {
                 let eList = expenseList.filter({Date.areSameDay(date1: $0.datePurchased, date2: b.day)})
                 
+                var uuids: [String] = []
                 for expense in eList {
+                    uuids.append(expense.notificationUuid)
                     removeExpense(expense: expense, budgets: budgets)
                 }
+                
+                notificationCenter.removePendingNotificationRequests(withIdentifiers: uuids)
             }
         }
     }

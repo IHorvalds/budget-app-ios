@@ -48,8 +48,11 @@ class RecurringExpense: Expense {
         if  let initialDate = settings?.paymentDate,
             let finalDate   = settings?.mustLastUntil {
             
+            var calendar        = Calendar(identifier: .gregorian)
+            calendar.timeZone   = TimeZone(abbreviation: "UTC")!
             
             var _initialExpense = self.datePurchased
+            _initialExpense = calendar.startOfDay(for: _initialExpense)
             
             while _initialExpense < finalDate && _initialExpense > initialDate {
                 
@@ -59,6 +62,7 @@ class RecurringExpense: Expense {
                                 datePurchased: _initialExpense)
                 
                 expenses.append(e)
+                print(_initialExpense)
                 
                 _initialExpense = _initialExpense.getSameDayNextMonth()
             }

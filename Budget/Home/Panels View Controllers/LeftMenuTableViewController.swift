@@ -50,9 +50,9 @@ class LeftMenuTableViewController: UITableViewController {
             _ = panel!.center(centerNav)
         case 3:
             let budgetExportsStoryboard = UIStoryboard(name: "BudgetExport", bundle: nil)
-            let centerNav = budgetExportsStoryboard.instantiateInitialViewController() as! ExpensesThisMonthViewController
-            centerNav.budgets = (try? BudgetForDay.getBudgetsFromDefaults()) ?? []
-            _ = panel!.center(centerNav)
+            let centerNav = budgetExportsStoryboard.instantiateInitialViewController() as! ChooseFileViewController
+            let navController = UINavigationController(rootViewController: centerNav)
+            _ = panel!.center(navController)
         default:
             let converterStoryboard = UIStoryboard(name: "ConvertorViewController", bundle: nil)
             let centerNav = converterStoryboard.instantiateInitialViewController() as! UINavigationController
@@ -133,23 +133,4 @@ extension LeftMenuTableViewController {
         imageView.transform     = CGAffineTransform(scaleX: growth, y: growth).concatenating(CGAffineTransform(translationX: 0.0, y: -movement))
         titleLabel.transform    = CGAffineTransform(translationX: 0.0, y: -y)
     }
-}
-
-extension CGFloat {
-    func mapCGFloat(min: CGFloat, max: CGFloat) -> CGFloat {
-        if (0.0...255.0).contains(self) {
-            let delta = abs(max - min)
-            if self > 0 {
-                return self/255.0 * delta + min //starting from min and adding the number of steps (of 255 possible steps) * the delta
-            } else {
-                return min
-            }
-            
-        } else if self < 0.0 {
-            return min
-        } else {
-            return max
-        }
-    }
-
 }

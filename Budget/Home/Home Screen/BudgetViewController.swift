@@ -12,7 +12,6 @@ import NotificationCenter
 
 class BudgetViewController: UITableViewController {
     
-//    var expenses: [Expense] = []
     let numberFormatter = NumberFormatter()
     var budget: BudgetForDay?
     
@@ -20,15 +19,16 @@ class BudgetViewController: UITableViewController {
     var budgets = [BudgetForDay]()
     
     
+    //MARK: ExpenseInputDelegate
+    var date: Date?
+    var expense: Expense?
+    
     @IBAction func showLeftPanel(_ sender: UIBarButtonItem) {
         panel?.openLeft(animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        
-//        BudgetForDay.settingsDidChange(budgets: budgets, settings: settings)
         
         newDay()
         budget = budgets.first(where: {Date.areSameDay(date1: $0.day, date2: Date())})
@@ -45,32 +45,6 @@ class BudgetViewController: UITableViewController {
     }
     
     @objc func newDay() {
-        
-//        var calendar        = Calendar(identifier: .gregorian)
-//        calendar.timeZone   = TimeZone(abbreviation: "UTC")!
-//
-//        let today = Date()
-//        let lastDate = defaults.value(forKey: lastCheckedDateKey) as? Date
-//
-//        if lastDate == nil {
-//            if settings != Settings.standardSettings {
-//                defaults.set(today, forKey: lastCheckedDateKey)
-//            }
-//            budgets = BudgetForDay.newDayExport(settings: settings)
-//            tableView.reloadData()
-//        } else {
-//            let initialDate = calendar.startOfDay(for: lastDate!)
-//            let finalDate   = calendar.startOfDay(for: today)
-//
-//            let numberOfDays = calendar.dateComponents([.day], from: initialDate, to: finalDate).day ?? 1
-//
-//            for _ in 0...numberOfDays {
-//                budgets = BudgetForDay.newDayExport(settings: settings)
-//            }
-//
-//            tableView.reloadData()
-//        }
-        
         budgets = BudgetForDay.newDayExport(settings: settings)
         budgets = BudgetForDay.settingsDidChange(budgets: budgets, settings: settings)
         tableView.reloadData()
@@ -138,7 +112,6 @@ class BudgetViewController: UITableViewController {
         switch indexPath.section {
         case 0:
             cell = tableView.dequeueReusableCell(withIdentifier: "overviewcell") as! CollectionTableViewCell
-            (cell as! CollectionTableViewCell).settings = settings
             (cell as! CollectionTableViewCell).collectionDelegate = self
         case 1:
             cell = tableView.dequeueReusableCell(withIdentifier: "thismonthcell") as! TodayAvailableCell
@@ -172,7 +145,17 @@ class BudgetViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 2, indexPath.row == budget?.expenses.count {
+            let storyboard      = UIStoryboard(name: "ExpenseInputViewController", bundle: nil)
+            let inputVC         = storyboard.instantiateInitialViewController() as! ExpenseInputViewController
+            inputVC.delegate    = self
+            self.date           = Date()
+            
+            inputVC._initialCurrencyString = settings.preferredCurrency
+            present(inputVC, animated: true, completion: nil)
+        }
         
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -189,9 +172,18 @@ class BudgetViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            tableView.reloadSections(IndexSet(integer: 0), with: .none)
+            if let expense = budget?.expenses[indexPath.row] {
+                BudgetForDay.removeExpense(expense: expense, budgets: budgets)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                tableView.reloadSections(IndexSet(integer: 0), with: .none)
+                
+                
+                if let collectionViewCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? CollectionTableViewCell {
+                    let budgetsCount = collectionViewCell.budgets.count
+                    let count = ( budgetsCount != 0) ? budgetsCount-1 : 0
+                    collectionViewCell.collectionView.scrollToItem(at: IndexPath(row: count, section: 0), at: .centeredHorizontally, animated: false)
+                }
+            }
         }
     }
 }
@@ -205,4 +197,32 @@ extension BudgetViewController: CollectionDelegate {
             self.show(exp, sender: nil)
         }
     }
+}
+
+extension BudgetViewController: ExpenseInputDelegate {
+    
+    func pressedOKButton(_ view: InputView, ok button: AlertButton, input object: InputObject?) {
+        if  let object = object,
+            object.isComplete() {
+            
+            let expense = Expense(title: object.itemName,
+                                  price: object.itemPrice,
+                                  currency: object.currency.isoCode,
+                                  datePurchased: Date())
+            BudgetForDay.updateTotalUsableAmount(expense: expense, budgets: budgets)
+            tableView.reloadSections(IndexSet(arrayLiteral: 0, 2), with: .top)
+            if let collectionViewCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? CollectionTableViewCell {
+                let budgetsCount = collectionViewCell.budgets.count
+                let count = ( budgetsCount != 0) ? budgetsCount-1 : 0
+                collectionViewCell.collectionView.scrollToItem(at: IndexPath(row: count, section: 0), at: .centeredHorizontally, animated: false)
+            }
+        }
+        
+    }
+    
+    func pressedCancelButton(_ view: InputView, cancel button: AlertButton, input object: InputObject?) {
+        
+    }
+    
+    
 }

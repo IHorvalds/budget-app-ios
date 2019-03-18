@@ -23,7 +23,7 @@ class RecurringExpenseViewController: UITableViewController, CalendarViewDelegat
     var settings: Settings?
     
     @IBAction func notificationSwitch(_ sender: UISwitch) {
-        expenseRepresented?.turnNotifications(onOrOff: sender.isOn)
+        expenseRepresented?.turnNotifications(onOrOff: sender.isOn, closure: nil)
     }
     
     
@@ -43,10 +43,9 @@ class RecurringExpenseViewController: UITableViewController, CalendarViewDelegat
                     self.navigationController?.popViewController(animated: true)
                     return }
             if !isBeingEdited {
-                //Create as many expenses as fit in the period.
                 settings?.addRecurringExpense(expense: expenseRepresented!)
             } else {
-                
+                //use this to update the budgets when the amount or currency of a recurring expense changes. NOTE: Only update the expenses AFTER the current date. Older ones are presumed to have been cashed already.
             }
             
             //        print(settings)
@@ -203,6 +202,8 @@ extension RecurringExpenseViewController: ExpenseInputDelegate {
             let inputVC         = storyboard.instantiateInitialViewController() as! ExpenseInputViewController
             inputVC.delegate    = self
             self.date           = date
+            
+            inputVC._initialCurrencyString = settings?.preferredCurrency
             present(inputVC, animated: true, completion: nil)
             
         } else {
