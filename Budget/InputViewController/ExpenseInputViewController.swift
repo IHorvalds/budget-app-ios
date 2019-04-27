@@ -154,6 +154,7 @@ class ExpenseInputViewController: UIViewController, CurrencyPickerViewDelegate {
         } else {
             differentCurrencyCheck.tintColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
             currencyPicker.isUserInteractionEnabled = false
+            currencyString = _initialCurrencyString
         }
         
         //MARK: Gesture recognizer
@@ -228,17 +229,25 @@ extension ExpenseInputViewController: UITextFieldDelegate {
 
 extension ExpenseInputViewController {
     @objc func keyboardGoUp(notification: Notification) {
+        
+        
         if UIDevice.current.userInterfaceIdiom != .pad {
             if let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-                let keyboardTop = keyboardRect.minY
-                let aboveKeyboardTopFromViewBottom = abs((self.expenseInputView.frame.minY + self.expenseInputView.frame.height) - keyboardTop)
+                
+                let keyboardTop                     = keyboardRect.minY
+                let topOfViewRect                   = (UIScreen.main.bounds.height - self.expenseInputView.frame.height)/2
+                let aboveKeyboardTopFromViewBottom  = abs((topOfViewRect + self.expenseInputView.frame.height) - keyboardTop) + 20.0
+                
+                
                 UIView.animate(withDuration: 0.3,
                                delay: 0.0,
                                options: .curveEaseInOut,
                                animations: { [unowned self] in
                                 self.expenseInputView.transform = CGAffineTransform(translationX: 0,
-                                                                                    y: -aboveKeyboardTopFromViewBottom - 20.0)
+                                                                                    y: -aboveKeyboardTopFromViewBottom)
                     }, completion: nil)
+                
+                
             }
         }
     }

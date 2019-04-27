@@ -13,7 +13,7 @@ func isWithinBudget(date: Date) -> String {
     if  let budgetData = defaults.value(forKey: budgetForThisMonthKey) as? Data,
         let budgets = NSKeyedUnarchiver.unarchiveObject(with: budgetData) as? [BudgetForDay],
         let budget = budgets.first(where: {Date.areSameDay(date1: $0.day, date2: date)}) {
-        if budget.totalUsableAmount > 0 {
+        if budget.totalUsableAmount >= 0 {
             return "In Budget"
         } else {
             return "Over Budget"

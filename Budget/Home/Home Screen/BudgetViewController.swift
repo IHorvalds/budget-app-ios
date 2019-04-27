@@ -27,11 +27,54 @@ class BudgetViewController: UITableViewController {
         panel?.openLeft(animated: true)
     }
     
+    @IBAction func exportRightNow(_ sender: UIBarButtonItem) {
+        
+        let alertForExport = UIAlertController(title: "Do you wish to export your current period?", message: nil, preferredStyle: .alert)
+        
+        alertForExport.addAction(.init(title: "Export and keep information", style: .default, handler: { (_) in
+            
+            let budgetData = BudgetExportData(budgets: self.budgets, settings: self.settings)
+            do {
+                try budgetData.exportCurrentPeriod()
+                
+            } catch let error {
+                let alert = UIAlertController(title: "Error exporting current period", message: "This is the error thrown: \(error).", preferredStyle: .alert)
+                
+                alert.addAction(.init(title: "OK", style: .default, handler: nil))
+                
+                self.present(alert, animated: true, completion: nil)
+            }
+            
+        }))
+        alertForExport.addAction(.init(title: "Export and reset information", style: .destructive, handler: { (_) in
+        
+            let budgetData = BudgetExportData(budgets: self.budgets, settings: self.settings)
+            do {
+                try budgetData.exportCurrentPeriod()
+                
+                self.settings = Settings.standardSettings
+                
+            } catch let error {
+                let alert = UIAlertController(title: "Error exporting current period", message: "This is the error thrown: \(error).", preferredStyle: .alert)
+                
+                alert.addAction(.init(title: "OK", style: .default, handler: nil))
+                
+                self.present(alert, animated: true, completion: nil)
+            }
+            
+        }))
+        alertForExport.addAction(.init(title: "Cancel", style: .cancel, handler: nil))
+        
+        present(alertForExport, animated: true, completion: nil)
+        
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         newDay()
         budget = budgets.first(where: {Date.areSameDay(date1: $0.day, date2: Date())})
+        
     }
     
     override func viewDidLoad() {
@@ -45,13 +88,14 @@ class BudgetViewController: UITableViewController {
     }
     
     @objc func newDay() {
-        budgets = BudgetForDay.newDayExport(settings: settings)
+        
+        budgets = BudgetForDay.newDayExport(settings: &settings)
         budgets = BudgetForDay.settingsDidChange(budgets: budgets, settings: settings)
         tableView.reloadData()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
         if let collectionViewCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? CollectionTableViewCell {
             let budgetsCount = collectionViewCell.budgets.count
             let count = ( budgetsCount != 0) ? budgetsCount-1 : 0
@@ -117,6 +161,14 @@ class BudgetViewController: UITableViewController {
             cell = tableView.dequeueReusableCell(withIdentifier: "thismonthcell") as! TodayAvailableCell
             cell.textLabel?.font        = cellTextFont
             cell.detailTextLabel?.font  = UIFont(descriptor: fontDescriptor!, size: fontSize)
+            
+            cell.textLabel?.text        = "Left this month:"
+            
+            if let lastBudget = budgets.last {
+                numberFormatter.currencyCode    = lastBudget.currency
+                cell.detailTextLabel?.text      = numberFormatter.string(from: lastBudget.totalUsableAmount as NSNumber)
+            }
+            
         case 2:
             if indexPath.row == (budget?.expenses.count ?? 0) {
                 
@@ -175,7 +227,7 @@ class BudgetViewController: UITableViewController {
             if let expense = budget?.expenses[indexPath.row] {
                 BudgetForDay.removeExpense(expense: expense, budgets: budgets)
                 tableView.deleteRows(at: [indexPath], with: .fade)
-                tableView.reloadSections(IndexSet(integer: 0), with: .none)
+                tableView.reloadSections(IndexSet(integersIn: 0...1), with: .none)
                 
                 
                 if let collectionViewCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? CollectionTableViewCell {
@@ -192,7 +244,7 @@ extension BudgetViewController: CollectionDelegate {
     func showBudgetCollectionDelegate(budget: BudgetForDay?) {
         let storyboard = UIStoryboard(name: "ExpensesThisMonthViewController", bundle: nil)
         let exp = storyboard.instantiateInitialViewController() as! ExpensesThisMonthViewController
-        if let budget = budget {
+        if  let budget = budget {
             exp.budgets = [budget]
             self.show(exp, sender: nil)
         }
@@ -211,6 +263,7 @@ extension BudgetViewController: ExpenseInputDelegate {
                                   datePurchased: Date())
             BudgetForDay.updateTotalUsableAmount(expense: expense, budgets: budgets)
             tableView.reloadSections(IndexSet(arrayLiteral: 0, 2), with: .top)
+            tableView.reloadSections(IndexSet(integer: 1), with: .none)
             if let collectionViewCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? CollectionTableViewCell {
                 let budgetsCount = collectionViewCell.budgets.count
                 let count = ( budgetsCount != 0) ? budgetsCount-1 : 0

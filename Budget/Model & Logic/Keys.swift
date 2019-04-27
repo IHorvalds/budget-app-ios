@@ -21,7 +21,7 @@ let defaults            = UserDefaults(suiteName: "dailyBudgetSuite")!
 //let rentAmountKey = "rentAmount"
 //let sentCurrencyKey = "sentCurrency"
 //let localCurrencyKey = "localCurrency"
-//let budgetForThisMonthKey = "budgetForThisMonth"
+
 //let expensesKey = "expensesThisMonth"
 
 //MARK: New keys.
@@ -37,6 +37,7 @@ let mustLastUntilKey        = "mustLastUntilKey"
 let recurringExpensesKey    = "recurringExpensesKey"
 let savingsKey              = "savingsKey"
 let preferredCurrencyKey    = "preferredCurrencyKey"
+let budgetForThisMonthKey = "budgetForThisMonth"
 
 let lastUsedCurrencyKey      = "lastUsedCurrencyKey"
 let usedDifferentCurrencyKey = "usedDifferentCurrencyKey"

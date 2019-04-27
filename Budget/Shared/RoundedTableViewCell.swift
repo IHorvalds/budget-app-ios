@@ -21,11 +21,6 @@ class RoundedTableViewCell: UITableViewCell {
             super.frame = frame
         }
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-    }
     
     override func layoutSublayers(of layer: CALayer) {
         super.layoutSublayers(of: layer)

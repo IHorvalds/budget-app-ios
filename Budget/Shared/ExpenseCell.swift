@@ -11,9 +11,12 @@ import UIKit
 
 class ExpenseCell: UITableViewCell {
 
-    public var secondColor = UIColor(red:0.65, green:0.92, blue:1.00, alpha:1.0)
-    public var firstColor = UIColor(red:0.17, green:0.38, blue:0.64, alpha:1.0)
+//    public var secondColor = UIColor(red:0.65, green:0.92, blue:1.00, alpha:1.0)
+//    public var firstColor = UIColor(red:0.17, green:0.38, blue:0.64, alpha:1.0)
 
+    public var firstColor = #colorLiteral(red: 0.1450980392, green: 0.1647058824, blue: 0.1843137255, alpha: 1)
+    public var secondColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+    
     let gradientLayer = CAGradientLayer()
     let bottomBorder = CALayer()
     let topBorder = CALayer()
@@ -33,6 +36,7 @@ class ExpenseCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        gradientLayer.removeFromSuperlayer()
         gradientLayer.colors = [firstColor.cgColor, secondColor.cgColor]
         gradientLayer.frame = self.bounds
         gradientLayer.startPoint = CGPoint(x: 0, y: 0.5)

@@ -40,7 +40,7 @@ class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
         var budgets = [BudgetForDay]()
         let _budgets = try? BudgetForDay.getBudgetsFromDefaults()
         
-        for i in stride(from: 0, to: -7, by: -1) {
+        for i in stride(from: 0, to: -6, by: -1) {
             calendar.timeZone   = TimeZone(abbreviation: "UTC")!
             var dateComponents  = DateComponents()
             
@@ -60,7 +60,6 @@ class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
         numberFormatter.numberStyle = .currency
         dateFormatter.dateStyle     = .long
@@ -110,6 +109,8 @@ class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
             }
             return expenseTotal
         }
+        
+        dateFormatter.timeZone = TimeZone.autoupdatingCurrent
         
         overviewcell.isInOrOverBudget.text  = isWithinBudget(date: budget.day)
         overviewcell.remainingToday.text    = "Remaining today: " + (numberFormatter.string(from: budget.totalUsableAmount as NSNumber) ?? "No data")

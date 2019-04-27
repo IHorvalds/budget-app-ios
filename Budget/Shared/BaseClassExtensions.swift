@@ -23,8 +23,10 @@ extension NSLocale {
 extension Date {
     static func areSameDay(date1: Date, date2: Date) -> Bool {
         
-        var calendar        = Calendar(identifier: .gregorian)
-        calendar.timeZone   = TimeZone(abbreviation: "UTC")!
+//        var calendar        = Calendar(identifier: .gregorian)
+//        calendar.timeZone   = TimeZone(abbreviation: "UTC")!
+        
+        let calendar = NSLocale.autoupdatingCurrent.calendar
         
         let comparison = calendar.compare(date1, to: date2, toGranularity: .day)
         
@@ -62,15 +64,4 @@ extension CGFloat {
         }
     }
     
-}
-
-extension Dictionary {
-    func getKeys() -> [Any] {
-        var keys = [Any]()
-        for i in self {
-            keys.append(i.key)
-        }
-        
-        return keys
-    }
 }

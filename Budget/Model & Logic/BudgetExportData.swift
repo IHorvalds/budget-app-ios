@@ -23,8 +23,8 @@ struct BudgetExportData: Codable { //this will be exported with the name "<month
             let finalDate   = self.settings.mustLastUntil {
             
             let calendar            = Calendar.autoupdatingCurrent
-            let initialMonthIndex   = calendar.component(.month, from: initialDate)
-            let finalMonthIndex     = calendar.component(.month, from: finalDate)
+            let initialMonthIndex   = calendar.component(.month, from: initialDate) - 1
+            let finalMonthIndex     = calendar.component(.month, from: finalDate) - 1
             let initialMonthString  = calendar.standaloneMonthSymbols[initialMonthIndex]
             let finalMonthString    = calendar.standaloneMonthSymbols[finalMonthIndex]
             

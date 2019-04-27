@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.59" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sRS-Bg-Wch">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sRS-Bg-Wch">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.45"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="separatorColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="overviewcell" rowHeight="280" id="DfU-AD-9L6" customClass="CollectionTableViewCell" customModule="Budget" customModuleProvider="target">
@@ -38,7 +38,7 @@
                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             </collectionViewFlowLayout>
                                             <cells>
-                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="overviewcollectioncell" id="mCg-lr-B4G" customClass="OverViewCollectionViewCell" customModule="Budget" customModuleProvider="target">
+                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="overviewcollectioncell" id="mCg-lr-B4G" customClass="OverViewCollectionViewCell" customModule="Budget" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="404" height="280"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -46,7 +46,7 @@
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9tn-Xt-DJt">
-                                                                <rect key="frame" x="88.666666666666671" y="80" width="130.66666666666663" height="46.666666666666657"/>
+                                                                <rect key="frame" x="136.66666666666669" y="80" width="130.66666666666669" height="46.666666666666657"/>
                                                                 <attributedString key="attributedText">
                                                                     <fragment content="Budget">
                                                                         <attributes>
@@ -59,19 +59,19 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spent today:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="JtM-9l-T6N">
-                                                                <rect key="frame" x="100" y="154" width="108" height="24"/>
+                                                                <rect key="frame" x="148" y="154" width="108" height="24"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                                                                 <color key="textColor" red="0.10417690128087997" green="0.28018641471862793" blue="0.4007718563079834" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remaining: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="AdM-bf-23X">
-                                                                <rect key="frame" x="104.33333333333334" y="180" width="99.333333333333343" height="24"/>
+                                                                <rect key="frame" x="152.33333333333334" y="180" width="99.333333333333343" height="24"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                                                                 <color key="textColor" red="0.1041769013" green="0.2801864147" blue="0.40077185630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="47o-jR-PMS">
-                                                                <rect key="frame" x="225" y="250" width="67" height="30"/>
+                                                                <rect key="frame" x="262" y="250" width="122" height="30"/>
                                                                 <state key="normal" title="Date here"/>
                                                                 <connections>
                                                                     <action selector="pressedDate:" destination="mCg-lr-B4G" eventType="touchUpInside" id="Xiw-Cb-KOE"/>
@@ -172,14 +172,6 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
-                                        <color key="value" red="0.1470403669" green="0.28395668499999999" blue="0.40268083760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="secondColor">
-                                        <color key="value" red="0.3803921569" green="0.69019607839999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addexpensecell" rowHeight="50" id="cuM-4O-WXu" customClass="ExpenseCell" customModule="Budget" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="429.33333333333331" width="414" height="50"/>
@@ -188,26 +180,17 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KHr-Sb-csH">
-                                            <rect key="frame" x="20" y="11" width="22" height="28"/>
-                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3y-KR-Ncp">
+                                            <rect key="frame" x="16" y="14" width="22" height="22"/>
+                                            <color key="tintColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="KHr-Sb-csH" firstAttribute="top" secondItem="Jij-F7-LyP" secondAttribute="topMargin" id="VV5-bs-Lb3"/>
-                                        <constraint firstItem="KHr-Sb-csH" firstAttribute="leading" secondItem="Jij-F7-LyP" secondAttribute="leadingMargin" id="Vcn-aJ-2gN"/>
-                                        <constraint firstItem="KHr-Sb-csH" firstAttribute="centerY" secondItem="Jij-F7-LyP" secondAttribute="centerY" id="gee-v2-omL"/>
+                                        <constraint firstItem="v3y-KR-Ncp" firstAttribute="leading" secondItem="Jij-F7-LyP" secondAttribute="leading" constant="16" id="UGt-Lw-dtK"/>
+                                        <constraint firstItem="v3y-KR-Ncp" firstAttribute="centerY" secondItem="Jij-F7-LyP" secondAttribute="centerY" id="pdw-HE-aEf"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.1019607843" green="0.2784313725" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
-                                        <color key="value" red="0.1019607843" green="0.2784313725" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="secondColor">
-                                        <color key="value" red="0.38039215686274508" green="0.69019607843137254" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -224,6 +207,9 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Export" id="ugM-3D-hlA">
                             <color key="tintColor" red="0.1041769013" green="0.2801864147" blue="0.40077185630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="exportRightNow:" destination="wqs-JB-6kX" id="bep-3T-gYW"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>

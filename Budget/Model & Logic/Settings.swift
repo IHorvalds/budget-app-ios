@@ -110,7 +110,7 @@ class Settings: NSObject, NSCoding, Codable {
         if at < self.recurringExpenses.count {
             
             let budgets: [BudgetForDay]? = try? BudgetForDay.getBudgetsFromDefaults()
-            let eList = self.recurringExpenses[at].createExpensesFor(settings: self)
+            let eList = self.recurringExpenses[at].createExpensesFor(settings: self).filter({$0.datePurchased >= Date()}) //remove only the ones the user hasn't already paid
             self.recurringExpenses.remove(at: at)
             BudgetForDay.removeExpensesFromMatchingBudget(expenseList: eList, budgets: budgets)
             

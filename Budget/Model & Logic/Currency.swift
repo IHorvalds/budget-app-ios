@@ -45,13 +45,15 @@ struct RatesFromAPI {
                         if  var exchange = json["rates"] as? [String: Double],
                             let base    = json["base"] as? String,
                             let dateString = json["date"] as? String,
-                            let date    = dateFormatter.date(from: dateString) {
+                            var date    = dateFormatter.date(from: dateString) {
                             
+                            date = calendar.startOfDay(for: date)
                             defaults.set(date, forKey: lastCheckedExchangeDateKey)
                             exchange[base] = 1.00
                             
                             //MARK: Updating the exchangeRates.
                             exchangeRates = exchange
+                            print(exchange)
                             
                             //MARK: Caching in defaults. Can't think of an excuse to use NSCache here.
                             defaults.set(exchangeRates, forKey: cachedExchangeRatesKey)

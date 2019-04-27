@@ -27,7 +27,7 @@ class BudgetExportDocument: UIDocument {
                 print("loaded document data")
                 budgetExport = jsonDecodedBudget
         } else {
-            print("error loading document")
+            print("error loading document: \(error)")
             throw error
         }
     }

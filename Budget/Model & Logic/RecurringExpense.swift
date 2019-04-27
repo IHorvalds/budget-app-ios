@@ -54,6 +54,10 @@ class RecurringExpense: Expense {
             var _initialExpense = self.datePurchased
             _initialExpense = calendar.startOfDay(for: _initialExpense)
             
+            while _initialExpense < initialDate {
+                _initialExpense = _initialExpense.getSameDayNextMonth()
+            }
+            
             while _initialExpense < finalDate && _initialExpense > initialDate {
                 
                 let e = Expense(title: self.title,

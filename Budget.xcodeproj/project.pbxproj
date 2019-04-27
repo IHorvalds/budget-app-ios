@@ -15,6 +15,7 @@
 		200BDE4D220F522D00B83924 /* CurrencyPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200BDE4C220F522D00B83924 /* CurrencyPicker.swift */; };
 		200BDE4F220F68A300B83924 /* AlertButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200BDE4E220F68A300B83924 /* AlertButton.swift */; };
 		2015B9E4212E5677003CB2F7 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2015B9E3212E5677003CB2F7 /* Launch Screen.storyboard */; };
+		201B9E0B2240DFB400D7BBBA /* BudgetDocumentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B9E0A2240DFB400D7BBBA /* BudgetDocumentCell.swift */; };
 		201D307B221AE3C3009BF083 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201D307A221AE3C3009BF083 /* SwitchTableViewCell.swift */; };
 		2025D3EF223BEEB700D0AFB8 /* BudgetFileIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2025D3EE223BEEB700D0AFB8 /* BudgetFileIcon@3x.png */; };
 		2025D3F1223BEFEC00D0AFB8 /* ChooseFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2025D3F0223BEFEC00D0AFB8 /* ChooseFileViewController.swift */; };
@@ -56,6 +57,8 @@
 		20E08AB72120C0E700A7BE52 /* ExpenseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E08AB62120C0E700A7BE52 /* ExpenseDetailViewController.swift */; };
 		20F3A459212705B600F9B13E /* BudgetExportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F3A458212705B600F9B13E /* BudgetExportData.swift */; };
 		20FA8ABC223A9ED6001E9CDE /* BaseClassExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FA8ABB223A9ED6001E9CDE /* BaseClassExtensions.swift */; };
+		20FAE82E2241072F00AC471A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20FAE82D2241072F00AC471A /* Onboarding.storyboard */; };
+		20FAE8302241077A00AC471A /* OnboardingControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FAE82F2241077A00AC471A /* OnboardingControllerViewController.swift */; };
 		20FB7A5E211C41AB00B0F523 /* BudgetForDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FB7A5D211C41AB00B0F523 /* BudgetForDay.swift */; };
 		20FB7A60211CBA0200B0F523 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FB7A5F211CBA0200B0F523 /* Keys.swift */; };
 /* End PBXBuildFile section */
@@ -81,6 +84,7 @@
 		200BDE4C220F522D00B83924 /* CurrencyPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPicker.swift; sourceTree = "<group>"; };
 		200BDE4E220F68A300B83924 /* AlertButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertButton.swift; sourceTree = "<group>"; };
 		2015B9E3212E5677003CB2F7 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		201B9E0A2240DFB400D7BBBA /* BudgetDocumentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetDocumentCell.swift; sourceTree = "<group>"; };
 		201D307A221AE3C3009BF083 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
 		2025D3EE223BEEB700D0AFB8 /* BudgetFileIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BudgetFileIcon@3x.png"; sourceTree = "<group>"; };
 		2025D3F0223BEFEC00D0AFB8 /* ChooseFileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseFileViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +130,8 @@
 		20F3A458212705B600F9B13E /* BudgetExportData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetExportData.swift; sourceTree = "<group>"; };
 		20F3A460212771BE00F9B13E /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		20FA8ABB223A9ED6001E9CDE /* BaseClassExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseClassExtensions.swift; sourceTree = "<group>"; };
+		20FAE82D2241072F00AC471A /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		20FAE82F2241077A00AC471A /* OnboardingControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingControllerViewController.swift; sourceTree = "<group>"; };
 		20FB7A5D211C41AB00B0F523 /* BudgetForDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetForDay.swift; sourceTree = "<group>"; };
 		20FB7A5F211CBA0200B0F523 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		44057D2A11349285322A0360 /* Pods_Budget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Budget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -257,17 +263,18 @@
 		20B8AA452116460F00167865 /* Budget */ = {
 			isa = PBXGroup;
 			children = (
-				206D1B5E2118F6B500660920 /* Budget.entitlements */,
-				20658AAB22103B8C00D9656C /* Settings2 */,
-				200BDE43220F116500B83924 /* InputViewController */,
 				20BD742A211709B400DE0B7A /* Model & Logic */,
-				20BD742D2117139300DE0B7A /* Home */,
-				205EB80D21281DDF0019E641 /* BudgetExportViewController */,
 				20BD742F2117142500DE0B7A /* Shared */,
+				20BD742D2117139300DE0B7A /* Home */,
+				20658AAB22103B8C00D9656C /* Settings2 */,
 				20DE197F2120774800707A31 /* ExpensesThisMonth */,
+				205EB80D21281DDF0019E641 /* BudgetExportViewController */,
 				2028C4C5211F379300048ABC /* CurrencyConvertor */,
 				206D1B5B2118F29F00660920 /* Launch Screen */,
+				20FAE82C2241063400AC471A /* Onboarding Screen */,
+				200BDE43220F116500B83924 /* InputViewController */,
 				20B8AA522116461100167865 /* Info.plist */,
+				206D1B5E2118F6B500660920 /* Budget.entitlements */,
 				20B8AA4D2116461100167865 /* Assets.xcassets */,
 			);
 			path = Budget;
@@ -312,6 +319,7 @@
 				200BDE4E220F68A300B83924 /* AlertButton.swift */,
 				201D307A221AE3C3009BF083 /* SwitchTableViewCell.swift */,
 				20FA8ABB223A9ED6001E9CDE /* BaseClassExtensions.swift */,
+				201B9E0A2240DFB400D7BBBA /* BudgetDocumentCell.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -333,6 +341,15 @@
 				44057D2A11349285322A0360 /* Pods_Budget.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		20FAE82C2241063400AC471A /* Onboarding Screen */ = {
+			isa = PBXGroup;
+			children = (
+				20FAE82D2241072F00AC471A /* Onboarding.storyboard */,
+				20FAE82F2241077A00AC471A /* OnboardingControllerViewController.swift */,
+			);
+			path = "Onboarding Screen";
 			sourceTree = "<group>";
 		};
 		79FC77BAB3B2D692E3BED8A0 /* Pods */ = {
@@ -420,6 +437,7 @@
 				20DE1981212077BE00707A31 /* ExpensesThisMonthViewController.storyboard in Resources */,
 				2059892B212DF7CB00D1994D /* Launch Screen Thing.storyboard in Resources */,
 				20B8AA4E2116461100167865 /* Assets.xcassets in Resources */,
+				20FAE82E2241072F00AC471A /* Onboarding.storyboard in Resources */,
 				207B12D721281FD500C02331 /* BudgetExport.storyboard in Resources */,
 				200BDE45220F117000B83924 /* ExpenseInputViewController.storyboard in Resources */,
 				2025D3EF223BEEB700D0AFB8 /* BudgetFileIcon@3x.png in Resources */,
@@ -492,6 +510,7 @@
 				20A43DCB2130C70E00EB0D07 /* ExpenseCell.swift in Sources */,
 				20491B01221E400E000A9576 /* PanelViewController.swift in Sources */,
 				208777242133684000FB708C /* ExchangeCurrencyCell.swift in Sources */,
+				201B9E0B2240DFB400D7BBBA /* BudgetDocumentCell.swift in Sources */,
 				20DE19852120857000707A31 /* ExpensesThisMonthViewController.swift in Sources */,
 				200BDE47220F117700B83924 /* ExpenseInputViewController.swift in Sources */,
 				20AA3244213360B9000B0CBF /* BaseCurrencyCell.swift in Sources */,
@@ -509,6 +528,7 @@
 				207717A0211B7EF00002DD1D /* Currency.swift in Sources */,
 				20658AAD22103BD900D9656C /* Settings2ViewController.swift in Sources */,
 				20329A3D21328FD40036B2AA /* TodayAvailableCell.swift in Sources */,
+				20FAE8302241077A00AC471A /* OnboardingControllerViewController.swift in Sources */,
 				2059892D212E30F000D1994D /* LaunchScreen.swift in Sources */,
 				20B8AA472116460F00167865 /* AppDelegate.swift in Sources */,
 				2028C4C9211F389E00048ABC /* ConvertorViewController.swift in Sources */,

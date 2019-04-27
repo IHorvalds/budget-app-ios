@@ -18,7 +18,7 @@ class CurrencyPickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDele
     
     let currenciesCount = 32
     var currDelegate: CurrencyPickerViewDelegate?
-    let currencies = exchangeRates.getKeys() as! [String]
+    let currencies = Array(exchangeRates.keys).sorted()
     let font = UIFont.systemFont(ofSize: 5.0, weight: .light)
     
     override init(frame: CGRect) {

@@ -41,7 +41,7 @@ class Settings2ViewController: UITableViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print("wtf")
+        
         settings.saveSettingsToDefaults()
     }
     
@@ -187,7 +187,7 @@ extension Settings2ViewController: UIPopoverPresentationControllerDelegate {
         case 1:
             return nil
         default:
-            return "Recurring expenses"
+            return "Scheduled expenses"
         }
     }
     
