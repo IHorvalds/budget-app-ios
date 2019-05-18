@@ -9,7 +9,7 @@
 import UIKit
 import KDCalendar
 
-class RecurringExpenseViewController: UITableViewController, CalendarViewDelegate {
+class RecurringExpenseViewController: UITableViewController {
     //MARK: ExpenseViewControllerDelegate
     var date: Date? = Date()
     var inputObject: InputObject?
@@ -17,6 +17,7 @@ class RecurringExpenseViewController: UITableViewController, CalendarViewDelegat
     
     //Mark: not for the delegate
     var expenseRepresented: RecurringExpense?
+    var expenseIndex: Int?
     var isBeingEdited: Bool = false
     var calendar            = Calendar(identifier: .gregorian)
     
@@ -28,30 +29,52 @@ class RecurringExpenseViewController: UITableViewController, CalendarViewDelegat
     
     
     @IBAction func saveExpense(_ sender: UIBarButtonItem) {
-        //In case the user pressed Cancel and then Save.
-        if inputObject == nil, expenseRepresented != nil {
-            //we just save the edits. Simply pop the vc.
-            self.navigationController?.popViewController(animated: true)
-        } else {
-            guard   let inputObject = inputObject,
-                    inputObject.isComplete() else {
-                    if expenseRepresented == nil {
-                        let alert = UIAlertController(title: "Oops...", message: "Please fill in the necessary information.", preferredStyle: .alert)
-                        alert.addAction(.init(title: "OK", style: .default, handler: nil))
-                        present(alert, animated: true, completion: nil)
-                    }
-                    self.navigationController?.popViewController(animated: true)
-                    return }
-            if !isBeingEdited {
-                settings?.addRecurringExpense(expense: expenseRepresented!)
-            } else {
-                //use this to update the budgets when the amount or currency of a recurring expense changes. NOTE: Only update the expenses AFTER the current date. Older ones are presumed to have been cashed already.
+//        //In case the user pressed Cancel and then Save.
+//        if inputObject == nil, expenseRepresented != nil {
+//            //we just save the edits. Simply pop the vc.
+//            self.navigationController?.popViewController(animated: true)
+//        } else {
+//            guard   let inputObject = inputObject,
+//                    inputObject.isComplete() else {
+//                    if expenseRepresented == nil {
+//                        let alert = UIAlertController(title: "Oops...", message: "Please fill in the necessary information.", preferredStyle: .alert)
+//                        alert.addAction(.init(title: "OK", style: .default, handler: nil))
+//                        present(alert, animated: true, completion: nil)
+//                    }
+//                    self.navigationController?.popViewController(animated: true)
+//                    return }
+//            if !isBeingEdited {
+//                settings?.addRecurringExpense(expense: expenseRepresented!)
+//            } else {
+//                //use this to update the budgets when the amount or currency of a recurring expense changes. NOTE: Only update the expenses AFTER the current date. Older ones are presumed to have been cashed already.
+//            }
+//
+//            //        print(settings)
+//            //        print(settings?.recurringExpenses)
+//            self.navigationController?.popViewController(animated: true)
+//        }
+
+        if inputObject == nil, expenseRepresented != nil { //user clicked on an existing recurring expense and hasn't edited anything
+            
+            navigationController?.popViewController(animated: true)
+        
+        } else { // there wasn't an expense yet or the user edited
+            
+            if let expense = expenseRepresented {
+                if  let index = expenseIndex{
+                    
+                    settings?.removeRecurringExpense(at: index)
+                    
+                }
+                
+                settings?.addRecurringExpense(expense: expense)
             }
             
-            //        print(settings)
-            //        print(settings?.recurringExpenses)
-            self.navigationController?.popViewController(animated: true)
+            navigationController?.popViewController(animated: true)
+            
         }
+        
+        
     }
     
     override func viewDidLoad() {
@@ -66,16 +89,9 @@ class RecurringExpenseViewController: UITableViewController, CalendarViewDelegat
         
         if let expense = expenseRepresented {
             navigationItem.title = expense.title
-        }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? CalendarCell {
-            cell.calendarView.setDisplayDate(self.date!, animated: true)
-            if let expense = expenseRepresented {
-                cell.calendarView.selectDate(expense.datePurchased)
+            if let cell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) {
+                
+                (cell as! DatePickerCell).datePicker.setDate(expense.datePurchased, animated: false)
             }
         }
     }
@@ -87,19 +103,16 @@ extension RecurringExpenseViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let iPadHeight: CGFloat         = 600.0
-        let maxHeight: CGFloat          = 290.0
-        
-        
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            return (indexPath.row == 0) ? iPadHeight : 50
-        } else {
-            return (indexPath.row == 0) ? maxHeight : 50
+
+        if indexPath.row == 1 {
+            return 130
         }
+        
+        return 50
         
     }
     
@@ -108,14 +121,20 @@ extension RecurringExpenseViewController {
         
         switch indexPath.row {
         case 0:
-            cell = tableView.dequeueReusableCell(withIdentifier: "calendarcell") as! CalendarCell
-            let calendarView            = (cell as! CalendarCell).calendarView
-            calendarView?.delegate      = self
-            calendarView?.layer.maskedCorners   = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-            calendarView?.clipsToBounds         = true
-            setupCalendarView(calendarView: calendarView!)
+            cell                        = tableView.dequeueReusableCell(withIdentifier: "calendarcell") as! RoundedTableViewCell
+            cell.layer.maskedCorners    = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+//            calendarView?.clipsToBounds         = true
             
         case 1:
+            cell = tableView.dequeueReusableCell(withIdentifier: "datepickercell") as! DatePickerCell
+            cell.layer.maskedCorners                = []
+            (cell as! DatePickerCell).initialDate   = settings?.paymentDate
+            (cell as! DatePickerCell).finalDate     = settings?.paymentDate?.getSameDayNextMonth()
+            (cell as! DatePickerCell).datePicker.date = expenseRepresented?.datePurchased ?? Date()
+            (cell as! DatePickerCell).datePicker.addTarget(self, action: #selector(didSelectNewDate), for: .valueChanged)
+            
+            
+        case 2:
             cell = tableView.dequeueReusableCell(withIdentifier: "pricecell") as! RoundedTableViewCell
             (cell as! RoundedTableViewCell).layer.maskedCorners = []
             if let expense = expenseRepresented {
@@ -125,7 +144,7 @@ extension RecurringExpenseViewController {
                 cell.detailTextLabel?.text   = numberFormatter.string(from: expense.price as NSNumber)
             }
             
-        case 2:
+        case 3:
             cell = tableView.dequeueReusableCell(withIdentifier: "notificationcell") as! SwitchTableViewCell
             (cell as! SwitchTableViewCell).layer.maskedCorners  = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
             (cell as! SwitchTableViewCell).uiSwitch.isOn        = expenseRepresented?.notificationsOn ?? false
@@ -141,19 +160,33 @@ extension RecurringExpenseViewController {
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath == IndexPath(row: 1, section: 0), expenseRepresented != nil {
+        if indexPath == IndexPath(row: 2, section: 0) {
+            
+            let cell: DatePickerCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as! DatePickerCell
+            let date = cell.datePicker.date
+            
 
             isBeingEdited       = true
             let storyboard      = UIStoryboard(name: "ExpenseInputViewController", bundle: nil)
             let inputVC         = storyboard.instantiateInitialViewController() as! ExpenseInputViewController
             inputVC.delegate    = self
             expense             = expenseRepresented
-            self.date           = expenseRepresented?.datePurchased
-            inputVC.currencyString = expenseRepresented?.currency.isoCode
+            self.date           = expenseRepresented?.datePurchased ?? date
+            inputVC.currencyString = expenseRepresented?.currency.isoCode ?? settings?.preferredCurrency
             present(inputVC, animated: true, completion: nil)
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    
+    @objc func didSelectNewDate() {
+        
+        let cell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as! DatePickerCell
+        let date = cell.datePicker.date
+        
+        expenseRepresented?.datePurchased = date
+        expenseRepresented?.updateDayOfMonth()
     }
 }
 
@@ -179,7 +212,7 @@ extension RecurringExpenseViewController: ExpenseInputDelegate {
                                                       datePurchased: date!)
             }
             
-            tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: .fade)
+            tableView.reloadRows(at: [IndexPath(row: 1, section: 0), IndexPath(row: 2, section:0)], with: .fade)
             navigationItem.title = object.itemName
         }
         
@@ -189,68 +222,66 @@ extension RecurringExpenseViewController: ExpenseInputDelegate {
         
     }
     
-    //MARK: Calendar View Delegate
-    func calendar(_ calendar: CalendarView, didScrollToMonth date: Date) {
-
-    }
-    
-    func calendar(_ calendar: CalendarView, didSelectDate date: Date, withEvents events: [CalendarEvent]) {
-
-        if expenseRepresented == nil {
-            //show expense input view
-            let storyboard      = UIStoryboard(name: "ExpenseInputViewController", bundle: nil)
-            let inputVC         = storyboard.instantiateInitialViewController() as! ExpenseInputViewController
-            inputVC.delegate    = self
-            self.date           = date
-            
-            inputVC._initialCurrencyString = settings?.preferredCurrency
-            present(inputVC, animated: true, completion: nil)
-            
-        } else {
-            let day = calendar.calendar.component(.day, from: date)
-            if expenseRepresented!.dayOfMonth.day != day {
-                let month = calendar.calendar.component(.month, from: date)
-                label: if  month == 2,
-                    expenseRepresented!.dayOfMonth.day! > day { //if it's february and the day is greater than 28, or 29 in leap years
-                    break label
-                
-                } else {
-                    expenseRepresented!.datePurchased = date
-                    expenseRepresented!.updateDayOfMonth()
-                }
-            }
-        }
-       
-    }
-
-    func calendar(_ calendar: CalendarView, canSelectDate date: Date) -> Bool {
-        return true
-    }
-    func calendar(_ calendar: CalendarView, didDeselectDate date: Date) {
-        
-    }
-    func calendar(_ calendar: CalendarView, didLongPressDate date: Date) {
-        calendar.deselectDate(date)
-    }
-    
-    func setupCalendarView(calendarView: CalendarView) {
-        
-        calendarView.direction                      = .horizontal
-        calendarView.multipleSelectionEnable        = false
-        calendarView.backgroundColor                = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        calendarView.layer.cornerRadius             = cornerRadius
-        calendarView.layer.masksToBounds            = true
-        CalendarView.Style.cellShape                = .round
-        CalendarView.Style.cellColorDefault         = .clear
-        CalendarView.Style.cellColorToday           = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-        CalendarView.Style.headerTextColor          = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        CalendarView.Style.cellTextColorDefault     = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        CalendarView.Style.cellTextColorToday       = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        CalendarView.Style.cellTextColorWeekend     = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-        CalendarView.Style.cellSelectedColor        = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
-        CalendarView.Style.cellSelectedTextColor    = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-    }
+//    //MARK: Calendar View Delegate
+//    func calendar(_ calendar: CalendarView, didScrollToMonth date: Date) {
+//
+//    }
+//
+//    func calendar(_ calendar: CalendarView, didSelectDate date: Date, withEvents events: [CalendarEvent]) {
+//
+//        if expenseRepresented == nil {
+//            //show expense input view
+//            let storyboard      = UIStoryboard(name: "ExpenseInputViewController", bundle: nil)
+//            let inputVC         = storyboard.instantiateInitialViewController() as! ExpenseInputViewController
+//            inputVC.delegate    = self
+//            self.date           = date
+//
+//            inputVC._initialCurrencyString = settings?.preferredCurrency
+//            present(inputVC, animated: true, completion: nil)
+//
+//        } else {
+//            let day = calendar.calendar.component(.day, from: date)
+//            if expenseRepresented!.dayOfMonth.day != day {
+//                let month = calendar.calendar.component(.month, from: date)
+//                label: if  month == 2,
+//                    expenseRepresented!.dayOfMonth.day! > day { //if it's february and the day is greater than 28, or 29 in leap years
+//                    break label
+//
+//                } else {
+//                    expenseRepresented!.datePurchased = date
+//                    expenseRepresented!.updateDayOfMonth()
+//                }
+//            }
+//        }
+//
+//    }
+//
+//    func calendar(_ calendar: CalendarView, canSelectDate date: Date) -> Bool {
+//        return true
+//    }
+//    func calendar(_ calendar: CalendarView, didDeselectDate date: Date) {
+//
+//    }
+//    func calendar(_ calendar: CalendarView, didLongPressDate date: Date) {
+//        calendar.deselectDate(date)
+//    }
+//
+//    func setupCalendarView(calendarView: CalendarView) {
+//
+//        calendarView.direction                      = .horizontal
+//        calendarView.multipleSelectionEnable        = false
+//        calendarView.backgroundColor                = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+//        calendarView.layer.cornerRadius             = cornerRadius
+//        calendarView.layer.masksToBounds            = true
+//        CalendarView.Style.cellShape                = .round
+//        CalendarView.Style.cellColorDefault         = .clear
+//        CalendarView.Style.cellColorToday           = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+//        CalendarView.Style.headerTextColor          = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+//        CalendarView.Style.cellTextColorDefault     = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+//        CalendarView.Style.cellTextColorToday       = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+//        CalendarView.Style.cellTextColorWeekend     = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+//        CalendarView.Style.cellSelectedColor        = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+//        CalendarView.Style.cellSelectedTextColor    = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+//    }
     
 }
-
-

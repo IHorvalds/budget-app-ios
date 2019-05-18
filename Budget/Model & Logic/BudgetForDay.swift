@@ -290,6 +290,10 @@ class BudgetForDay: NSObject, NSCoding, Codable {
             }
             
             addExpensesToMatchingBudget(expenseList: allTheExpenses, budgets: budgets)
+//            
+//            settings.recurringExpenses.forEach { (re) in
+//                settings.addRecurringExpense(expense: re)
+//            }
 
             
             if budgets.count != 0 {

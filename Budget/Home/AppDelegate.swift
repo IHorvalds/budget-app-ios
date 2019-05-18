@@ -53,6 +53,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             successfullyOpenedDocument = success
         })
         
+        
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+        RatesFromAPI().getRatesFromAPI()
+        
         return successfullyOpenedDocument
     }
     

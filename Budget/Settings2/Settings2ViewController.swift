@@ -56,6 +56,7 @@ class Settings2ViewController: UITableViewController {
             destVC.settings = settings
             if let index = tableView.indexPathForSelectedRow {
                 destVC.expenseRepresented = settings.recurringExpenses[index.row]
+                destVC.expenseIndex       = index.row
             }
         }
         

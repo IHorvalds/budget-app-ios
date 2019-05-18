@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UserNotifications
 
 class RecurringExpense: Expense {
     
@@ -40,6 +41,12 @@ class RecurringExpense: Expense {
     
     func updateDayOfMonth() {
         self.dayOfMonth.day = calendar.component(.day, from: self.datePurchased)
+        
+        if notificationsOn {
+            let notificationCenter = UNUserNotificationCenter.current()
+            notificationCenter.removePendingNotificationRequests(withIdentifiers: [self.notificationUuid])
+            self.turnNotifications(onOrOff: notificationsOn, closure: nil)
+        }
     }
     
     func createExpensesFor(settings: Settings?) -> [Expense] {

@@ -19,6 +19,7 @@
 		201D307B221AE3C3009BF083 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201D307A221AE3C3009BF083 /* SwitchTableViewCell.swift */; };
 		2025D3EF223BEEB700D0AFB8 /* BudgetFileIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2025D3EE223BEEB700D0AFB8 /* BudgetFileIcon@3x.png */; };
 		2025D3F1223BEFEC00D0AFB8 /* ChooseFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2025D3F0223BEFEC00D0AFB8 /* ChooseFileViewController.swift */; };
+		2028B3152279A1F70000E907 /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2028B3142279A1F70000E907 /* DatePickerCell.swift */; };
 		2028C4C7211F387F00048ABC /* ConvertorViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2028C4C6211F387F00048ABC /* ConvertorViewController.storyboard */; };
 		2028C4C9211F389E00048ABC /* ConvertorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2028C4C8211F389E00048ABC /* ConvertorViewController.swift */; };
 		20329A3D21328FD40036B2AA /* TodayAvailableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20329A3C21328FD40036B2AA /* TodayAvailableCell.swift */; };
@@ -88,6 +89,7 @@
 		201D307A221AE3C3009BF083 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
 		2025D3EE223BEEB700D0AFB8 /* BudgetFileIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BudgetFileIcon@3x.png"; sourceTree = "<group>"; };
 		2025D3F0223BEFEC00D0AFB8 /* ChooseFileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseFileViewController.swift; sourceTree = "<group>"; };
+		2028B3142279A1F70000E907 /* DatePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCell.swift; sourceTree = "<group>"; };
 		2028C4C6211F387F00048ABC /* ConvertorViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ConvertorViewController.storyboard; sourceTree = "<group>"; };
 		2028C4C8211F389E00048ABC /* ConvertorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertorViewController.swift; sourceTree = "<group>"; };
 		20329A3C21328FD40036B2AA /* TodayAvailableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayAvailableCell.swift; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 				201D307A221AE3C3009BF083 /* SwitchTableViewCell.swift */,
 				20FA8ABB223A9ED6001E9CDE /* BaseClassExtensions.swift */,
 				201B9E0A2240DFB400D7BBBA /* BudgetDocumentCell.swift */,
+				2028B3142279A1F70000E907 /* DatePickerCell.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -546,6 +549,7 @@
 				207B12D521281F4800C02331 /* BudgetExportViewController.swift in Sources */,
 				20E08AB72120C0E700A7BE52 /* ExpenseDetailViewController.swift in Sources */,
 				20877726213386DB00FB708C /* RoundedTableViewCell.swift in Sources */,
+				2028B3152279A1F70000E907 /* DatePickerCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

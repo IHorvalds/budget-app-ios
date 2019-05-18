@@ -43,7 +43,7 @@ class Expense: NSObject, NSCoding, Codable {
     func turnNotifications(onOrOff: Bool, closure: (()->())?) {
         let notificationCenter = UNUserNotificationCenter.current()
         
-        if onOrOff{
+        if onOrOff {
             notificationCenter.getNotificationSettings { (notificationSettings) in
                 switch notificationSettings.authorizationStatus {
                     
